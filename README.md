@@ -1,2 +1,2 @@
 # LazerCO2
- Landing Page – Tratamentos com Laser CO2
+Landing Page – LazerCO2
