@@ -1,7 +1,7 @@
 // src/App.tsx
 import { useEffect } from 'react';
 import Navbar from './components/Navbar/Navbar';
-import Hero from './components/Navbar/Hero/Hero'; // Import the Hero component
+import { HeroSection } from './components/HeroSection';
 
 import './App.css';
 
@@ -26,7 +26,10 @@ const App = () => {
   return (
     <div className="App">
       <Navbar />
-      <Hero /> {/* Add the Hero component here */}
+      
+      <HeroSection className="hero-section" />
+      {/* Add other components here */}
+      {/* Example: <SomeOtherComponent /> */}
       {/* Other components can be added here */}
     </div>
   );

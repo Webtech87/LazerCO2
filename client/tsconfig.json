@@ -6,9 +6,15 @@
   ],
 
   "compilerOptions": {
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "paths": {
-      "@/components/*": ["components/*"]
-    }
+      "@/components/*": ["components/*"],
+      "@/*": ["src/*"]
+    },
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "jsx": "react-jsx"
   }
 }
