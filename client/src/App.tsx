@@ -1,7 +1,7 @@
 // src/App.tsx
 import { useEffect } from 'react';
 import Navbar from './components/Navbar/Navbar';
-import { HeroSection } from './components/HeroSection';
+import { HeroSection } from './components/Hero/HeroSection';
 
 import './App.css';
 
