@@ -3,7 +3,9 @@ import { useEffect } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import { HeroSection } from './components/Hero/HeroSection';
 import About from "./components/About/About";
+
 import './App.css';
+import Benefits from './components/Benefits/Benefits';
 
 const App = () => {
   useEffect(() => {
@@ -29,6 +31,7 @@ const App = () => {
       
       <HeroSection className="hero-section" />
       <About />
+      <Benefits />
       {/* Add other components here */}
       {/* Example: <SomeOtherComponent /> */}
       {/* Other components can be added here */}
