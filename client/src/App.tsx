@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import { HeroSection } from './components/Hero/HeroSection';
-
+import About from "./components/About/About";
 import './App.css';
 
 const App = () => {
@@ -18,7 +18,7 @@ const App = () => {
         }
       }
     };
-
+    
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -28,6 +28,7 @@ const App = () => {
       <Navbar />
       
       <HeroSection className="hero-section" />
+      <About />
       {/* Add other components here */}
       {/* Example: <SomeOtherComponent /> */}
       {/* Other components can be added here */}
