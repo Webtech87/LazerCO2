@@ -6,6 +6,9 @@ import BeforeAfter from "./components/BeforeAfter/BeforeAfter";
 import './App.css';
 import Benefits from './components/Benefits/Benefits';
 import Treatments from './components/Treatments/Treatments';
+import Scars from './components/Scars/Scars';
+// Import using named export
+import { Rejuvenation } from './components/Rejuvenation/Rejuvenation';
 
 const App = () => {
   useEffect(() => {
@@ -22,9 +25,12 @@ const App = () => {
     };
     
     window.addEventListener('scroll', handleScroll);
+    // Call once on mount to set initial state
+    handleScroll();
+    
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
+  
   return (
     <div className="App">
       <Navbar />
@@ -52,13 +58,15 @@ const App = () => {
           "Rejuvenescimento da pele",
           "Redução de manchas",
           "Melhora da textura e firmeza",
-        ]}
-        // You can override the default images if needed
-        // beforeImage="/custom-before-image.jpg"
-        // afterImage="/custom-after-image.jpg"
+        ]}        
+      />
+      <Scars />
+      <Rejuvenation
+        beforeImage="/laser-treatment.jpg"
+        afterImage="/laser-treatment.jpg"
       />
     </div>
   );
 };
 
-export default App; 
+export default App;
