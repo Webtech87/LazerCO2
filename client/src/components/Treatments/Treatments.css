@@ -1,0 +1,128 @@
+.treatment-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+    background-color: white;
+    padding: 6.25rem 8rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .treatment-content {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    max-width: 31rem;
+  }
+  
+  .treatment-title {
+    color: #081533;
+    font-size: 3rem;
+    font-weight: bold;
+    line-height: 6rem;
+    letter-spacing: -0.125rem;
+    margin: 0;
+  }
+  
+  .treatment-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .treatment-description {
+    color: #081533;
+    font-size: 1.44rem;
+    font-weight: bold;
+    line-height: 2rem;
+    padding-left: 0.75rem;
+    margin: 0;
+  }
+  
+  .treatment-benefits {
+    color: #332600;
+    font-size: 1.44rem;
+    font-weight: normal;
+    line-height: 2rem;
+  }
+  
+  .treatment-benefit {
+    margin-bottom: 0.5rem;
+  }
+  
+  .treatment-images {
+    display: flex;
+    overflow: hidden;
+    box-shadow: 0px 0px 40px 0px rgba(38, 103, 255, 0.8);
+    border-radius: 0 12.5rem;
+    width: 40.94rem;
+    height: 40.94rem;
+  }
+  
+  .treatment-image {
+    flex: 1;
+    object-fit: cover;
+    width: 50%;
+    height: 100%;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 1200px) {
+    .treatment-section {
+      padding: 5rem 4rem;
+      gap: 3rem;
+    }
+    
+    .treatment-images {
+      width: 35rem;
+      height: 35rem;
+    }
+    
+    .treatment-title {
+      font-size: 2.5rem;
+      line-height: 4rem;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .treatment-section {
+      flex-direction: column;
+      gap: 2.5rem;
+      padding: 3.75rem 2.5rem;
+    }
+    
+    .treatment-content {
+      max-width: 100%;
+      gap: 2rem;
+    }
+    
+    .treatment-images {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1/1;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .treatment-section {
+      padding: 2.5rem 1.25rem;
+    }
+    
+    .treatment-images {
+      border-radius: 0 6.25rem;
+    }
+    
+    .treatment-title {
+      font-size: 2rem;
+      line-height: 3rem;
+      letter-spacing: -0.06rem;
+    }
+    
+    .treatment-description, 
+    .treatment-benefits {
+      font-size: 1.125rem;
+      line-height: 1.625rem;
+    }
+  }
