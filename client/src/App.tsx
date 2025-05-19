@@ -9,6 +9,7 @@ import Treatments from './components/Treatments/Treatments';
 import Scars from './components/Scars/Scars';
 // Import using named export
 import { Rejuvenation } from './components/Rejuvenation/Rejuvenation';
+import Testimonial from './components/Testimonials/Testimonial';
 
 const App = () => {
   useEffect(() => {
@@ -65,6 +66,7 @@ const App = () => {
         beforeImage="/laser-treatment.jpg"
         afterImage="/laser-treatment.jpg"
       />
+      < Testimonial />
     </div>
   );
 };

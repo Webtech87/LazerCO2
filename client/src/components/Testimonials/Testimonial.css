@@ -1,0 +1,226 @@
+/* Main container styles */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  main {
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #1A1F2C;
+  }
+  
+  p {
+    font-size: 1.125rem;
+    margin-bottom: 60px;
+    color: #666;
+  }
+  
+  /* Testimonials section styles */
+  .testimonials-section {
+    display: flex;
+    flex-direction: column;
+    padding: 0 80px;
+    margin: 40px 0;
+  }
+  
+  .testimonials-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 100%;
+    padding: 80px 0;
+    overflow: hidden;
+  }
+  
+  .testimonials-heading {
+    color: #081533;
+    max-width: 897px;
+    font-size: 3rem;
+    font-weight: 600;
+    letter-spacing: -2px;
+    line-height: 1.5;
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  
+  .testimonials-slider {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 50px;
+    padding-bottom: 16px;
+    scrollbar-width: thin;
+    scrollbar-color: #9b87f5 #f1f0fb;
+  }
+  
+  .testimonials-slider::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  .testimonials-slider::-webkit-scrollbar-track {
+    background: #f1f0fb;
+    border-radius: 10px;
+  }
+  
+  .testimonials-slider::-webkit-scrollbar-thumb {
+    background: #9b87f5;
+    border-radius: 10px;
+  }
+  
+  .testimonials-track {
+    display: flex;
+    min-height: 392px;
+    gap: 40px;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px 0;
+  }
+  
+  /* Testimonial card styles */
+  .testimonial-card {
+    box-shadow: 0px 0px 40px 0px rgba(38,103,255,0.8);
+    min-width: 320px;
+    width: 339px;
+    background-color: #F1FEFF;
+    border-radius: 32px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+  
+  .testimonial-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .testimonial-card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+    padding: 24px;
+    height: 100%;
+  }
+  
+  .testimonial-header {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .icon-container {
+    background-color: white;
+    display: flex;
+    min-height: 32px;
+    width: 32px;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  
+  .google-icon {
+    aspect-ratio: 1;
+    object-fit: contain;
+    width: 100%;
+    flex: 1;
+  }
+  
+  .default-icon {
+    background-color: rgba(25,118,210,1);
+    min-height: 32px;
+    width: 100%;
+    height: 32px;
+    flex: 1;
+    border-radius: 99px;
+  }
+  
+  .testimonial-title {
+    align-self: stretch;
+    flex: 1;
+    width: 100%;
+    font-size: 14px;
+    color: black;
+    font-weight: 600;
+    line-height: 24px;
+    margin-top: 12px;
+  }
+  
+  .testimonial-text {
+    align-self: stretch;
+    width: 100%;
+    font-size: 14px;
+    color: black;
+    font-weight: normal;
+    line-height: 24px;
+    margin-top: 12px;
+  }
+  
+  .star-rating {
+    display: flex;
+    min-height: 24px;
+    width: 100%;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  
+  .star {
+    color: gold;
+    font-size: 24px;
+  }
+  
+  .reviewer-name {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    font-size: 16px;
+    color: #1A1A1A;
+    font-weight: 600;
+    margin-top: 12px;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .testimonials-section {
+      padding: 0 20px;
+    }
+  
+    .testimonials-heading {
+      font-size: 2rem;
+      margin-bottom: 40px;
+    }
+  
+    .testimonial-card {
+      min-width: 280px;
+      width: 280px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .testimonials-heading {
+      font-size: 1.75rem;
+      letter-spacing: -1px;
+    }
+  
+    .testimonial-card {
+      min-width: 260px;
+      width: 260px;
+    }
+    
+    .testimonial-title,
+    .testimonial-text {
+      font-size: 13px;
+    }
+    
+    .reviewer-name {
+      font-size: 14px;
+    }
+  }
