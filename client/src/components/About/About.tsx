@@ -1,7 +1,11 @@
-import React from "react";
 import "./about.css";
 
+import {useTranslation} from "react-i18next";
+
 const About = () => {
+
+  const { t } = useTranslation();
+
   return (
     <div className="page-container">
       <main className="container">
@@ -14,13 +18,13 @@ const About = () => {
           </div>
           
           <article className="treatment-content">
-            <h2>O que é o Laser CO₂?</h2>
+            <h2>{t("cois.title")}</h2>
             <div className="treatment-text-container">
               <p className="treatment-text">
-                O <span className="highlight">Laser CO₂ fracionado</span> é uma tecnologia avançada de resurfacing da pele, que utiliza energia térmica controlada para <span className="highlight">estimular a regeneração profunda da pele</span>, atuando nas camadas dérmicas e epidérmicas. O feixe de laser é fracionado em milhares de microcolunas, atingindo a pele de forma seletiva, o que permite <span className="highlight">tratar imperfeições com precisão</span>, mantendo zonas saudáveis ao redor para uma <span className="highlight">recuperação mais rápida e segura</span>. É considerado o <span className="highlight">padrão-ouro</span> no rejuvenescimento não cirúrgico e na <span className="highlight">melhoria da textura e qualidade da pele</span>, com resultados visíveis após uma única sessão.
+                {t("cois.p.0")} <span className="highlight">{t("cois.p.1")}</span> {t("cois.p.2")} <span className="highlight">{t("cois.p.3")}</span>, {t("cois.p.4")} <span className="highlight">{t("cois.p.5")}</span>, {t("cois.p.6")} <span className="highlight">{t("cois.p.7")}</span>. {t("cois.p.8")} <span className="highlight">{t("cois.p.9")}</span> {t("cois.p.10")} <span className="highlight">{t("cois.p.11")}</span>, {t("cois.p.12")}.
               </p>
               <button className="cta-button">
-                AGENDE A SUA AVALIAÇÃO
+                {t("cois.btn")}
               </button>
             </div>
           </article>

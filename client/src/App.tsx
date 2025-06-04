@@ -1,42 +1,45 @@
 // src/App.tsx
-import { useEffect } from 'react';
+import {useEffect} from 'react';
 import Navbar from './components/Navbar/Navbar';
-import { HeroSection } from './components/Hero/HeroSection';
+import {HeroSection} from './components/Hero/HeroSection';
 import About from "./components/About/About";
 import './App.css';
 import Benefits from './components/Benefits/Benefits';
 import KeyAreas from './components/KeyAreas/KeyAreas';
-import SkinMarks from "./components/skinMarks/skinMarks.tsx";
+import Blefaroplastia from "./components/Blefaroplastia/Blefaroplastia.tsx";
+import SkinMarks from './components/SkinMarks/SkinMarks.tsx';
+import './i18n.js';
 
 const App = () => {
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const navbar = document.querySelector('.navbar') as HTMLElement;
-      if (navbar) {
-        if (scrollTop > 20) {
-          navbar.classList.add('scrolled');
-        } else {
-          navbar.classList.remove('scrolled');
-        }
-      }
-    };
-    
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollTop = window.scrollY;
+            const navbar = document.querySelector('.navbar') as HTMLElement;
+            if (navbar) {
+                if (scrollTop > 20) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            }
+        };
 
-  return (
-    <div className="App">
-      <Navbar />
-      <HeroSection className="hero-section" />
-      <About />
-      <Benefits />
-      <KeyAreas />
-      <SkinMarks />
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
-    </div>
-  );
+    return (
+        <div className="App">
+            <Navbar/>
+            <HeroSection className="hero-section"/>
+            <About/>
+            <Benefits/>
+            <KeyAreas/>
+            <Blefaroplastia/>
+            <SkinMarks/>
+
+        </div>
+    );
 };
 
 export default App;
