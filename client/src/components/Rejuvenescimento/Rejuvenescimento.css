@@ -15,12 +15,12 @@ body {
     background-color: white;
 }
   
-.keys-container {
+.rejuv-container {
     margin: 0 auto;
     padding: 0 20px;
 }
 
-.key-areas {
+.rejuvenescimento {
     background-color: white;
     width: 100vw;
     max-width: 1200px;
@@ -42,8 +42,8 @@ body {
 }
 
 .images {    
-    width: 650px;
-    height: 600px;
+    width: 520px;
+    height: 520px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     object-fit: cover;
