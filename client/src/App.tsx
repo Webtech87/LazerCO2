@@ -5,6 +5,7 @@ import { HeroSection } from './components/Hero/HeroSection';
 import About from "./components/About/About";
 import './App.css';
 import Benefits from './components/Benefits/Benefits';
+import SkinMarks from "./components/skinMarks/skinMarks.tsx";
 
 const App = () => {
   useEffect(() => {
@@ -30,6 +31,7 @@ const App = () => {
       <HeroSection className="hero-section" />
       <About />
       <Benefits />
+      <SkinMarks />
 
     </div>
   );
