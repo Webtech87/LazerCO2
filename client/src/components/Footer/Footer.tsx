@@ -29,33 +29,36 @@ mulheres que merecem cuidado especial.</span>
                     </div>
                 </div>
             </div>
-            <div className='form'>
-                <h2>Agende a sua avaliação agora</h2>
-                <span>Por favor, preencha o formulário abaixo para entrar em contacto com a nossa equipa.</span>
-                <form action="">
-                    <label htmlFor="">Nome*</label>
-                    <input type="text" />
-                    <div className='email-phone'>
-                        <div className="field">
-                            <label>Email*</label>
-                            <input type="email" />
+            <div className='form-container'>
+                <div className='form'>
+                    <h2>Agende a sua avaliação agora</h2>
+                    <span>Por favor, preencha o formulário abaixo para entrar em contacto com a nossa equipa.</span>
+                    <form action="">
+                        <label htmlFor="">Nome*</label>
+                        <input type="text" />
+                        <div className='email-phone'>
+                            <div className="field">
+                                <label>Email*</label>
+                                <input type="email" />
+                            </div>
+                            <div className="field">
+                                <label>Telefone*</label>
+                                <input type="tel" />
+                            </div>
                         </div>
-                        <div className="field">
-                            <label>Telefone*</label>
-                            <input type="tel" />
+                        <label htmlFor="">Assunto*</label>
+                        <select name="" id=""></select>
+                        <label htmlFor="">Mensagem*</label>
+                        <textarea name="" id=""></textarea>
+                        <div className='checkbox'>
+                            <input type="checkbox" />
+                            <span>Li e aceito a <a href="">Política de Privacidade</a></span>
                         </div>
-                    </div>
-                    <label htmlFor="">Assunto*</label>
-                    <select name="" id=""></select>
-                    <label htmlFor="">Mensagem*</label>
-                    <textarea name="" id=""></textarea>
-                    <div className='checkbox'>
-                        <input type="checkbox" />
-                        <span>Li e aceito a <a href="">Política de Privacidade</a></span>
-                    </div>
-                    <button>Agende a sua avaliação</button>
-                </form>
+                        <button>Agende a sua avaliação</button>
+                    </form>
+                </div>
             </div>
+            
         </section>
         <div className='copyright'>
             <span>© 2025 SANTICLINIC. Todos os direitos reservados.</span>

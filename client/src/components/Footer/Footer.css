@@ -57,3 +57,28 @@ body {
     display: flex;
     flex-direction: column;
 }
+
+.form-container {
+    background-color: #D4E1FF;
+    border-radius: 120px 0;
+    display: flex;
+    max-width: 30%;
+    justify-content: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 70%;
+    padding: 0 5%;
+}
+
+.form form{
+    display: flex;
+    flex-direction: column;
+}
+
+.email-phone {
+    display: flex;
+}
