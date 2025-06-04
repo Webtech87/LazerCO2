@@ -29,7 +29,7 @@ body {
 .title {
     font-size: 38px;
     font-weight: 700;
-    max-width: 48vw;
+    max-width: 50vw;
 }
 
 .content {
@@ -66,9 +66,13 @@ body {
 }
 
 .info-text span {
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .info-text ul {
     margin-top: 5%;
+}
+
+.info-text li {
+    font-size: 20px;
 }
