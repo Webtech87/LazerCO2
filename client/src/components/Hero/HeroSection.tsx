@@ -1,11 +1,16 @@
 import { CheckIcon, LockIcon } from "lucide-react";
 import "./HeroSection.css";
+import {useTranslation} from "react-i18next";
+
 
 interface HeroSectionProps {
   className?: string;
 }
 
 export function HeroSection({ className }: HeroSectionProps) {
+
+  const {t} = useTranslation();
+
   return (
     <section className={`hero-section ${className || ""}`}>
       <div className="hero-background-blur"></div>
@@ -13,11 +18,10 @@ export function HeroSection({ className }: HeroSectionProps) {
         <div className="hero-content">
           <div className="text-content">
             <h1 className="hero-title">
-              Pele renovada em profundidade com Laser CO₂
+              {t("section_1.title")}
             </h1>
             <p className="hero-description">
-              Rejuvenescimento não invasivo com resultados visíveis a partir da
-              primeira sessão.
+              {t("section_1.p")}
             </p>
           </div>
           
@@ -27,7 +31,7 @@ export function HeroSection({ className }: HeroSectionProps) {
                 className="cta-button" 
                 onClick={() => console.log("Scheduling appointment")}
               >
-                <span className="cta-text">Agende a sua avaliação</span>
+                <span className="cta-text">{t("section_1.btn")}</span>
                 <div className="cta-glow"></div>
               </button>
               
@@ -35,18 +39,18 @@ export function HeroSection({ className }: HeroSectionProps) {
                 className="more-details-button"
                 onClick={() => console.log("More details")}
               >
-                SAIBA MAIS DETALHES
+                {t("section_1.more.title")}
               </button>
             </div>
             
             <div className="benefits-container">
               <div className="benefit-item">
                 <CheckIcon className="check-icon" />
-                <span className="benefit-text">+5.000 clientes satisfeitos</span>
+                <span className="benefit-text">+5.000 {t("section_1.more.lt.0")}</span>
               </div>
               <div className="benefit-item">
                 <LockIcon className="lock-icon" />
-                <span className="benefit-text">100% seguro</span>
+                <span className="benefit-text">{t("section_1.more.lt.1")}</span>
               </div>
             </div>
           </div>
