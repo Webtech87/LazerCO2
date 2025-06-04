@@ -21,24 +21,24 @@
     }
   },
   "cois": {
-      "title": "What is the CO₂ Laser?",
-      "p": [
-        "The",
-        "Fractional CO₂ Laser",
-        "is an advanced skin resurfacing technology that uses controlled thermal energy to",
-        "stimulate deep skin regeneration",
-        "acting on the dermal and epidermal layers. The laser beam is fractionated into thousands of microcolumns, selectively targeting the skin, which allows",
-        "precise treatment of imperfections",
-        "while preserving healthy surrounding areas for",
-        "faster and safer recovery",
-        "It is considered the",
-        "gold standard",
-        "in non-surgical rejuvenation and",
-        "improvement of skin texture and quality",
-        "with visible results after a single session"
-      ],
-      "btn": "Schedule Your Evaluation"
-    },
+    "title": "What is the CO₂ Laser?",
+    "p": [
+      "The",
+      "Fractional CO₂ Laser",
+      "is an advanced skin resurfacing technology that uses controlled thermal energy to",
+      "stimulate deep skin regeneration",
+      "acting on the dermal and epidermal layers. The laser beam is fractionated into thousands of microcolumns, selectively targeting the skin, which allows",
+      "precise treatment of imperfections",
+      "while preserving healthy surrounding areas for",
+      "faster and safer recovery",
+      "It is considered the",
+      "gold standard",
+      "in non-surgical rejuvenation and",
+      "improvement of skin texture and quality",
+      "with visible results after a single session"
+    ],
+    "btn": "Schedule Your Evaluation"
+  },
   "benefits": {
     "title": "Benefits of CO₂ Laser",
     "lt": [
@@ -50,6 +50,27 @@
       "Safe, effective procedure with long-lasting results",
       "Short recovery time and personalized protocols",
       "Can be applied to different areas of the body and face"
+    ]
+  },
+  "blf": {
+    "title": "Scalpel-Free Blepharoplasty",
+    "subtitle": "CO₂ Laser allows treatment of upper and lower eyelids without the need for a scalpel:",
+    "lt": [
+      "Reduces excess skin",
+      "Minimizes puffiness and fine wrinkles",
+      "Non-surgical lifting of the periocular area",
+      "No visible scars and quick recovery – an excellent alternative to traditional blepharoplasty for patients who prefer non-invasive approaches."
+    ]
+  },
+  "key_areas": {
+    "title": "CO₂ Laser Precisely Applied to Key Areas",
+    "subtitle": "Face, Neck, and Décolleté",
+    "lt_title": "Ideal for improving",
+    "lt": [
+      "Skin texture and firmness",
+      "Fine to moderate wrinkles",
+      "Sunspots and signs of aging",
+      "Mild sagging – enables a natural lifting effect, with visible skin renewal after each session"
     ]
   },
   "skin_mark": {

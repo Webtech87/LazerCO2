@@ -52,6 +52,27 @@
       "Pode ser aplicado em diferentes áreas do corpo e rosto"
     ]
   },
+  "key_areas": {
+    "title": "Laser CO₂ Aplicado com Precisão nas Zonas-Chave",
+    "subtitle": "Rosto, Pescoço e Colo",
+    "lt_title": "Ideal para melhorar",
+    "lt": [
+      "Textura e firmeza da pele",
+      "Rugas finas e moderadas",
+      "Manchas solares e sinais de envelhecimento",
+      "Flacidez leve Permite um efeito lifting natural, com renovação visível da pele após cada sessão"
+    ]
+  },
+  "blf": {
+    "title": "Blefaroplastia sem Corte",
+    "subtitle": "O Laser CO₂ permite tratar pálpebras superiores e inferiores sem necessidade de bisturi:",
+    "lt": [
+      "Reduz o excesso de pele",
+      "Diminui papos e rugas finas",
+      "Lifting não cirúrgico da região periocular",
+      "Sem cicatrizes visíveis, com recuperação rápida Excelente alternativa à blefaroplastia tradicional para pacientes que preferem abordagens não invasivas.\n"
+    ]
+  },
   "skin_mark": {
     "title": "Remoção de sinais, cicatrizes e manchas",
     "subtile": "Tratamento preciso e seguro para:",
