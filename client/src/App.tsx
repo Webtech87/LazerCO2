@@ -7,6 +7,7 @@ import './App.css';
 import Benefits from './components/Benefits/Benefits';
 import KeyAreas from './components/KeyAreas/KeyAreas';
 import SkinMarks from "./components/skinMarks/skinMarks.tsx";
+import Rejuvenescimento from './components/Rejuvenescimento/Rejuvenescimento.tsx';
 
 const App = () => {
   useEffect(() => {
@@ -34,6 +35,7 @@ const App = () => {
       <Benefits />
       <KeyAreas />
       <SkinMarks />
+      <Rejuvenescimento />
 
     </div>
   );
