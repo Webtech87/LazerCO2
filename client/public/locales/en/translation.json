@@ -7,5 +7,59 @@
       "CONTACT"
     ],
     "btn": "Contact Us"
+  },
+  "section_1": {
+    "title": "Deep Skin Renewal with CO₂ Laser",
+    "p": "Non-invasive rejuvenation with visible results from the first session.",
+    "btn": "Schedule Your Evaluation",
+    "more": {
+      "title": "Learn More Details",
+      "lt": [
+        "satisfied clients",
+        "100% safe"
+      ]
+    }
+  },
+  "cois": {
+      "title": "What is the CO₂ Laser?",
+      "p": [
+        "The",
+        "Fractional CO₂ Laser",
+        "is an advanced skin resurfacing technology that uses controlled thermal energy to",
+        "stimulate deep skin regeneration",
+        "acting on the dermal and epidermal layers. The laser beam is fractionated into thousands of microcolumns, selectively targeting the skin, which allows",
+        "precise treatment of imperfections",
+        "while preserving healthy surrounding areas for",
+        "faster and safer recovery",
+        "It is considered the",
+        "gold standard",
+        "in non-surgical rejuvenation and",
+        "improvement of skin texture and quality",
+        "with visible results after a single session"
+      ],
+      "btn": "Schedule Your Evaluation"
+    },
+  "benefits": {
+    "title": "Benefits of CO₂ Laser",
+    "lt": [
+      "Stimulates collagen production",
+      "Improves wrinkles, enlarged pores, and mild to moderate sagging",
+      "Corrects acne scars and old marks",
+      "Evens skin tone and eliminates sunspots",
+      "Reduces signs of aging without the need for surgery",
+      "Safe, effective procedure with long-lasting results",
+      "Short recovery time and personalized protocols",
+      "Can be applied to different areas of the body and face"
+    ]
+  },
+  "skin_mark": {
+    "title": "Removal of Marks, Scars, and Spots",
+    "subtile": "Precise and safe treatment for:",
+    "lt": [
+      "Removing benign skin marks",
+      "Correcting acne, surgical, or traumatic scars",
+      "Eliminating dark sun or age spots",
+      "Reducing hyperpigmentation with progressive improvement of skin uniformity"
+    ]
   }
 }

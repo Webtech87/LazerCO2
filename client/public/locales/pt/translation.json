@@ -7,5 +7,59 @@
       "CONTACTO"
     ],
     "btn": "Fale connosco"
+  },
+  "section_1": {
+    "title": "Pele renovada em profundidade com Laser CO₂",
+    "p": "Rejuvenescimento não invasivo com resultados visíveis a partir da primeira sessão.",
+    "btn": "Agende a sua avaliação",
+    "more": {
+      "title": "Saiba mais detalhes",
+      "lt": [
+        "clientes satisfeitos",
+        "100% seguro"
+      ]
+    }
+  },
+  "cois": {
+    "title": "O que é o Laser CO₂?",
+    "p": [
+      "O",
+      "Laser CO₂ fracionado",
+      "é uma tecnologia avançada de resurfacing da pele, que utiliza energia térmica controlada para",
+      "estimular a regeneração profunda da pele,",
+      "atuando nas camadas dérmicas e epidérmicas. O feixe de laser é fracionado em milhares de microcolunas, atingindo a pele de forma seletiva, o que permite",
+      "tratar imperfeições com precisão,",
+      "mantendo zonas saudáveis ao redor para uma",
+      "recuperação mais rápida e segura.",
+      "É considerado o",
+      "padrão-ouro",
+      "no rejuvenescimento não cirúrgico e na",
+      "melhoria da textura e qualidade da pele,",
+      "com resultados visíveis após uma única sessão."
+    ],
+    "btn": "Agende a sua avaliação"
+  },
+  "benefits": {
+    "title": "Benefícios do Laser CO₂",
+    "lt": [
+      "Estimula a produção de colagénio",
+      "Melhora rugas, poros dilatados e flacidez leve a moderada",
+      "Corrige cicatrizes de acne e marcas antigas",
+      "Uniformiza o tom da pele e elimina manchas solares",
+      "Reduz sinais de envelhecimento sem necessidade de cirurgia",
+      "Procedimento seguro, eficaz e com resultados duradouros",
+      "Tempo de recuperação curto e protocolos personalizados",
+      "Pode ser aplicado em diferentes áreas do corpo e rosto"
+    ]
+  },
+  "skin_mark": {
+    "title": "Remoção de sinais, cicatrizes e manchas",
+    "subtile": "Tratamento preciso e seguro para:",
+    "lt": [
+      "Remover sinais benignos da pele",
+      "Corrigir cicatrizes de acne, cirúrgicas ou traumáticas",
+      "Eliminar manchas escuras solares ou senis",
+      "Reduzir hiperpigmentações com melhora progressiva da uniformidade da pele"
+    ]
   }
 }
