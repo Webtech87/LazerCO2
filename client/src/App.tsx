@@ -10,6 +10,7 @@ import Blefaroplastia from "./components/Blefaroplastia/Blefaroplastia.tsx";
 import SkinMarks from './components/SkinMarks/SkinMarks.tsx';
 import './i18n.js';
 import Rejuvenescimento from './components/Rejuvenescimento/Rejuvenescimento.tsx';
+import Footer from './components/Footer/Footer.tsx';
 
 const App = () => {
     useEffect(() => {
@@ -39,6 +40,7 @@ const App = () => {
             <Blefaroplastia/>
             <SkinMarks/>
             <Rejuvenescimento />
+            <Footer />
         </div>
     );
 };
