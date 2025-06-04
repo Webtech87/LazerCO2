@@ -6,13 +6,13 @@ const Footer = () => {
       <div className='footer-container'>
         <section className='footer'>
             <div className='footer-info'>
-                <img src="" alt="" />
+                <img className='logo' src="/logo-santiclinic.png" alt="" />
                 <span>Tratamentos de beleza personalizados para
 mulheres que merecem cuidado especial.</span>
                 <div className='social-media'>
-                    <img src="" alt="" />
-                    <img src="" alt="" />
-                    <img src="" alt="" />
+                    <a href="">Instagram</a>
+                    <a href="">Facebook</a>
+                    <a href="">TikTok</a>
                 </div>
                 <div className='contact-politics'>
                     <div className='contacts'>
@@ -21,8 +21,8 @@ mulheres que merecem cuidado especial.</span>
                         <span>📍 Praceta Agostinho 8005-147, Faro</span>
                         <button>WHATSAPP</button>
                     </div>
-                    <div>
-                        <h3>Contacto</h3>
+                    <div className='politics'>
+                        <h3>Políticas</h3>
                         <a href="">Politica de Privacidade</a>
                         <a href="">Politica de Cookies</a>
                         <a href="">Termos e Condições</a>
@@ -56,10 +56,10 @@ mulheres que merecem cuidado especial.</span>
                     <button>Agende a sua avaliação</button>
                 </form>
             </div>
-            <div className='copyright'>
-                <span>© 2025 SANTICLINIC. Todos os direitos reservados.</span>
-            </div>
         </section>
+        <div className='copyright'>
+            <span>© 2025 SANTICLINIC. Todos os direitos reservados.</span>
+        </div>
       </div>
     </div>
   )

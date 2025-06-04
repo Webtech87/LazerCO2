@@ -21,7 +21,39 @@ body {
 }
 
 .footer {
+    display: flex;
     background-color: #F8F8F8;
-    width: 100vw;
-    max-width: 1200px;
+    min-width: 100vw;
+}
+
+.footer-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 50%;
+}
+
+.logo {
+    width: 400px;
+    height: 200px;
+}
+
+.footer-info span {
+    max-width: 400px;
+}
+
+.contact-politics {
+    display: flex;
+    gap: 30%;
+}
+
+.contacts {
+    display: flex;
+    flex-direction: column;
+}
+
+.politics {
+    display: flex;
+    flex-direction: column;
 }
