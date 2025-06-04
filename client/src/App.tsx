@@ -8,6 +8,7 @@ import Benefits from './components/Benefits/Benefits';
 import KeyAreas from './components/KeyAreas/KeyAreas';
 import Blefaroplastia from "./components/Blefaroplastia/Blefaroplastia.tsx";
 import SkinMarks from './components/SkinMarks/SkinMarks.tsx';
+import {Followers} from "./components/Followers/Followers.tsx";
 import './i18n.js';
 import Rejuvenescimento from './components/Rejuvenescimento/Rejuvenescimento.tsx';
 
@@ -38,6 +39,7 @@ const App = () => {
             <KeyAreas/>
             <Blefaroplastia/>
             <SkinMarks/>
+            <Followers/>
             <Rejuvenescimento />
         </div>
     );

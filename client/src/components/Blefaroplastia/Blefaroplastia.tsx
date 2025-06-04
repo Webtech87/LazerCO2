@@ -10,7 +10,6 @@ const Blefaroplastia = () => {
                     <article className="treatment-content">
                         <h2 className="main_title">{t("blf.title")}</h2>
                         <div className="treatment-text-container">
-
                             <h3>
                                 <li className="treatment-item">{t("blf.subtitle")}</li>
                             </h3>
@@ -20,7 +19,6 @@ const Blefaroplastia = () => {
                                 <li className="treatment-item">{t("blf.lt.2")}</li>
                                 <li className="treatment-item">{t("blf.lt.3")}</li>
                             </ul>
-
                         </div>
                     </article>
                     <div className="treatment-image">

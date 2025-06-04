@@ -1,0 +1,49 @@
+.follower_container h2 {
+    text-align: center;
+}
+
+.follower_list_container {
+    margin-top: 50px;
+
+}
+
+.follower_list_items {
+    display: flex;
+}
+
+.follower_img img {
+    max-width: 50px;
+    border-radius: 50%;
+    max-height: 50px;
+}
+
+.follower_list_item {
+    height: 350px;
+    padding: 20px 20px;
+    font-size: 14px;
+    border: 2px solid #6f93ba;
+    width: 300px;
+    margin: auto;
+    border-radius: 32px;
+    box-shadow: 0 0 10px 5px #81a6fb;
+}
+
+.follower_list_item p{
+    margin-top: 10px;
+}
+
+.follower_grade {
+    margin-top: 10px;
+}
+
+.follower_name{
+    margin-top: 10px;
+}
+
+.follower_list_item h3 {
+    font-size: 12px;
+}
+
+.swiper{
+    padding: 15px !important;
+}
