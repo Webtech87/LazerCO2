@@ -6,6 +6,7 @@ import About from "./components/About/About";
 import './App.css';
 import Benefits from './components/Benefits/Benefits';
 import SkinMarks from "./components/skinMarks/skinMarks.tsx";
+import './i18n';
 
 const App = () => {
   useEffect(() => {

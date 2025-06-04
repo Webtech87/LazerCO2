@@ -1,5 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import './Navbar.css';
+import { useTranslation } from 'react-i18next';
+import i18n from "i18next";
 
 // Language type
 type Language = 'pt' | 'en';
@@ -12,16 +14,17 @@ interface NavItem {
 }
 
 const Navbar = () => {
+  const { t } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentLanguage, setCurrentLanguage] = useState<Language>('pt');
   const [scrolled, setScrolled] = useState(false);
 
   // Navigation items
   const navItems: NavItem[] = [
-    { id: 'laser', label: 'SOBRE O LASER CO2', href: '#laser-co2' },
-    { id: 'benefits', label: 'BENEFÍCIOS', href: '#beneficios' },
-    { id: 'zones', label: 'ZONAS DE APLICAÇÃO', href: '#zonas' },
-    { id: 'contact', label: 'CONTACTO', href: '#contacto' }
+    { id: 'laser', label: t("navbar_items.lt.0"), href: '#laser-co2' },
+    { id: 'benefits', label: t("navbar_items.lt.1"), href: '#beneficios' },
+    { id: 'zones', label: t("navbar_items.lt.2"), href: '#zonas' },
+    { id: 'contact', label: t("navbar_items.lt.3"), href: '#contacto' }
   ];
 
   // Handle scroll effect
@@ -58,9 +61,12 @@ const Navbar = () => {
   }, []);
 
   // Change language
-  const switchLanguage = useCallback((lang: Language) => {
-    setCurrentLanguage(lang);
-  }, []);
+const switchLanguage = useCallback((lang: Language) => {
+  i18n.changeLanguage(lang);
+  setCurrentLanguage(lang);
+}, []);
+
+
 
   return (
     <>
@@ -90,7 +96,7 @@ const Navbar = () => {
           {/* Desktop Actions */}
           <div className="desktop-actions navbar-actions">
             <a href="#contacto" className="contact-button">
-              <span className="cta-text">Fale connosco</span>
+              <span className="cta-text">{t("navbar_items.btn")}</span>
               <div className="cta-glow"></div>
             </a>
             <div className="language-selector">
