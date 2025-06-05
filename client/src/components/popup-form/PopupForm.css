@@ -1,0 +1,632 @@
+/* Popup Form Styles */
+.popup-form__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.popup-form__container {
+  background: #F4D03F;
+  border-radius: 200px 200px 50px 200px;
+  padding: 50px 40px 40px 40px;
+  max-width: 520px; /* Increased from 480px */
+  width: 100%;
+  max-height: 90vh; /* Increased from 85vh */
+  overflow-y: auto;
+  position: relative;
+  animation: slideInScale 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  /* Hide scrollbar */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+/* Hide scrollbar for WebKit browsers */
+.popup-form__container::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes slideInScale {
+  from {
+    transform: translateY(50px) scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Close Button - Positioned near diamond */
+.popup-form__close {
+  position: absolute;
+  top: 80px; /* Positioned near the diamond icon */
+  right: 55px;
+  background: #ffffff;
+  border: 3px solid #2c2c2c;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 900;
+  color: #2c2c2c;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  line-height: 1;
+}
+
+.popup-form__close:hover {
+  background: #e74c3c;
+  border-color: #e74c3c;
+  color: #ffffff;
+  transform: scale(1.1) rotate(90deg);
+  box-shadow: 0 6px 16px rgba(231, 76, 60, 0.4);
+}
+
+.popup-form__close:active {
+  transform: scale(0.95);
+}
+
+/* Form Content */
+.popup-form__content {
+  text-align: center;
+}
+
+.popup-form__header {
+  margin-bottom: 28px; /* Reduced from 32px */
+}
+
+.popup-form__icon {
+  font-size: 40px; /* Reduced from 48px */
+  margin-bottom: 12px; /* Reduced from 16px */
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+.popup-form__title {
+  font-size: 28px; /* Reduced from 32px */
+  font-weight: 700;
+  color: #2c2c2c;
+  margin: 0 0 14px 0; /* Reduced from 16px */
+  line-height: 1.2;
+}
+
+.popup-form__subtitle {
+  font-size: 15px; /* Reduced from 16px */
+  line-height: 1.4; /* Reduced from 1.5 */
+  color: #2c2c2c;
+  margin: 0;
+  opacity: 0.9;
+}
+
+.popup-form__subtitle strong {
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+/* Form Styles */
+.popup-form__form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* Reduced from 20px */
+}
+
+.popup-form__form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px; /* Reduced from 8px */
+}
+
+.popup-form__input {
+  padding: 14px 18px; /* Reduced from 16px 20px */
+  border: 2px solid transparent;
+  border-radius: 12px;
+  font-size: 15px; /* Reduced from 16px */
+  font-family: inherit;
+  background: white;
+  color: #2c2c2c;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.popup-form__input:focus {
+  outline: none;
+  border-color: #F1C40F;
+  box-shadow: 0 0 0 3px rgba(241, 196, 15, 0.3), 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.popup-form__input::placeholder {
+  color: #999999;
+  font-weight: 400;
+}
+
+.popup-form__input--error {
+  border-color: #e74c3c;
+}
+
+.popup-form__input--error:focus {
+  border-color: #e74c3c;
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.3), 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.popup-form__error {
+  font-size: 11px; /* Reduced from 12px */
+  color: #e74c3c;
+  font-weight: 500;
+  text-align: left;
+  padding-left: 4px;
+}
+
+.popup-form__submit {
+  background: #2c2c2c;
+  color: white;
+  border: none;
+  padding: 16px 28px; /* Reduced from 18px 32px */
+  border-radius: 25px;
+  font-size: 15px; /* Reduced from 16px */
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 6px; /* Reduced from 8px */
+  box-shadow: 0 4px 15px rgba(44, 44, 44, 0.3);
+}
+
+.popup-form__submit:hover:not(:disabled) {
+  background: #1a1a1a;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(44, 44, 44, 0.4);
+}
+
+.popup-form__submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.popup-form__spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Benefits List - Centered */
+.popup-form__benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Reduced from 12px */
+  margin-top: 18px; /* Reduced from 24px */
+  padding-top: 18px; /* Reduced from 24px */
+  border-top: 1px solid rgba(44, 44, 44, 0.1);
+  align-items: center; /* Center align all benefits */
+  text-align: center;
+}
+
+.popup-form__benefit {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center justify the content */
+  gap: 10px; /* Reduced from 12px */
+  font-size: 13px; /* Reduced from 14px */
+  color: #2c2c2c;
+  font-weight: 500;
+  width: 100%;
+  max-width: 200px; /* Limit width for better centering */
+}
+
+.popup-form__benefit-icon {
+  width: 18px; /* Reduced from 20px */
+  height: 18px; /* Reduced from 20px */
+  background: #4CAF50;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px; /* Reduced from 12px */
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* Privacy Text - Enhanced visibility */
+.popup-form__privacy {
+  font-size: 11px; /* Reduced from 12px */
+  color: #2c2c2c;
+  opacity: 0.8;
+  margin: 14px 0 0 0; /* Reduced from 16px */
+  line-height: 1.4; /* Increased for better readability */
+  text-align: center;
+  padding: 0 4px; /* Add horizontal padding */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.popup-form__privacy-link {
+  color: #2c2c2c;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.popup-form__privacy-link:hover {
+  text-decoration: none;
+}
+
+/* Success State */
+.popup-form__success {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.popup-form__success-icon {
+  width: 70px; /* Reduced from 80px */
+  height: 70px; /* Reduced from 80px */
+  background: #4CAF50;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px; /* Reduced from 36px */
+  margin: 0 auto 20px auto; /* Reduced from 24px */
+  animation: successPulse 0.6s ease-out;
+}
+
+@keyframes successPulse {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.popup-form__success-title {
+  font-size: 24px; /* Reduced from 28px */
+  font-weight: 700;
+  color: #2c2c2c;
+  margin: 0 0 14px 0; /* Reduced from 16px */
+}
+
+.popup-form__success-text {
+  font-size: 15px; /* Reduced from 16px */
+  line-height: 1.5; /* Reduced from 1.6 */
+  color: #2c2c2c;
+  margin: 0;
+  opacity: 0.9;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .popup-form__overlay {
+    padding: 16px; /* Reduced padding for more space */
+  }
+  
+  .popup-form__container {
+    padding: 40px 25px 35px 25px; /* Increased bottom padding */
+    border-radius: 200px 200px 50px 200px;
+    max-height: 85vh; /* Increased from 80vh */
+    max-width: 400px;
+  }
+  
+  .popup-form__close {
+    top: 70px; /* Positioned near diamond on tablet */
+    right: 12px;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    background: #ffffff;
+    border: 3px solid #2c2c2c;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .popup-form__close:hover {
+    background: #e74c3c;
+    border-color: #e74c3c;
+    color: #ffffff;
+    transform: scale(1.1) rotate(90deg);
+  }
+  
+  .popup-form__title {
+    font-size: 24px;
+  }
+  
+  .popup-form__subtitle {
+    font-size: 14px;
+  }
+  
+  .popup-form__input {
+    padding: 14px 18px;
+    font-size: 15px;
+  }
+  
+  .popup-form__submit {
+    padding: 16px 28px;
+    font-size: 15px;
+  }
+  
+  .popup-form__benefits {
+    gap: 10px;
+    margin-top: 16px;
+    padding-top: 16px;
+  }
+  
+  .popup-form__benefit {
+    font-size: 13px;
+  }
+  
+  .popup-form__privacy {
+    font-size: 12px; /* Increased from 11px for mobile */
+    margin-top: 16px; /* Increased margin */
+    padding: 0 8px; /* More padding */
+    line-height: 1.5; /* Better line height */
+  }
+  
+  .popup-form__success-title {
+    font-size: 22px;
+  }
+  
+  .popup-form__success-text {
+    font-size: 14px;
+  }
+  
+  .popup-form__success {
+    padding: 50px 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .popup-form__overlay {
+    padding: 12px; /* Reduced for more space */
+  }
+  
+  .popup-form__container {
+    padding: 35px 20px 30px 20px; /* Increased bottom padding */
+    border-radius: 200px 200px 50px 200px;
+    max-height: 85vh; /* Increased from 70vh */
+    max-width: 320px;
+  }
+  
+  .popup-form__close {
+    top: 50px; /* Positioned near diamond on mobile */
+    right: 40px; /* Moved more to the left */
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+    background: #ffffff;
+    border: 3px solid #2c2c2c;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .popup-form__close:hover {
+    background: #e74c3c;
+    border-color: #e74c3c;
+    color: #ffffff;
+    transform: scale(1.1) rotate(90deg);
+  }
+  
+  .popup-form__title {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+  
+  .popup-form__subtitle {
+    font-size: 12px;
+    margin-bottom: 20px;
+  }
+  
+  .popup-form__input {
+    padding: 11px 14px;
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+  
+  .popup-form__submit {
+    padding: 13px 20px;
+    font-size: 13px;
+  }
+  
+  .popup-form__icon {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+  
+  .popup-form__form {
+    gap: 14px;
+  }
+  
+  .popup-form__header {
+    margin-bottom: 20px; /* Reduced to save space */
+  }
+  
+  .popup-form__benefits {
+    margin-top: 14px; /* Reduced */
+    padding-top: 12px; /* Reduced */
+    gap: 6px;
+  }
+  
+  .popup-form__benefit {
+    font-size: 11px;
+  }
+  
+  .popup-form__benefit-icon {
+    width: 14px;
+    height: 14px;
+    font-size: 9px;
+  }
+  
+  .popup-form__privacy {
+    font-size: 11px; /* Maintained readable size */
+    margin-top: 14px; /* Increased */
+    padding: 0 10px; /* More padding for mobile */
+    line-height: 1.5; /* Better readability */
+  }
+  
+  .popup-form__success {
+    padding: 32px 18px;
+  }
+  
+  .popup-form__success-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    margin-bottom: 14px;
+  }
+  
+  .popup-form__success-title {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .popup-form__success-text {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 375px) {
+  .popup-form__container {
+    padding: 30px 20px 20px 20px;
+  }
+}
+
+/* Desktop specific improvements for better content visibility */
+@media (min-width: 769px) {
+  .popup-form__container {
+    max-width: 550px;
+    max-height: 95vh;
+    padding: 60px 50px 50px 50px;
+  }
+  
+  .popup-form__header {
+    margin-bottom: 30px;
+  }
+  
+  .popup-form__form {
+    gap: 18px;
+  }
+  
+  .popup-form__benefits {
+    margin-top: 20px;
+    padding-top: 20px;
+    gap: 12px;
+  }
+  
+  .popup-form__benefit {
+    font-size: 14px;
+    max-width: 220px;
+  }
+  
+  .popup-form__benefit-icon {
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+  }
+  
+  .popup-form__privacy {
+    font-size: 12px;
+    margin-top: 16px;
+  }
+}
+
+/* Accessibility improvements */
+.popup-form__input:focus-visible {
+  outline: 2px solid #F1C40F;
+  outline-offset: 2px;
+}
+
+.popup-form__submit:focus-visible {
+  outline: 2px solid #F4D03F;
+  outline-offset: 2px;
+}
+
+.popup-form__close:focus-visible {
+  outline: 3px solid #F1C40F;
+  outline-offset: 2px;
+}
+
+.popup-form__close:focus {
+  outline: 3px solid #F1C40F;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .popup-form__container {
+    border: 2px solid #000000;
+  }
+  
+  .popup-form__input {
+    border: 2px solid #000000;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .popup-form__overlay {
+    animation: none;
+  }
+  
+  .popup-form__container {
+    animation: none;
+  }
+  
+  .popup-form__icon {
+    animation: none;
+  }
+  
+  .popup-form__input:focus {
+    transform: none;
+  }
+  
+  .popup-form__submit:hover:not(:disabled) {
+    transform: none;
+  }
+}

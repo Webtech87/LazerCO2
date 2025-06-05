@@ -12,6 +12,8 @@ import {Followers} from "./components/Followers/Followers.tsx";
 import './i18n.js';
 import Rejuvenescimento from './components/Rejuvenescimento/Rejuvenescimento.tsx';
 import Footer from './components/Footer/Footer.tsx';
+import WhatsAppFloat from './components/whatsapp-float/WhatsAppFloat.tsx';
+import PopupForm from './components/popup-form/PopupForm.tsx';
 
 const App = () => {
     useEffect(() => {
@@ -43,6 +45,8 @@ const App = () => {
             <Rejuvenescimento />
             <Followers/>
             <Footer />
+            <WhatsAppFloat />
+            <PopupForm />
         </div>
     );
 };
