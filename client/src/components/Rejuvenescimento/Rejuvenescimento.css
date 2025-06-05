@@ -70,5 +70,6 @@ body {
 }
 
 .info-text ul {
-    margin-top: 5%;
+    margin-top: 5%;    
+    padding-left: 15px;
 }

@@ -40,8 +40,8 @@ const App = () => {
             <KeyAreas/>
             <Blefaroplastia/>
             <SkinMarks/>
-            <Followers/>
             <Rejuvenescimento />
+            <Followers/>
             <Footer />
         </div>
     );
