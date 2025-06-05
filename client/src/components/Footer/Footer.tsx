@@ -1,4 +1,5 @@
 import './Footer.css'
+import whatsapp from '../../assets/whasapp-logo.png'
 
 const Footer = () => {
   return (
@@ -10,16 +11,16 @@ const Footer = () => {
                 <span>Tratamentos de beleza personalizados para
 mulheres que merecem cuidado especial.</span>
                 <div className='social-media'>
-                    <a href="">Instagram</a>
-                    <a href="">Facebook</a>
-                    <a href="">TikTok</a>
+                    <a href=""><img src="/instagram.png" alt="" /></a>
+                    <a href=""><img src="/facebook-logo.png" alt="" /></a>
+                    <a href=""><img src="/tiktok-logo.png" alt="" /></a>
                 </div>
                 <div className='contact-politics'>
                     <div className='contacts'>
                         <h3>Contacto</h3>
                         <span>📞 (+351) 910 144-032</span>
-                        <span>📍 Praceta Agostinho 8005-147, Faro</span>
-                        <button>WHATSAPP</button>
+                        <span>📍 Praceta Agostinho <br /> 8005-147, Faro</span>
+                        <button><img src={whatsapp} alt="" />Fale Connosco</button>
                     </div>
                     <div className='politics'>
                         <h3>Políticas</h3>

@@ -21,64 +21,205 @@ body {
 }
 
 .footer {
-    display: flex;
-    background-color: #F8F8F8;
-    min-width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #F8F8F8;
+  width: 100%;
+  padding: 5%;
+  gap: 10%;
+  align-items: flex-start;
 }
 
+/* Left side: Info section */
 .footer-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-width: 50%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
+/* Logo should have fixed height/width, not % */
 .logo {
-    width: 400px;
-    height: 200px;
+  width: 600px;
+  height: auto;
 }
 
+/* Text block */
 .footer-info span {
-    max-width: 400px;
+  font-size: 20px;
+  margin: 20px 0;
+  max-width: 520px;
 }
 
-.contact-politics {
+.social-media {
     display: flex;
-    gap: 30%;
+    gap: 10px;
+}
+
+.social-media img {
+    width: 20px;
+}
+
+/* Contacts & links layout */
+.contact-politics {
+  display: flex;
+  gap: 15%;
+  margin-top: 20px;
+}
+
+.contact-politics h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 
 .contacts {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  min-width: 40%;
+}
+
+.contacts span {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.contacts button {
+  background-color: #1EB958;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  margin-top: 10px;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.contacts button:hover {
+    background-color: #258649;
+    cursor: pointer;
+}
+
+.contacts img {
+    width: 30px;
 }
 
 .politics {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
+.politics a {
+  margin-bottom: 15px;
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.politics a:hover {
+    text-decoration: underline;
+}
+
+/* Right side: Form section */
 .form-container {
-    background-color: #D4E1FF;
-    border-radius: 120px 0;
-    display: flex;
-    max-width: 30%;
-    justify-content: center;
+  flex: 2;
+  max-width: 40%;
+  background-color: #D4E1FF;
+  border-radius: 120px 0;
+  display: flex;
+  justify-content: center;
+  padding: 5%;
 }
 
 .form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 70%;
-    padding: 0 5%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 500px;
 }
 
-.form form{
-    display: flex;
-    flex-direction: column;
+.form h2 {
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+
+.form span {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form input,
+.form select,
+.form textarea {
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.form input,
+.form select {
+  height: 40px; /* Feel free to increase this */
+}
+
+.form textarea {
+    height: 100px;
 }
 
 .email-phone {
+  display: flex;
+  gap: 10px;
+}
+
+.field {
+  flex: 1;
+}
+
+.field input {
+  width: 100%;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.checkbox input {
+    width: 15px;
+    padding: 0 !important;
+    margin: 0;
+}
+
+.checkbox span {
+    margin: 0;
+    padding: 0;
+}
+
+.form button {
+  background-color: #2667FF;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 20px;
+  font-size: 16px;
+  color: #fff;
+}
+
+.copyright {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1E52CC;
+    width: 100vw;
+    height: 10vh;
+    color: #fff;
 }
