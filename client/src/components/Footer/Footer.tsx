@@ -14,7 +14,7 @@ const Footer = () => {
         message: '',
         accept: false
     })
-    const [formErrors, setFormErrors] = useState({...})
+    const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({});
     const [loading, setLoading] = useState(false)
     const [responseMsg, setResponseMsg] = useState('')
 
@@ -144,14 +144,19 @@ const Footer = () => {
                         {formErrors.message && <p className="error">{formErrors.message}</p>}
                         <div className='checkbox'>
                             <input 
+                                id='accept'
                                 type="checkbox" 
                                 checked={formData.accept} 
                                 onChange={e => setFormData({...formData, accept: e.target.checked})} 
                             />
-                            <span>{t("ftr.form.flds.axept")} <a href="#">{t("ftr.policy.lt.0")}</a></span>
+                            <label htmlFor=''>{t("ftr.form.flds.axept")} <a href="#">{t("ftr.policy.lt.0")}</a>{formErrors.accept && <p className="error">{formErrors.accept}</p>}</label>
+                            
                         </div>
-                        <button type='submit'>{t("ftr.form.flds.btn")}</button>
+                        <button type='submit' disabled={loading}>
+                            {loading ? 'Enviando...' : t("ftr.form.flds.btn")}
+                        </button>
                     </form>
+                    {responseMsg && <p className="response-msg">{responseMsg}</p>}
                 </div>
             </div>
             
