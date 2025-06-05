@@ -231,7 +231,10 @@ def home():
             print("========================\n")
             
             # For form data from React
-            form_data = request.form
+            if request.is_json:
+                form_data = request.get_json()
+            else:
+                form_data = request.form  # fallback
             log_form_data(form_data, "Received Form Data")
             
             # Handle services field which might be a list

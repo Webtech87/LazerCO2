@@ -14,15 +14,37 @@ const Footer = () => {
         message: '',
         accept: false
     })
+    const [formErrors, setFormErrors] = useState({...})
     const [loading, setLoading] = useState(false)
     const [responseMsg, setResponseMsg] = useState('')
 
     const { t } = useTranslation();
 
+    const validateForm = () => {
+        const errors: any = {};
+        
+        if (!formData.name.trim()) errors.name = 'Obrigatório';
+        if (!formData.email.trim()) errors.email = 'Obrigatório';
+        if (!formData.phone.trim()) errors.phone = 'Obrigatório';
+        if (!formData.subject.trim()) errors.subject = 'Obrigatório';
+        if (!formData.message.trim()) errors.message = 'Obrigatório';
+        if (!formData.accept) errors.accept = 'Obrigatório';
+
+        return errors;
+    };
+
     const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault()
-        setLoading(true)
-        setResponseMsg('')
+        e.preventDefault();
+        setResponseMsg('');
+
+        const errors = validateForm();
+        setFormErrors(errors);
+
+        if (Object.keys(errors).length > 0) {
+            return; // Stop if there are errors
+        }
+
+    setLoading(true);
 
         try {
             const res = await axios.post('http://localhost:5000/', formData, {
@@ -30,15 +52,17 @@ const Footer = () => {
             })
 
             if (res.data.success) {
-                setResponseMsg('Formulário enviado com sucesso!')
+            setResponseMsg('Formulário enviado com sucesso!');
+            setFormData({ name: '', email: '', phone: '', subject: '', message: '', accept: false });
+            setFormErrors({});
             } else {
-                setResponseMsg('Erro ao enviar formulário.')
+                setResponseMsg('Erro ao enviar formulário.');
             }
 
         } catch (err: any) {
-            setResponseMsg(`Erro: ${err.response?.data?.message || 'Servidor indisponível'}`)
+            setResponseMsg(`Erro: ${err.response?.data?.message || 'Servidor indisponível'}`);
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
     }
     
@@ -79,8 +103,9 @@ const Footer = () => {
                             id='name' 
                             type="text" 
                             value={formData.name} 
-                            onChange={e => setFormData({...formData, name: e.target.value})} 
+                            onChange={e => setFormData({...formData, name: e.target.value})}
                         />
+                        {formErrors.name && <p className="error">{formErrors.name}</p>}
                         <div className='email-phone'>
                             <div className="field">
                                 <label htmlFor='email'>Email*</label>
@@ -90,6 +115,7 @@ const Footer = () => {
                                     value={formData.email} 
                                     onChange={e => setFormData({...formData, email: e.target.value})} 
                                 />
+                                {formErrors.email && <p className="error">{formErrors.email}</p>}
                             </div>
                             <div className="field">
                                 <label htmlFor='phone'>{t("ftr.form.flds.phone")}*</label>
@@ -99,6 +125,7 @@ const Footer = () => {
                                     value={formData.phone} 
                                     onChange={e => setFormData({...formData, phone: e.target.value})} 
                                 />
+                                {formErrors.phone && <p className="error">{formErrors.phone}</p>}
                             </div>
                         </div>
                         <label htmlFor="subject">{t("ftr.form.flds.obj")}*</label>
@@ -107,12 +134,14 @@ const Footer = () => {
                             value={formData.subject} 
                             onChange={e => setFormData({...formData, subject: e.target.value})} 
                         />
+                        {formErrors.subject && <p className="error">{formErrors.subject}</p>}
                         <label htmlFor="message">{t("ftr.form.flds.msg")}*</label>
                         <textarea 
                             id='message'
                             value={formData.message} 
                             onChange={e => setFormData({...formData, message: e.target.value})} 
                         />
+                        {formErrors.message && <p className="error">{formErrors.message}</p>}
                         <div className='checkbox'>
                             <input 
                                 type="checkbox" 
