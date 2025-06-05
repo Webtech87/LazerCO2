@@ -215,6 +215,11 @@ body {
   color: #fff;
 }
 
+.form button:hover {
+    cursor: pointer;
+    background-color: #0b3bac;
+}
+
 .copyright {
     display: flex;
     justify-content: center;
