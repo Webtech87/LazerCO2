@@ -87,13 +87,41 @@
     "title": "Testimonials from those who chose Santiclinic"
   },
   "gr": {
-  "title": "Global rejuvenation",
-  "subtitle": "The CO₂ Laser rejuvenation protocol is recommended for those who want to",
-  "lt": [
-    "Completely renew their skin",
-    "Stimulate collagen in depth",
-    "Visibly reduce signs of aging",
-    "Improve elasticity, firmness, and radiance — it's one of the most popular treatments for those seeking impactful results without surgery"
-  ]
-}
+    "title": "Global rejuvenation",
+    "subtitle": "The CO₂ Laser rejuvenation protocol is recommended for those who want to",
+    "lt": [
+      "Completely renew their skin",
+      "Stimulate collagen in depth",
+      "Visibly reduce signs of aging",
+      "Improve elasticity, firmness, and radiance — it's one of the most popular treatments for those seeking impactful results without surgery"
+    ]
+  },
+  "ftr": {
+    "slogan": "Personalized beauty treatments for women who deserve special care.",
+    "contact": {
+      "title": "Contact",
+      "btn": "Talk to Us"
+    },
+    "policy": {
+      "title": "Policies",
+      "lt": [
+        "Privacy Policy",
+        "Cookie Policy",
+        "Terms and Conditions"
+      ]
+    },
+    "form": {
+      "title": "Schedule your consultation now",
+      "p": "Please fill out the form below to get in touch with our team.",
+      "flds": {
+        "name": "Name",
+        "phone": "Phone",
+        "obj": "Subject",
+        "msg": "Message",
+        "axept": "I have read and accept the",
+        "btn": "Schedule your consultation"
+      }
+    },
+    "bf": "All rights reserved"
+  }
 }

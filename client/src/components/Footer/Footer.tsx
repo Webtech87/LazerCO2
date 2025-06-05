@@ -1,15 +1,16 @@
 import './Footer.css'
 import whatsapp from '../../assets/whasapp-logo.png'
+import {useTranslation} from "react-i18next";
 
 const Footer = () => {
-  return (
+    const { t } = useTranslation();
+    return (
     <div className='page-container'>
       <div className='footer-container'>
         <section className='footer'>
             <div className='footer-info'>
                 <img className='logo' src="/logo-santiclinic.png" alt="" />
-                <span>Tratamentos de beleza personalizados para
-mulheres que merecem cuidado especial.</span>
+                <span>{t("ftr.slogan")}</span>
                 <div className='social-media'>
                     <a href=""><img src="/instagram.png" alt="" /></a>
                     <a href=""><img src="/facebook-logo.png" alt="" /></a>
@@ -17,25 +18,25 @@ mulheres que merecem cuidado especial.</span>
                 </div>
                 <div className='contact-politics'>
                     <div className='contacts'>
-                        <h3>Contacto</h3>
+                        <h3>{t("ftr.contact.title")}</h3>
                         <span>📞 (+351) 910 144-032</span>
                         <span>📍 Praceta Agostinho <br /> 8005-147, Faro</span>
-                        <button><img src={whatsapp} alt="" />Fale Connosco</button>
+                        <button><img src={whatsapp} alt="" />{t("ftr.contact.btn")}</button>
                     </div>
                     <div className='politics'>
-                        <h3>Políticas</h3>
-                        <a href="">Politica de Privacidade</a>
-                        <a href="">Politica de Cookies</a>
-                        <a href="">Termos e Condições</a>
+                        <h3>{t("ftr.policy.title")}</h3>
+                        <a href="">{t("ftr.policy.lt.0")}</a>
+                        <a href="">{t("ftr.policy.lt.1")}</a>
+                        <a href="">{t("ftr.policy.lt.2")}</a>
                     </div>
                 </div>
             </div>
             <div className='form-container'>
                 <div className='form'>
-                    <h2>Agende a sua avaliação agora</h2>
-                    <span>Por favor, preencha o formulário abaixo para entrar em contacto com a nossa equipa.</span>
+                    <h2>{t("ftr.form.title")}</h2>
+                    <span>{t("ftr.form.p")}</span>
                     <form action="">
-                        <label htmlFor="">Nome*</label>
+                        <label htmlFor="">{t("ftr.form.flds.name")}</label>
                         <input type="text" />
                         <div className='email-phone'>
                             <div className="field">
@@ -43,26 +44,26 @@ mulheres que merecem cuidado especial.</span>
                                 <input type="email" />
                             </div>
                             <div className="field">
-                                <label>Telefone*</label>
+                                <label>{t("ftr.form.flds.phone")}*</label>
                                 <input type="tel" />
                             </div>
                         </div>
-                        <label htmlFor="">Assunto*</label>
+                        <label htmlFor="">{t("ftr.form.flds.obj")}*</label>
                         <select name="" id=""></select>
-                        <label htmlFor="">Mensagem*</label>
+                        <label htmlFor="">{t("ftr.form.flds.msg")}*</label>
                         <textarea name="" id=""></textarea>
                         <div className='checkbox'>
                             <input type="checkbox" />
-                            <span>Li e aceito a <a href="">Política de Privacidade</a></span>
+                            <span>{t("ftr.form.flds.axept")} <a href="">{t("ftr.policy.lt.0")}</a></span>
                         </div>
-                        <button>Agende a sua avaliação</button>
+                        <button>{t("ftr.form.flds.btn")}</button>
                     </form>
                 </div>
             </div>
             
         </section>
         <div className='copyright'>
-            <span>© 2025 SANTICLINIC. Todos os direitos reservados.</span>
+            <span>© 2025 SANTICLINIC. {t("ftr.bf")}.</span>
         </div>
       </div>
     </div>

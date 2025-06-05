@@ -95,5 +95,33 @@
       "Reduzir visivelmente os sinais da idade",
       "Melhorar a elasticidade, firmeza e luminosidade é um dos tratamentos preferidos para quem procura resultados impactantes sem cirurgia"
     ]
+  },
+  "ftr": {
+    "slogan": "Tratamentos de beleza personalizados para mulheres que merecem cuidado especial.",
+    "contact": {
+      "title": "Contacto",
+      "btn": "Fale Connosco"
+    },
+    "policy": {
+      "title": "Políticas",
+      "lt": [
+        "Politica de Privacidade",
+        "Politica de Cookies",
+        "Termos e Condições"
+      ]
+    },
+    "form": {
+      "title": "Agende a sua avaliação agora",
+      "p": "Por favor, preencha o formulário abaixo para entrar em contacto com a nossa equipa.",
+      "flds": {
+        "name": "Nome",
+        "phone": "Telefone",
+        "obj": "Assunto",
+        "msg": "Mensagem",
+        "axept": "Li e aceito a",
+        "btn": "Agende a sua avaliação"
+      }
+    },
+    "bf": "Todos os direitos reservados"
   }
 }
