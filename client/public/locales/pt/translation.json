@@ -123,5 +123,217 @@
       }
     },
     "bf": "Todos os direitos reservados"
+  },
+  "pc": {
+    "top_info": {
+      "title": "Informações sobre como utilizamos cookies para melhorar a sua experiência no nosso website.",
+      "last_update": "Última atualização: Janeiro 2025",
+      "version": "Versão"
+    },
+    "lt": [
+      {
+        "title": "O que são Cookies?",
+        "lt": [
+          "Os cookies são pequenos ficheiros de texto que são colocados no seu dispositivo (computador, tablet ou telemóvel) quando visita o nosso website. Estes ficheiros permitem que o website reconheça o seu dispositivo e armazene algumas informações sobre as suas preferências ou ações passadas.",
+          "Os cookies são amplamente utilizados para fazer os websites funcionarem de forma mais eficiente, bem como para fornecer informações aos proprietários do website sobre como os utilizadores interagem com o site."
+        ]
+      },
+      {
+        "title": "Como Utilizamos Cookies",
+        "p": "A Santiclinic utiliza cookies para várias finalidades, sempre com o objetivo de melhorar a sua experiência no nosso website e fornecer serviços personalizados.",
+        "sub": {
+          "1": {
+            "title": "Funcionalidade do Website",
+            "lt": [
+              "Lembrar as suas preferências de idioma",
+              "Manter a sua sessão ativa durante a navegação",
+              "Guardar informações de formulários para sua conveniência",
+              "Personalizar a apresentação de conteúdos"
+            ]
+          },
+          "2": {
+            "title": "Análise e Melhoria",
+            "lt": [
+              "Analisar o tráfego e padrões de utilização do website",
+              "Identificar páginas mais populares e áreas de interesse",
+              "Melhorar a estrutura e conteúdo do website",
+              "Otimizar a experiência do utilizador"
+            ]
+          },
+          "3": {
+            "title": "Marketing e Comunicação",
+            "lt": [
+              "Mostrar publicidade relevante aos seus interesses",
+              "Medir a eficácia das nossas campanhas",
+              "Personalizar ofertas e comunicações",
+              "Retargeting em outras plataformas"
+            ]
+          }
+        }
+      },
+      {
+        "title": "Tipos de Cookies",
+        "p": "Utilizamos diferentes tipos de cookies, cada um com finalidades específicas",
+        "lt": [
+          {
+            "title": "Cookies Necessários",
+            "inf": "Sempre Ativos",
+            "p": "Estes cookies são essenciais para o funcionamento básico do website. Sem eles, certas funcionalidades não funcionariam corretamente.",
+            "lt": [
+              "Gestão de sessões",
+              "Segurança do website",
+              "Funcionalidades básicas de navegação",
+              "Preferências de acessibilidade"
+            ]
+          },
+          {
+            "title": "Cookies de Análise",
+            "inf": "Opcional",
+            "p": "Ajudam-nos a compreender como os visitantes interagem com o website, fornecendo informações sobre as páginas visitadas, tempo de permanência e outras métricas.",
+            "lt": [
+              "Google Analytics",
+              "Heatmaps e gravações de sessão",
+              "Análise de performance",
+              "Estatísticas de utilização"
+            ]
+          },
+          {
+            "title": "Cookies de Marketing",
+            "inf": "Opcional",
+            "p": "Utilizados para mostrar publicidade relevante e medir a eficácia das nossas campanhas de marketing.",
+            "lt": [
+              "Facebook Pixel",
+              "Google Ads",
+              "Remarketing e retargeting",
+              "Publicidade personalizada"
+            ]
+          },
+          {
+            "title": "Cookies Funcionais",
+            "inf": "Opcional",
+            "p": "Permitem funcionalidades avançadas como chat ao vivo, formulários melhorados e outras características personalizadas.",
+            "lt": [
+              "Chat ao vivo",
+              "Formulários inteligentes",
+              "Personalização de conteúdo",
+              "Preferências do utilizador"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Cookies Específicos Utilizados",
+        "p": "A seguinte tabela detalha os cookies específicos utilizados no nosso website",
+        "tbl": {
+          "hdr": {
+            "name": "Nome",
+            "type": "Tipo",
+            "duration": "Duração",
+            "obj": "Finalidade"
+          },
+          "type": {
+            "necessary": "Necessário",
+            "analize": "Análise",
+            "marketing": "Marketing"
+          },
+          "duration": {
+            "year": "ano",
+            "section": "Sessão",
+            "months": "Meses"
+          },
+          "obj": [
+            "Armazena as suas preferências de cookies",
+            "Identifica a sua sessão no website",
+            "Google Analytics - identificação de utilizadores",
+            "Google Analytics - dados de sessão",
+            "Facebook Pixel - tracking de conversões",
+            "Google Ads - atribuição de conversões"
+          ]
+        }
+      },
+      {
+        "title": "Gestão de Cookies",
+        "sub": {
+          "1": {
+            "title": "Controlo das Suas Preferências",
+            "p": "Pode gerir as suas preferências de cookies a qualquer momento através do nosso banner de cookies ou clicando no botão abaixo:",
+            "btn": "Gerir Preferências de Cookies"
+          },
+          "2": {
+            "title": "Configurações do Navegador",
+            "p": "A maioria dos navegadores permite controlar os cookies através das configurações. Pode configurar o seu navegador para:",
+            "lt": [
+              "Bloquear todos os cookies",
+              "Aceitar apenas cookies de primeira parte",
+              "Eliminar cookies quando fechar o navegador",
+              "Notificar antes de aceitar cookies"
+            ]
+          },
+          "3": {
+            "title": "Links para Configurações"
+          }
+        }
+      },
+      {
+        "title": "Cookies de Terceiros",
+        "p": "Alguns cookies no nosso website são definidos por serviços de terceiros. Estes serviços têm as suas próprias políticas de privacidade:",
+        "lt": [
+          {
+            "title": "Google Analytics",
+            "p": "Utilizado para análise de tráfego e comportamento dos utilizadores.",
+            "link": "Ver Política de Privacidade"
+          },
+          {
+            "title": "Facebook Pixel",
+            "p": "Utilizado para publicidade direcionada e medição de conversões.",
+            "link": "Ver Política de Privacidade"
+          },
+          {
+            "title": "Google Ads",
+            "p": "Utilizado para campanhas publicitárias e remarketing.",
+            "link": "Ver Política de Privacidade"
+          }
+        ]
+      },
+      {
+        "title": "Impacto da Desativação",
+        "p": "Se optar por desativar cookies, algumas funcionalidades do website podem ser afetadas:",
+        "lt": [
+          {
+            "title": "Cookies Necessários",
+            "p": "A desativação pode causar problemas de funcionamento, perda de sessão e dificuldades de navegação."
+          },
+          {
+            "title": "Cookies de Análise",
+            "p": "A desativação não afeta a funcionalidade, mas limita a nossa capacidade de melhorar o website."
+          },
+          {
+            "title": "Cookies de Marketing",
+            "p": "A desativação significa que poderá ver publicidade menos relevante para os seus interesses."
+          }
+        ]
+      },
+      {
+        "title": "Atualizações desta Política",
+        "lt": [
+          "A Santiclinic pode atualizar esta Política de Cookies periodicamente para refletir mudanças nos nossos serviços ou na legislação aplicável.",
+          "Quando fizermos alterações significativas, notificaremos através do nosso website e, se aplicável, por email. A data da última atualização está sempre indicada no topo desta página.",
+          "Recomendamos que reveja esta política regularmente para se manter informado sobre como utilizamos cookies."
+        ]
+      },
+      {
+        "title": "Contacto",
+        "p": "Se tiver dúvidas sobre esta Política de Cookies ou sobre como utilizamos cookies, pode contactar-nos",
+        "lt": [
+          "Email",
+          "Telefone",
+          "Morada"
+        ],
+        "quest": "Para questões gerais sobre privacidade e proteção de dados, consulte a nossa Política de Privacidade."
+      }
+    ],
+    "bk_btn": "Voltar ao Website",
+    "rel_docs": "Documentos relacionados",
+    "priv_pol": "Política de Privacidade"
   }
 }

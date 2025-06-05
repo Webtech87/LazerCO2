@@ -25,9 +25,9 @@ const Footer = () => {
                     </div>
                     <div className='politics'>
                         <h3>{t("ftr.policy.title")}</h3>
-                        <a href="">{t("ftr.policy.lt.0")}</a>
-                        <a href="">{t("ftr.policy.lt.1")}</a>
-                        <a href="">{t("ftr.policy.lt.2")}</a>
+                        <a href="/politica-privacidade">{t("ftr.policy.lt.0")}</a>
+                        <a href="/politica-cookies">{t("ftr.policy.lt.1")}</a>
+                        <a href="/termos-condicoes">{t("ftr.policy.lt.2")}</a>
                     </div>
                 </div>
             </div>
@@ -54,7 +54,7 @@ const Footer = () => {
                         <textarea name="" id=""></textarea>
                         <div className='checkbox'>
                             <input type="checkbox" />
-                            <span>{t("ftr.form.flds.axept")} <a href="">{t("ftr.policy.lt.0")}</a></span>
+                            <span>{t("ftr.form.flds.axept")} <a href="/politica-privacidade" target="_blank" rel="noopener noreferrer">{t("ftr.policy.lt.0")}</a></span>
                         </div>
                         <button>{t("ftr.form.flds.btn")}</button>
                     </form>
