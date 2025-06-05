@@ -3,6 +3,7 @@ import {Swiper, SwiperSlide} from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import {Pagination} from 'swiper/modules';
+import {useTranslation} from "react-i18next";
 
 
 const foll = [
@@ -105,10 +106,11 @@ const foll = [
 
 
 export const Followers = () => {
+    const {t} = useTranslation();
     return (
         <div className="follower_container">
             <div className="follower_title">
-                <h2>Testemunhos de quem escolheu a Santiclinic</h2>
+                <h2>{t("followers.title")}</h2>
             </div>
 
             <div className="follower_list_container">
