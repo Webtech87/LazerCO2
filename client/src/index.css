@@ -20,6 +20,8 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--navbar-height);
+  width: 100%;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 body {
@@ -29,6 +31,15 @@ body {
   line-height: 1.5;
   color: var(--text-dark);
   background-color: var(--background);
+  width: 100%;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  position: relative; /* Ensure proper stacking context */
+}
+
+/* Ensure the root app container doesn't overflow */
+#root {
+  width: 100%;
+  overflow-x: hidden;
 }
 
 button, 
@@ -46,6 +57,7 @@ img,
 video {
   max-width: 100%;
   height: auto;
+  display: block; /* Prevents inline spacing issues */
 }
 
 /* Utility classes */
@@ -59,6 +71,13 @@ video {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+
+/* Container utility to prevent overflow */
+.container {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 /* Focus styles for accessibility */
@@ -79,5 +98,11 @@ video {
 @media screen and (max-width: 575px) {
   :root {
     --navbar-height: 60px;
+  }
+  
+  /* Extra mobile safety measures */
+  html, body, #root {
+    max-width: 100vw;
+    overflow-x: hidden;
   }
 }
