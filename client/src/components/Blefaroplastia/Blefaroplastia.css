@@ -1,0 +1,539 @@
+/* Blefaroplastia Section - Futuristic Design */
+.page-container {
+    position: relative;
+    min-height: 100vh;
+    background: linear-gradient(135deg, 
+      rgba(248, 250, 252, 0.98) 0%, 
+      rgba(241, 245, 249, 0.95) 30%,
+      rgba(236, 241, 247, 0.98) 70%,
+      rgba(230, 237, 245, 0.95) 100%);
+    overflow: hidden;
+  }
+  
+  /* Background Elements */
+  .page-container::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-image: 
+      linear-gradient(rgba(30, 82, 204, 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(30, 82, 204, 0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridMove 40s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  .page-container::after {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: -5%;
+    width: 350px;
+    height: 350px;
+    background: linear-gradient(45deg, #1E52CC, #2667FF);
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.25;
+    animation: float 25s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  @keyframes gridMove {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(60px, 60px); }
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    25% { transform: translateY(-40px) rotate(90deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+    75% { transform: translateY(-35px) rotate(270deg); }
+  }
+  
+  /* Additional floating orbs */
+  .container::before {
+    content: '';
+    position: absolute;
+    top: 60%;
+    right: -5%;
+    width: 250px;
+    height: 250px;
+    background: linear-gradient(45deg, #8B5CF6, #A855F7);
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.2;
+    animation: float 30s ease-in-out infinite -10s;
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  .container::after {
+    content: '';
+    position: absolute;
+    bottom: 25%;
+    left: 25%;
+    width: 180px;
+    height: 180px;
+    background: linear-gradient(45deg, #22C55E, #10B981);
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.15;
+    animation: float 35s ease-in-out infinite -18s;
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  /* Main Container */
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 8rem 2rem;
+    opacity: 0;
+    transform: translateY(50px);
+    animation: fadeInUp 1s ease-out 0.3s forwards;
+  }
+  
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Laser Treatment Section */
+  .laser-treatment {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    position: relative;
+  }
+  
+  /* Treatment Content */
+  .treatment-content {
+    opacity: 0;
+    transform: translateX(-50px);
+    animation: slideInLeft 0.8s ease-out 0.6s forwards;
+  }
+  
+  @keyframes slideInLeft {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .main_title {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 3rem;
+    background: linear-gradient(135deg, #081533, #1E52CC, #8B5CF6, #2667FF);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    animation: gradientShift 4s ease-in-out infinite;
+  }
+  
+  @keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  
+  .main_title::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(30, 82, 204, 0.1), rgba(139, 92, 246, 0.1));
+    filter: blur(30px);
+    z-index: -1;
+    animation: glowPulse 3s ease-in-out infinite;
+  }
+  
+  @keyframes glowPulse {
+    0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.6; transform: translate(-50%, -50%) scale(1.1); }
+  }
+  
+  /* Treatment Text Container */
+  .treatment-text-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 2rem;
+    box-shadow: 
+      0 20px 40px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+  
+  .treatment-text-container h3 {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 700;
+    line-height: 1.3;
+    color: #081533;
+    margin-bottom: 2rem;
+    position: relative;
+  }
+  
+  .treatment-text-container h3::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 0;
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, #1E52CC, #8B5CF6);
+    border-radius: 2px;
+    animation: underlineGrow 2s ease-out;
+  }
+  
+  @keyframes underlineGrow {
+    0% { width: 0; }
+    100% { width: 100px; }
+  }
+  
+  /* List Container */
+  .list_container {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .treatment-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.3);
+    position: relative;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: all 0.4s ease;
+  }
+  
+  .treatment-item:nth-child(1) { animation: slideInItem 0.6s ease-out 0.8s forwards; }
+  .treatment-item:nth-child(2) { animation: slideInItem 0.6s ease-out 0.95s forwards; }
+  .treatment-item:nth-child(3) { animation: slideInItem 0.6s ease-out 1.1s forwards; }
+  .treatment-item:nth-child(4) { animation: slideInItem 0.6s ease-out 1.25s forwards; }
+  
+  @keyframes slideInItem {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .treatment-item:hover {
+    background: rgba(30, 82, 204, 0.03);
+    border-radius: 1rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    transform: translateX(5px);
+  }
+  
+  .treatment-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.5rem;
+    height: 1.5rem;
+    background: #22C55E;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+    animation: pulse 2.5s infinite;
+  }
+  
+  .treatment-item::after {
+    content: '✓';
+    position: absolute;
+    left: 0.375rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-weight: bold;
+    font-size: 0.75rem;
+    z-index: 1;
+  }
+  
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+  }
+  
+  .treatment-item {
+    font-size: 1.125rem;
+    color: #475569;
+    font-weight: 500;
+    line-height: 1.6;
+    padding-left: 2.5rem;
+  }
+  
+  /* Treatment Image */
+  .treatment-image {
+    position: relative;
+    opacity: 0;
+    transform: translateX(50px);
+    animation: slideInRight 0.8s ease-out 0.9s forwards;
+  }
+  
+  @keyframes slideInRight {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .treatment-image img {
+    width: 100%;
+    height: auto;
+    max-width: 500px;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    border-radius: 50px 50px 50px 15px;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.1));
+    border: 3px solid transparent;
+    background-clip: padding-box;
+    box-shadow: 
+      0 0 0 8px rgba(139, 92, 246, 0.1),
+      0 25px 50px rgba(0, 0, 0, 0.15),
+      0 0 40px rgba(139, 92, 246, 0.3);
+    transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    position: relative;
+  }
+  
+  .treatment-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(59, 130, 246, 0.3));
+    border-radius: 50px 50px 50px 15px;
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  .treatment-image img:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 
+      0 0 0 12px rgba(139, 92, 246, 0.15),
+      0 35px 70px rgba(0, 0, 0, 0.2),
+      0 0 60px rgba(139, 92, 246, 0.4);
+  }
+  
+  .treatment-image::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85%;
+    height: 30px;
+    background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.5), transparent);
+    filter: blur(25px);
+    border-radius: 50%;
+  }
+  
+  /* Responsive Design */
+  @media screen and (max-width: 1200px) {
+    .container {
+      padding: 6rem 1.5rem;
+    }
+    
+    .laser-treatment {
+      gap: 4rem;
+    }
+    
+    .treatment-image img {
+      max-width: 450px;
+    }
+  }
+  
+  @media screen and (max-width: 1024px) {
+    .container {
+      padding: 5rem 1rem;
+    }
+    
+    .laser-treatment {
+      grid-template-columns: 1fr;
+      gap: 4rem;
+      text-align: center;
+    }
+    
+    .treatment-content {
+      order: -1;
+      transform: translateY(-30px);
+    }
+    
+    .treatment-image {
+      transform: translateY(30px);
+    }
+    
+    .treatment-image img {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .container {
+      padding: 4rem 1rem;
+    }
+    
+    .laser-treatment {
+      gap: 3rem;
+    }
+    
+    .treatment-text-container {
+      padding: 1.5rem;
+      border-radius: 1.5rem;
+    }
+    
+    .treatment-image img {
+      max-width: 350px;
+      border-radius: 35px 35px 35px 12px;
+    }
+    
+    .treatment-item {
+      padding: 1rem 0;
+      padding-left: 2.5rem;
+    }
+    
+    .treatment-item {
+      font-size: 1rem;
+    }
+  }
+  
+  @media screen and (max-width: 640px) {
+    .container {
+      padding: 3rem 0.75rem;
+    }
+    
+    .laser-treatment {
+      gap: 2.5rem;
+    }
+    
+    .treatment-image img {
+      max-width: 300px;
+      border-radius: 30px 30px 30px 10px;
+      aspect-ratio: 3/4;
+    }
+    
+    .treatment-item {
+      flex-direction: column;
+      text-align: center;
+      gap: 0.75rem;
+      padding: 1.25rem 1rem;
+      padding-left: 1rem;
+    }
+    
+    .treatment-item::before {
+      position: static;
+      transform: none;
+      margin-bottom: 0.5rem;
+    }
+    
+    .treatment-item::after {
+      position: static;
+      transform: none;
+      margin-top: -1.125rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .treatment-text-container {
+      padding: 1.25rem;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .container::before,
+    .container::after {
+      display: none;
+    }
+    
+    .page-container::after {
+      display: none;
+    }
+    
+    .container {
+      padding: 2.5rem 0.5rem;
+    }
+    
+    .treatment-image img {
+      max-width: 280px;
+      border-radius: 25px 25px 25px 8px;
+      aspect-ratio: 1;
+    }
+    
+    .treatment-text-container {
+      padding: 1rem;
+      border-radius: 1.25rem;
+    }
+    
+    .treatment-item {
+      padding: 1rem 0.75rem;
+      font-size: 0.9375rem;
+    }
+  }
+  
+  /* High resolution displays */
+  @media screen and (min-width: 1600px) {
+    .container {
+      max-width: 1600px;
+      padding: 8rem 2rem;
+    }
+    
+    .laser-treatment {
+      gap: 6rem;
+    }
+    
+    .treatment-image img {
+      max-width: 600px;
+    }
+    
+    .treatment-text-container {
+      padding: 2.5rem;
+    }
+  }
+  
+  /* Reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    
+    .container,
+    .page-container::before,
+    .page-container::after,
+    .container::before,
+    .container::after,
+    .main_title,
+    .treatment-item {
+      animation: none !important;
+    }
+  }
