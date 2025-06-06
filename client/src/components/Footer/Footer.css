@@ -585,7 +585,62 @@ body {
   text-decoration: underline;
 }
 
-/* Submit Button */
+/* Form Validation Styles */
+.submit-message {
+  padding: 1rem;
+  border-radius: 1rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  border: 2px solid;
+}
+
+.submit-message.success {
+  background: rgba(34, 197, 94, 0.1);
+  border-color: #22C55E;
+  color: #16A34A;
+}
+
+.submit-message.error {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: #EF4444;
+  color: #DC2626;
+}
+
+.field-error {
+  color: #DC2626;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.form input.error,
+.form select.error,
+.form textarea.error {
+  border-color: #EF4444;
+  background: rgba(239, 68, 68, 0.05);
+}
+
+.form input.error:focus,
+.form select.error:focus,
+.form textarea.error:focus {
+  border-color: #EF4444;
+  box-shadow: 
+    0 0 0 4px rgba(239, 68, 68, 0.1),
+    0 4px 15px rgba(239, 68, 68, 0.2);
+}
+
+.form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.form button:disabled:hover {
+  background: linear-gradient(135deg, #2667FF, #1E52CC);
+  box-shadow: 0 6px 20px rgba(38, 103, 255, 0.4);
+}
 .form button {
   background: linear-gradient(135deg, #2667FF, #1E52CC);
   border: none;
