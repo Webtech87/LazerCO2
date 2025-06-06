@@ -49,7 +49,13 @@ const Footer = () => {
                             </div>
                         </div>
                         <label htmlFor="">{t("ftr.form.flds.obj")}*</label>
-                        <select name="" id=""></select>
+                        <select name="subject" id="subject">
+                            <option value="">Selecione o assunto</option>
+                            <option value="lazer-co2-face">Lazer Co2 Face</option>
+                            <option value="lazer-co2-pescoco">Lazer Co2 Pescoço</option>
+                            <option value="blefo-superior">Blefosuperior sem corte</option>
+                            <option value="blefo-inferior">Blefoinferior sem corte</option>
+                        </select>
                         <label htmlFor="">{t("ftr.form.flds.msg")}*</label>
                         <textarea name="" id=""></textarea>
                         <div className='checkbox'>
