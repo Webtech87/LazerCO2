@@ -429,6 +429,7 @@
       },
       "6": {
         "title": "Condições Comerciais",
+        "subtitle": "Preços e Pagamentos",
         "6.1": [
           "Os preços são apresentados em euros e incluem IVA",
           "Os preços podem ser alterados sem aviso prévio",
@@ -467,7 +468,11 @@
       "8": {
         "title": {
           "title": "Proteção de Dados",
-          "p": "O tratamento dos seus dados pessoais está regulado pela nossa Política de Privacidade, que constitui parte integrante destes termos e condições."
+          "p": [
+            "O tratamento dos seus dados pessoais está regulado pela nossa",
+            "Política de Privacidade",
+            "que constitui parte integrante destes termos e condições"
+          ]
         },
         "8.1": {
           "title": "Finalidades",

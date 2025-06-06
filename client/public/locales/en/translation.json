@@ -429,6 +429,7 @@
       },
       "6": {
         "title": "Commercial Terms",
+        "subtitle": "Pricing and Payments",
         "6.1": [
           "Prices are listed in euros and include VAT",
           "Prices may change without prior notice",
@@ -467,7 +468,11 @@
       "8": {
         "title": {
           "title": "Data Protection",
-          "p": "The processing of your personal data is governed by our Privacy Policy, which is an integral part of these terms and conditions."
+          "p": [
+            "The processing of your personal data is governed by our",
+            "Privacy Policy",
+            "which forms an integral part of these terms and conditions"
+          ]
         },
         "8.1": {
           "title": "Purposes",
