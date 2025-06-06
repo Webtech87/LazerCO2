@@ -336,13 +336,13 @@ const CookiesPolicy: React.FC = () => {
                         <h2 className="cookies-policy__section-title">8. {t("pc.lt.7.title")}</h2>
                         <div className="cookies-policy__section-content">
                             <p>
-                                {t("pc.lt.6.lt.0")}
+                                {t("pc.lt.7.lt.0")}
                             </p>
                             <p>
-                                {t("pc.lt.6.lt.1")}
+                                {t("pc.lt.7.lt.1")}
                             </p>
                             <p>
-                                {t("pc.lt.6.lt.2")}
+                                {t("pc.lt.7.lt.2")}
                             </p>
                         </div>
                     </section>
@@ -362,7 +362,7 @@ const CookiesPolicy: React.FC = () => {
                                     <strong>{t("pc.lt.8.lt.1")}:</strong> +351 915 007 427
                                 </div>
                                 <div className="cookies-policy__contact-item">
-                                    <strong>{t("pc.lt.8.lt.3")}:</strong> Praceta Agostinho Ferreira Chaves 5 Lj 4 AA, 8005-328 Faro
+                                    <strong>{t("pc.lt.8.lt.2")}:</strong> Praceta Agostinho Ferreira Chaves 5 Lj 4 AA, 8005-328 Faro
                                 </div>
                             </div>
 
