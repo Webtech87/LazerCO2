@@ -1,231 +1,1218 @@
+/* Global Reset & Base Styles */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-  
+
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    line-height: 1.5;
-    color: #333;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.5;
+  color: #333;
 }
 
+/* Page Container */
 .page-container {
-    min-height: 100vh;
-    background-color: white;
-    margin-top: 70px;
-}
-  
-.footer-container {
-    margin: 0 auto;
-    padding: 0 20px;
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(135deg, 
+    rgba(248, 250, 252, 0.98) 0%, 
+    rgba(241, 245, 249, 0.96) 25%,
+    rgba(236, 241, 247, 0.98) 50%,
+    rgba(230, 237, 245, 0.96) 75%,
+    rgba(225, 233, 243, 0.98) 100%);
+  margin-top: 0;
+  padding-top: 0;
+  overflow: hidden;
 }
 
+/* Animated Background Elements */
+.page-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(30, 82, 204, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 82, 204, 0.02) 1px, transparent 1px);
+  background-size: 100px 100px;
+  animation: gridFlow 60s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page-container::after {
+  content: '';
+  position: absolute;
+  top: 10%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  background: linear-gradient(45deg, #1E52CC, #8B5CF6, #22C55E);
+  border-radius: 50%;
+  filter: blur(150px);
+  opacity: 0.06;
+  animation: orbFloat 45s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes gridFlow {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(100px, 100px); }
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+  25% { transform: translateY(-80px) translateX(-60px) rotate(90deg); }
+  50% { transform: translateY(-60px) translateX(-120px) rotate(180deg); }
+  75% { transform: translateY(-70px) translateX(-40px) rotate(270deg); }
+}
+
+/* Footer Container */
+.footer-container {
+  position: relative;
+  z-index: 1;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 1600px;
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fadeInUp 1s ease-out 0.3s forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Main Footer Section */
 .footer {
   display: flex;
   flex-wrap: wrap;
-  background-color: #F8F8F8;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(30px);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 3rem;
   width: 100%;
-  padding: 5%;
-  gap: 10%;
+  padding: 4rem;
+  gap: 4rem;
   align-items: flex-start;
+  margin: 2rem;
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.1),
+    0 0 40px rgba(30, 82, 204, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
 }
 
-/* Left side: Info section */
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, 
+    rgba(30, 82, 204, 0.02) 0%, 
+    rgba(139, 92, 246, 0.015) 50%, 
+    rgba(34, 197, 94, 0.02) 100%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Left Side: Info Section */
 .footer-info {
   flex: 1;
   display: flex;
   flex-direction: column;
+  gap: 2rem;
+  min-width: 350px;
 }
 
-/* Logo should have fixed height/width, not % */
+/* Logo Styling */
 .logo {
-  width: 600px;
+  width: clamp(250px, 40vw, 400px);
   height: auto;
+  filter: drop-shadow(0 4px 12px rgba(30, 82, 204, 0.2));
+  transition: all 0.4s ease;
 }
 
-/* Text block */
-.footer-info span {
-  font-size: 20px;
-  margin: 20px 0;
+.logo:hover {
+  transform: scale(1.02);
+  filter: drop-shadow(0 6px 20px rgba(30, 82, 204, 0.3));
+}
+
+/* Slogan Text */
+.footer-info > span {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-weight: 500;
+  margin: 0;
   max-width: 520px;
+  line-height: 1.6;
+  color: #475569;
+  position: relative;
+  padding-left: 1rem;
 }
 
+.footer-info > span::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(135deg, #1E52CC, #8B5CF6);
+  border-radius: 2px;
+}
+
+/* Social Media */
 .social-media {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.social-media a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  overflow: hidden;
+}
+
+.social-media a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1E52CC, #8B5CF6);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+
+.social-media a:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(30, 82, 204, 0.3);
+  border-color: rgba(30, 82, 204, 0.4);
+}
+
+.social-media a:hover::before {
+  opacity: 0.1;
 }
 
 .social-media img {
-    width: 20px;
+  width: 24px;
+  height: 24px;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
 }
 
-/* Contacts & links layout */
+.social-media a:hover img {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
+
+/* Contact & Politics Layout */
 .contact-politics {
   display: flex;
-  gap: 15%;
-  margin-top: 20px;
+  gap: 3rem;
+  margin-top: 1rem;
+  width: 100%;
 }
 
 .contact-politics h3 {
-    font-size: 24px;
-    margin-bottom: 20px;
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #081533;
+  position: relative;
+  padding-bottom: 0.5rem;
 }
 
+.contact-politics h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: linear-gradient(90deg, #1E52CC, #8B5CF6);
+  border-radius: 2px;
+}
+
+/* Contacts Section */
 .contacts {
   display: flex;
   flex-direction: column;
-  min-width: 40%;
+  flex: 1;
+  gap: 1rem;
 }
 
 .contacts span {
-    font-size: 18px;
-    margin: 10px 0;
+  font-size: clamp(0.9rem, 2vw, 1.125rem);
+  font-weight: 500;
+  color: #475569;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
 }
 
+.contacts span:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(4px);
+}
+
+/* WhatsApp Button */
 .contacts button {
-  background-color: #1EB958;
-  padding: 10px 15px;
+  background: linear-gradient(135deg, #1EB958, #22C55E);
+  padding: 1rem 1.5rem;
   border: none;
-  border-radius: 8px;
+  border-radius: 2rem;
   color: #fff;
-  margin-top: 10px;
-  width: 70%;
+  margin-top: 1rem;
+  width: fit-content;
+  max-width: 280px;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
-  font-size: 14px;
+  gap: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.contacts button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s ease;
 }
 
 .contacts button:hover {
-    background-color: #258649;
-    cursor: pointer;
+  background: linear-gradient(135deg, #22C55E, #16A34A);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(34, 197, 94, 0.4);
 }
 
-.contacts img {
-    width: 30px;
+.contacts button:hover::before {
+  left: 100%;
 }
 
+.contacts button img {
+  width: 28px;
+  height: 28px;
+  filter: brightness(1.1);
+}
+
+/* Politics Section */
 .politics {
   display: flex;
   flex-direction: column;
+  flex: 1;
+  gap: 0.75rem;
 }
 
 .politics a {
-  margin-bottom: 15px;
-  color: black;
+  color: #475569;
   text-decoration: none;
   cursor: pointer;
+  font-weight: 500;
+  padding: 0.75rem 1rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.politics a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(135deg, #1E52CC, #8B5CF6);
+  transition: width 0.3s ease;
+  z-index: -1;
 }
 
 .politics a:hover {
-    text-decoration: underline;
+  color: #1E52CC;
+  background: rgba(30, 82, 204, 0.05);
+  transform: translateX(4px);
+  border-color: rgba(30, 82, 204, 0.2);
 }
 
-/* Right side: Form section */
+.politics a:hover::before {
+  width: 4px;
+}
+
+/* Right Side: Form Section */
 .form-container {
-  flex: 2;
-  max-width: 40%;
-  background-color: #D4E1FF;
-  border-radius: 120px 0;
+  flex: 1.2;
+  min-width: 400px;
+  background: linear-gradient(135deg, 
+    rgba(212, 225, 255, 0.3), 
+    rgba(196, 218, 255, 0.25));
+  backdrop-filter: blur(25px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 3rem;
   display: flex;
   justify-content: center;
-  padding: 5%;
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 20px 40px rgba(30, 82, 204, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
+.form-container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent, rgba(30, 82, 204, 0.05), transparent);
+  animation: rotate 20s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Form Styling */
 .form {
   display: flex;
   flex-direction: column;
   width: 100%;
   max-width: 500px;
+  position: relative;
+  z-index: 1;
 }
 
 .form h2 {
-  font-size: 26px;
-  margin-bottom: 20px;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 800;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #081533, #1E52CC, #8B5CF6);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 3s ease-in-out infinite;
 }
 
-.form span {
-  font-size: 18px;
-  margin-bottom: 20px;
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
+.form > span {
+  font-size: clamp(0.9rem, 2vw, 1.125rem);
+  margin-bottom: 2rem;
+  color: #475569;
+  line-height: 1.6;
+}
+
+/* Form Elements */
 .form form {
   display: flex;
   flex-direction: column;
+  gap: 1.5rem;
 }
 
-.form input,
-.form select,
+.form label {
+  font-weight: 600;
+  color: #081533;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form input, 
+.form select, 
 .form textarea {
-  border: none;
-  border-radius: 10px;
-  padding: 10px;
-  margin-bottom: 15px;
-  font-size: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 1rem;
+  padding: 1rem 1.25rem;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  color: #333;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  outline: none;
 }
 
-.form input,
-.form select {
-  height: 40px; /* Feel free to increase this */
+.form input:focus, 
+.form select:focus, 
+.form textarea:focus {
+  border-color: #1E52CC;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 0 0 4px rgba(30, 82, 204, 0.1),
+    0 4px 15px rgba(30, 82, 204, 0.2);
+  transform: translateY(-2px);
+}
+
+.form input::placeholder,
+.form textarea::placeholder {
+  color: #94A3B8;
+}
+
+.form input, .form select {
+  height: 48px;
 }
 
 .form textarea {
-    height: 100px;
+  height: 120px;
+  resize: vertical;
+  min-height: 80px;
 }
 
+/* Email-Phone Layout */
 .email-phone {
   display: flex;
-  gap: 10px;
+  gap: 1rem;
 }
 
 .field {
   flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .field input {
   width: 100%;
 }
 
+/* Checkbox Styling */
 .checkbox {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
+  align-items: flex-start;
+  gap: 1rem;
+  margin: 0.5rem 0;
 }
 
-.checkbox input {
-    width: 15px;
-    padding: 0 !important;
-    margin: 0;
+.checkbox input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  padding: 0 !important;
+  margin: 0;
+  accent-color: #1E52CC;
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin-top: 2px;
 }
 
 .checkbox span {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #475569;
 }
 
+.checkbox a {
+  color: #1E52CC;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.checkbox a:hover {
+  color: #8B5CF6;
+  text-decoration: underline;
+}
+
+/* Submit Button */
 .form button {
-  background-color: #2667FF;
+  background: linear-gradient(135deg, #2667FF, #1E52CC);
   border: none;
-  border-radius: 50px;
-  padding: 12px 20px;
-  font-size: 16px;
+  border-radius: 2rem;
+  padding: 1.25rem 2rem;
+  font-size: 1.125rem;
+  font-weight: 700;
   color: #fff;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: 0 6px 20px rgba(38, 103, 255, 0.4);
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 1rem;
+}
+
+.form button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s ease;
 }
 
 .form button:hover {
-    cursor: pointer;
-    background-color: #0b3bac;
+  background: linear-gradient(135deg, #1E52CC, #0B3BAC);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(38, 103, 255, 0.5);
 }
 
+.form button:hover::before {
+  left: 100%;
+}
+
+.form button:active {
+  transform: translateY(-1px);
+}
+
+/* Copyright Section */
 .copyright {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #1E52CC, #081533);
+  width: 100vw;
+  min-height: 80px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1rem;
+  text-align: center;
+  padding: 1.5rem;
+  margin-left: calc(-50vw + 50%);
+  position: relative;
+  overflow: hidden;
+}
+
+.copyright::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.05) 50%, 
+    transparent 100%);
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1400px) {
+  .footer {
+    padding: 3rem;
+    gap: 3rem;
+  }
+  
+  .form-container {
+    padding: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .footer {
+    padding: 2.5rem;
+    gap: 2.5rem;
+  }
+  
+  .contact-politics {
+    gap: 2rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .footer {
+    flex-direction: column;
+    padding: 2rem;
+    gap: 2rem;
     align-items: center;
-    background-color: #1E52CC;
-    width: 100vw;
-    height: 10vh;
-    color: #fff;
+    text-align: center;
+  }
+  
+  .footer-info {
+    min-width: auto;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .footer-info > span {
+    text-align: center;
+    padding-left: 0;
+    max-width: 100%;
+  }
+  
+  .footer-info > span::before {
+    display: none;
+  }
+  
+  .social-media {
+    justify-content: center;
+  }
+  
+  .form-container {
+    min-width: auto;
+    width: 100%;
+    max-width: none;
+    padding: 2rem;
+  }
+  
+  .contact-politics {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .contacts {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .contacts span {
+    justify-content: center;
+    text-align: center;
+    max-width: 300px;
+  }
+  
+  .contacts button {
+    align-self: center;
+  }
+  
+  .politics {
+    width: 100%;
+    align-items: center;
+  }
+  
+  .politics a {
+    text-align: center;
+    max-width: 300px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .page-container::after {
+    display: none;
+  }
+  
+  .page-container {
+    padding-top: 0;
+  }
+  
+  .footer-container {
+    margin: 0;
+    padding: 0 1rem;
+  }
+  
+  .footer {
+    margin: 0;
+    padding: 1.5rem;
+    border-radius: 2rem;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+  }
+  
+  .footer-info {
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+  }
+  
+  .logo {
+    width: clamp(200px, 60vw, 300px);
+  }
+  
+  .footer-info > span {
+    text-align: center;
+    padding-left: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  .social-media {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  
+  .contact-politics {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .contacts {
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .contacts h3 {
+    text-align: center;
+  }
+  
+  .contacts span {
+    justify-content: center;
+    text-align: center;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+  
+  .contacts button {
+    width: 100%;
+    max-width: 250px;
+    align-self: center;
+    margin: 0.5rem auto 0;
+  }
+  
+  .politics {
+    align-items: center;
+    text-align: center;
+  }
+  
+  .politics h3 {
+    text-align: center;
+  }
+  
+  .politics a {
+    text-align: center;
+    max-width: 280px;
+    margin: 0 auto 0.75rem;
+  }
+  
+  .form-container {
+    padding: 1.5rem;
+    border-radius: 2rem;
+  }
+  
+  .form {
+    align-items: center;
+    text-align: center;
+  }
+  
+  .form h2 {
+    text-align: center;
+  }
+  
+  .form > span {
+    text-align: center;
+  }
+  
+  .email-phone {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .page-container {
+    padding-top: 0;
+  }
+  
+  .footer-container {
+    padding: 0 0.5rem;
+  }
+  
+  .footer {
+    margin: 0;
+    padding: 1rem;
+    border-radius: 1.5rem;
+    gap: 1.25rem;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .footer-info {
+    align-items: center;
+    text-align: center;
+    gap: 1.25rem;
+  }
+  
+  .logo {
+    width: clamp(180px, 70vw, 250px);
+  }
+  
+  .footer-info > span {
+    font-size: 0.9rem;
+    text-align: center;
+    padding-left: 0;
+  }
+  
+  .social-media {
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .contact-politics {
+    gap: 1.25rem;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .contacts {
+    align-items: center;
+    text-align: center;
+    gap: 0.75rem;
+  }
+  
+  .contacts h3 {
+    font-size: 1.125rem;
+    text-align: center;
+  }
+  
+  .contacts span {
+    font-size: 0.9rem;
+    justify-content: center;
+    text-align: center;
+    max-width: 250px;
+    padding: 0.5rem 0.75rem;
+  }
+  
+  .contacts button {
+    font-size: 0.9rem;
+    padding: 0.75rem 1.25rem;
+    max-width: 220px;
+    margin: 0.25rem auto 0;
+  }
+  
+  .politics {
+    align-items: center;
+    text-align: center;
+  }
+  
+  .politics h3 {
+    font-size: 1.125rem;
+    text-align: center;
+  }
+  
+  .politics a {
+    font-size: 0.9rem;
+    text-align: center;
+    max-width: 250px;
+    padding: 0.5rem 0.75rem;
+    margin: 0 auto 0.5rem;
+  }
+  
+  .form-container {
+    padding: 1rem;
+    border-radius: 1.5rem;
+  }
+  
+  .form {
+    align-items: center;
+    text-align: center;
+  }
+  
+  .form h2 {
+    text-align: center;
+    margin-bottom: 0.75rem;
+  }
+  
+  .form > span {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .form input, .form select {
+    height: 44px;
+    font-size: 0.9rem;
+  }
+  
+  .form textarea {
+    height: 100px;
+    font-size: 0.9rem;
+  }
+  
+  .form label {
+    text-align: left;
+    font-size: 0.8rem;
+  }
+  
+  .checkbox {
+    align-items: flex-start;
+    gap: 0.75rem;
+    text-align: left;
+  }
+  
+  .checkbox span {
+    font-size: 0.8rem;
+  }
+  
+  .form button {
+    font-size: 0.9rem;
+    padding: 1rem 1.5rem;
+  }
+  
+  .copyright {
+    font-size: 0.9rem;
+    padding: 1rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .footer-container::before,
+  .form-container::before {
+    display: none;
+  }
+  
+  .page-container {
+    padding-top: 0;
+  }
+  
+  .footer-container {
+    padding: 0 0.25rem;
+  }
+  
+  .footer {
+    margin: 0;
+    padding: 0.75rem;
+    border-radius: 1rem;
+    gap: 1rem;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .footer-info {
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .logo {
+    width: clamp(150px, 80vw, 200px);
+  }
+  
+  .footer-info > span {
+    font-size: 0.85rem;
+    text-align: center;
+    padding-left: 0;
+    line-height: 1.4;
+  }
+  
+  .social-media {
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .social-media a {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .social-media img {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .contact-politics {
+    gap: 1rem;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .contacts {
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+  }
+  
+  .contacts h3 {
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 0.75rem;
+  }
+  
+  .contacts span {
+    font-size: 0.8rem;
+    justify-content: center;
+    text-align: center;
+    max-width: 220px;
+    padding: 0.4rem 0.6rem;
+    margin: 0 auto 0.25rem;
+  }
+  
+  .contacts button {
+    font-size: 0.8rem;
+    padding: 0.6rem 1rem;
+    max-width: 200px;
+    margin: 0.25rem auto 0;
+  }
+  
+  .contacts button img {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .politics {
+    align-items: center;
+    text-align: center;
+  }
+  
+  .politics h3 {
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 0.75rem;
+  }
+  
+  .politics a {
+    font-size: 0.8rem;
+    text-align: center;
+    max-width: 220px;
+    padding: 0.4rem 0.6rem;
+    margin: 0 auto 0.4rem;
+  }
+  
+  .form-container {
+    padding: 0.75rem;
+    border-radius: 1rem;
+  }
+  
+  .form {
+    align-items: center;
+    text-align: center;
+  }
+  
+  .form h2 {
+    font-size: 1.25rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .form > span {
+    text-align: center;
+    margin-bottom: 1.25rem;
+    font-size: 0.8rem;
+  }
+  
+  .form input, .form select {
+    height: 40px;
+    font-size: 0.8rem;
+    padding: 0.75rem 1rem;
+  }
+  
+  .form textarea {
+    height: 80px;
+    font-size: 0.8rem;
+    padding: 0.75rem 1rem;
+  }
+  
+  .form label {
+    text-align: left;
+    font-size: 0.75rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .checkbox {
+    align-items: flex-start;
+    gap: 0.5rem;
+    text-align: left;
+  }
+  
+  .checkbox input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .checkbox span {
+    font-size: 0.75rem;
+    line-height: 1.3;
+  }
+  
+  .form button {
+    font-size: 0.8rem;
+    padding: 0.8rem 1.25rem;
+    margin-top: 0.5rem;
+  }
+  
+  .copyright {
+    font-size: 0.8rem;
+    padding: 0.75rem;
+    min-height: 60px;
+  }
+}
+
+/* High resolution displays */
+@media screen and (min-width: 1600px) {
+  .footer-container {
+    max-width: 1800px;
+  }
+  
+  .footer {
+    padding: 5rem;
+    gap: 5rem;
+  }
+  
+  .form-container {
+    padding: 4rem;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .page-container::before,
+  .page-container::after,
+  .form-container::before,
+  .copyright::before,
+  .contacts button::before,
+  .form button::before {
+    animation: none !important;
+  }
 }
