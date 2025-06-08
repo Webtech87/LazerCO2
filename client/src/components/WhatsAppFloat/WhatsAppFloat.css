@@ -110,27 +110,7 @@
       inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
   }
   
-  /* Badge */
-  .notification-badge {
-    position: absolute !important;
-    top: -4px !important;
-    right: -4px !important;
-    width: 24px !important;
-    height: 24px !important;
-    max-width: 24px !important;
-    max-height: 24px !important;
-    background: linear-gradient(135deg, #f87171, #dc2626) !important;
-    border-radius: 50% !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    font-weight: bold !important;
-    color: white !important;
-    font-size: 12px !important;
-    border: 2px solid white !important;
-    animation: bounce 2s infinite;
-    transition: opacity 0.3s ease !important;
-  }
+  /* Badge - Removed */
   
   /* Shimmer Effect */
   .shimmer-effect {
@@ -232,13 +212,7 @@
     max-height: 24px !important;
   }
   
-  .size-small-badge {
-    width: 20px !important;
-    height: 20px !important;
-    max-width: 20px !important;
-    max-height: 20px !important;
-    font-size: 10px !important;
-  }
+  /* Size badge classes - Removed */
   
   .size-medium-container {
     width: 64px !important;
@@ -256,13 +230,7 @@
     max-height: 32px !important;
   }
   
-  .size-medium-badge {
-    width: 24px !important;
-    height: 24px !important;
-    max-width: 24px !important;
-    max-height: 24px !important;
-    font-size: 12px !important;
-  }
+  /* Size badge classes - Removed */
   
   .size-large-container {
     width: 80px !important;
@@ -280,13 +248,7 @@
     max-height: 40px !important;
   }
   
-  .size-large-badge {
-    width: 28px !important;
-    height: 28px !important;
-    max-width: 28px !important;
-    max-height: 28px !important;
-    font-size: 14px !important;
-  }
+  /* Size badge classes - Removed */
   
   /* Mobile Responsive */
   @media (max-width: 768px) {

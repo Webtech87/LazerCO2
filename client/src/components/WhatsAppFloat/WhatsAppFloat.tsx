@@ -7,7 +7,6 @@ const WhatsAppFloat: React.FC<WhatsAppFloatProps> = ({
   phoneNumber = "351910966393",
   message = "Olá! Gostaria de saber mais sobre os tratamentos da SantiClinic.",
   showBadge: initialShowBadge = true,
-  badgeText = 1,
   position = 'bottom-right',
   size = 'medium',
   className = '',
@@ -112,14 +111,7 @@ const WhatsAppFloat: React.FC<WhatsAppFloatProps> = ({
           aria-label="Contactar via WhatsApp"
           onClick={handleClick}
         >
-          {/* Notification Badge */}
-          {showBadge && (
-            <span 
-              className={`notification-badge ${sizeClasses.badge}`}
-            >
-              {badgeText}
-            </span>
-          )}
+          {/* Notification Badge - Removed */}
           
           {/* WhatsApp Icon */}
           <svg 
