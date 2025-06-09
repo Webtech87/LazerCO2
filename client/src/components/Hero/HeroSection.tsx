@@ -1,15 +1,54 @@
 import { CheckIcon, LockIcon } from "lucide-react";
 import "./HeroSection.css";
-import {useTranslation} from "react-i18next";
-
+import { useTranslation } from "react-i18next";
 
 interface HeroSectionProps {
   className?: string;
 }
 
 export function HeroSection({ className }: HeroSectionProps) {
+  const { t } = useTranslation();
 
-  const {t} = useTranslation();
+  // 🚀 Scroll to Footer function
+  const scrollToFooter = () => {
+    console.log("📍 Scrolling to footer...");
+    
+    // Try multiple selectors to find the footer
+    const footer = document.querySelector('footer') || 
+                   document.querySelector('.footer') ||
+                   document.querySelector('#footer') ||
+                   document.querySelector('[data-section="footer"]');
+    
+    if (footer) {
+      footer.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+      console.log("✅ Footer found and scrolling");
+    } else {
+      // Fallback: scroll to bottom of page
+      console.log("⚠️ Footer not found, scrolling to bottom");
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  // 🚀 WhatsApp redirect function
+  const redirectToWhatsApp = () => {
+    console.log("💬 Redirecting to WhatsApp...");
+    
+    const phoneNumber = "351915007427"; // Portugal code + your number
+    const message = "Olá! Vi o site da SantiClinic e gostaria de saber mais detalhes sobre o tratamento com Laser CO₂. Podem me ajudar?";
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    
+    console.log("🔗 WhatsApp URL:", whatsappUrl);
+    
+    // Open WhatsApp in new tab
+    window.open(whatsappUrl, '_blank');
+  };
 
   return (
     <section className={`hero-section ${className || ""}`}>
@@ -27,17 +66,21 @@ export function HeroSection({ className }: HeroSectionProps) {
           
           <div className="action-content">
             <div className="cta-container">
-              <button 
-                className="cta-button" 
-                onClick={() => console.log("Scheduling appointment")}
+              {/* 🎯 UPDATED: Main CTA button - scrolls to footer */}
+              <button
+                className="cta-button"
+                onClick={scrollToFooter}
+                title="Agendar avaliação - rolar para contactos"
               >
                 <span className="cta-text">{t("section_1.btn")}</span>
                 <div className="cta-glow"></div>
               </button>
               
-              <button 
+              {/* 💬 UPDATED: Details button - opens WhatsApp */}
+              <button
                 className="more-details-button"
-                onClick={() => console.log("More details")}
+                onClick={redirectToWhatsApp}
+                title="Saber mais detalhes via WhatsApp"
               >
                 {t("section_1.more.title")}
               </button>
