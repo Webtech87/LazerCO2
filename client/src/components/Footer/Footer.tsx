@@ -17,6 +17,7 @@ interface FormErrors {
 }
 
 const Footer = () => {
+    
     const { t } = useTranslation();
     const [formData, setFormData] = useState<FormData>({
         name: '',
@@ -32,7 +33,7 @@ const Footer = () => {
     const [submitSuccess, setSubmitSuccess] = useState<boolean | null>(null);
     const [errors, setErrors] = useState<FormErrors>({});
 
-    // 🚀 NEW: WhatsApp redirect function
+    // 🚀 WhatsApp redirect function
     const handleWhatsAppClick = () => {
         console.log('💬 WhatsApp button clicked in Footer');
         
@@ -143,7 +144,7 @@ const Footer = () => {
     };
 
     return (
-        <div className='page-container'>
+        <div id="footer-section" className='page-container footer-section'>
             <div className='footer-container'>
                 <section className='footer' id="footer">
                     <div className='footer-info'>
@@ -160,15 +161,16 @@ const Footer = () => {
                                 <span>📞 (+351) 910 144-032</span>
                                 <span>📍 Praceta Agostinho <br /> 8005-147, Faro</span>
                                 
-                                {/* 🔥 UPDATED: WhatsApp button with click handler */}
+                                {/* 🔥 WhatsApp button with enhanced styling */}
                                 <button 
                                     onClick={handleWhatsAppClick}
                                     title="Falar connosco no WhatsApp"
+                                    className="whatsapp-footer-btn"
                                     style={{
                                         background: 'linear-gradient(135deg, #25D366 0%, #128C7E 100%)',
                                         color: 'white',
                                         border: 'none',
-                                        borderRadius: '8px',
+                                        borderRadius: '12px',
                                         padding: '12px 20px',
                                         cursor: 'pointer',
                                         display: 'flex',
@@ -177,16 +179,17 @@ const Footer = () => {
                                         fontSize: '14px',
                                         fontWeight: '600',
                                         transition: 'all 0.3s ease',
-                                        boxShadow: '0 2px 10px rgba(37, 211, 102, 0.3)',
-                                        marginTop: '10px'
+                                        boxShadow: '0 4px 15px rgba(37, 211, 102, 0.3)',
+                                        marginTop: '15px',
+                                        width: 'fit-content'
                                     }}
                                     onMouseEnter={(e) => {
                                         e.currentTarget.style.transform = 'translateY(-2px)';
-                                        e.currentTarget.style.boxShadow = '0 4px 15px rgba(37, 211, 102, 0.4)';
+                                        e.currentTarget.style.boxShadow = '0 6px 20px rgba(37, 211, 102, 0.4)';
                                     }}
                                     onMouseLeave={(e) => {
                                         e.currentTarget.style.transform = 'translateY(0)';
-                                        e.currentTarget.style.boxShadow = '0 2px 10px rgba(37, 211, 102, 0.3)';
+                                        e.currentTarget.style.boxShadow = '0 4px 15px rgba(37, 211, 102, 0.3)';
                                     }}
                                 >
                                     <img src={whatsapp} alt="WhatsApp" style={{ width: '20px', height: '20px' }} />

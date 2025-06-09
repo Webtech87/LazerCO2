@@ -39,7 +39,7 @@ const KeyAreas = () => {
     ];
 
     return (
-        <div className='keyareas-page-container'>
+        <div id="key-areas-section" className='keyareas-page-container key-areas-section'>
             {/* Background Elements */}
             <div className="keyareas-background-elements">
                 <div className="floating-orb orb-1"></div>

@@ -33,6 +33,9 @@ import WhatsAppFloat from './components/WhatsAppFloat';
 import type { AnalyticsEvent } from './components/WhatsAppFloat';
 import { Route, BrowserRouter, Routes } from "react-router-dom";
 
+// 🎬 Import VideoCarousel Component
+import VideoCarousel from './components/VideoCarousel/VideoCarousel';
+
 // Import CookiesBanner and utilities
 import CookiesBanner from './components/CookiesBanner/CookiesBanner';
 import type { CookiePreferences } from './components/CookiesBanner/types';
@@ -244,10 +247,19 @@ const App = () => {
                             <HeroSection className="hero-section" />
                             <About />
                             <Benefits />
+                            
                             <KeyAreas />
                             <Blefaroplastia />
                             <SkinMarks />
                             <Rejuvenescimento />
+                            {/* 🎬 VIDEO CAROUSEL SECTION - Perfectly positioned */}
+                            <VideoCarousel 
+                                className="santiclinic-video-section"
+                                autoPlayInterval={6000}
+                                enableAutoPlay={true}
+                                showThumbnails={true}
+                                showProgressDots={true}
+                            />
                             <Followers />
                             <Footer />
                         </>

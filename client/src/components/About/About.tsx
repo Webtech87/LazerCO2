@@ -1,13 +1,11 @@
 import "./about.css";
-
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 const About = () => {
-
   const { t } = useTranslation();
-
+  
   return (
-    <div className="page-container">
+    <div id="about-section" className="page-container about-section">
       <main className="container">
         <section className="laser-treatment">
           <div className="treatment-image">

@@ -11,6 +11,7 @@ interface NavItem {
   id: string;
   label: string;
   href: string;
+  targetSection: string; // Added for smooth scrolling
 }
 
 const Navbar = () => {
@@ -19,12 +20,32 @@ const Navbar = () => {
   const [currentLanguage, setCurrentLanguage] = useState<Language>('pt');
   const [scrolled, setScrolled] = useState(false);
 
-  // Navigation items
+  // Navigation items with target sections
   const navItems: NavItem[] = [
-    { id: 'laser', label: t("navbar_items.lt.0"), href: '#laser-co2' },
-    { id: 'benefits', label: t("navbar_items.lt.1"), href: '#beneficios' },
-    { id: 'zones', label: t("navbar_items.lt.2"), href: '#zonas' },
-    { id: 'contact', label: t("navbar_items.lt.3"), href: '#contacto' }
+    { 
+      id: 'laser', 
+      label: t("navbar_items.lt.0"), 
+      href: '#about', 
+      targetSection: 'about-section' 
+    },
+    { 
+      id: 'benefits', 
+      label: t("navbar_items.lt.1"), 
+      href: '#benefits', 
+      targetSection: 'benefits-section' 
+    },
+    { 
+      id: 'zones', 
+      label: t("navbar_items.lt.2"), 
+      href: '#key-areas', 
+      targetSection: 'key-areas-section' 
+    },
+    { 
+      id: 'contact', 
+      label: t("navbar_items.lt.3"), 
+      href: '#footer', 
+      targetSection: 'footer-section' 
+    }
   ];
 
   // Handle scroll effect
@@ -50,6 +71,58 @@ const Navbar = () => {
     };
   }, [isMenuOpen]);
 
+  // 🚀 NEW: Smooth scroll to section function
+  const scrollToSection = useCallback((targetSection: string) => {
+    // First try to find by exact ID
+    let element = document.getElementById(targetSection);
+    
+    // If not found, try alternative selectors
+    if (!element) {
+      const alternatives = {
+        'about-section': ['.about-section', '[data-section="about"]', '.about-container'],
+        'benefits-section': ['.benefits-section', '[data-section="benefits"]', '.benefits-container'],
+        'key-areas-section': ['.key-areas-section', '[data-section="key-areas"]', '.key-areas-container'],
+        'footer-section': ['.footer-section', 'footer', '[data-section="footer"]', '.footer-container']
+      };
+      
+      const selectors = alternatives[targetSection as keyof typeof alternatives] || [];
+      
+      for (const selector of selectors) {
+        element = document.querySelector(selector) as HTMLElement;
+        if (element) break;
+      }
+    }
+    
+    if (element) {
+      // Calculate offset for navbar height
+      const navbarHeight = 80; // Adjust based on your navbar height
+      const elementPosition = element.offsetTop;
+      const offsetPosition = elementPosition - navbarHeight;
+      
+      // Smooth scroll to the element
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+      
+      console.log(`🎯 Scrolling to section: ${targetSection}`);
+    } else {
+      console.warn(`⚠️ Could not find section: ${targetSection}`);
+      // Fallback: scroll to top if section not found
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+  }, []);
+
+  // Handle navigation click
+  const handleNavClick = useCallback((e: React.MouseEvent, targetSection: string) => {
+    e.preventDefault();
+    scrollToSection(targetSection);
+    closeMenu(); // Close mobile menu if open
+  }, [scrollToSection]);
+
   // Toggle mobile menu
   const toggleMenu = useCallback(() => {
     setIsMenuOpen(prev => !prev);
@@ -66,21 +139,18 @@ const Navbar = () => {
     setCurrentLanguage(lang);
   }, []);
 
-  // 🚀 NEW: WhatsApp redirect function
+  // WhatsApp redirect function
   const handleWhatsAppRedirect = useCallback((e: React.MouseEvent) => {
-    e.preventDefault(); // Prevent default link behavior
+    e.preventDefault();
     
-    const phoneNumber = "351915007427"; // Portugal code + your number
+    const phoneNumber = "351915007427";
     const message = "Olá! Gostaria de mais informações sobre os tratamentos com Laser CO₂ da SantiClinic.";
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     
     console.log('🔗 Redirecting to WhatsApp:', whatsappUrl);
     
-    // Open WhatsApp in new tab
     window.open(whatsappUrl, '_blank');
-    
-    // Close mobile menu if open
     closeMenu();
   }, [closeMenu]);
 
@@ -103,7 +173,13 @@ const Navbar = () => {
             <ul>
               {navItems.map(item => (
                 <li key={item.id}>
-                  <a href={item.href}>{item.label}</a>
+                  <a 
+                    href={item.href}
+                    onClick={(e) => handleNavClick(e, item.targetSection)}
+                    className="nav-link"
+                  >
+                    {item.label}
+                  </a>
                 </li>
               ))}
             </ul>
@@ -111,7 +187,6 @@ const Navbar = () => {
 
           {/* Desktop Actions */}
           <div className="desktop-actions navbar-actions">
-            {/* 🔥 UPDATED: Desktop WhatsApp button */}
             <a 
               href="#" 
               className="contact-button"
@@ -174,7 +249,8 @@ const Navbar = () => {
                 <li key={item.id}>
                   <a 
                     href={item.href}
-                    onClick={closeMenu}
+                    onClick={(e) => handleNavClick(e, item.targetSection)}
+                    className="mobile-nav-link"
                   >
                     {item.label}
                   </a>
@@ -184,7 +260,6 @@ const Navbar = () => {
           </nav>
           
           <div className="mobile-actions">
-            {/* 🔥 UPDATED: Mobile WhatsApp button */}
             <a 
               href="#" 
               className="mobile-contact-button" 
