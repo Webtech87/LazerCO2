@@ -1,13 +1,22 @@
 // src/App.tsx
 import { useEffect } from 'react';
 
-// Extend the Window interface to include gtag and fbq
+// Extend the Window interface to include gtag, fbq, and dataLayer
 declare global {
     interface Window {
         gtag?: (...args: any[]) => void;
         fbq?: (...args: any[]) => void;
+        dataLayer?: any[];
+        _linkedin_partner_id?: string;
     }
+    
+    // Declare gtag as a global function
+    function gtag(...args: any[]): void;
+    
+    // Declare dataLayer as global variable
+    var dataLayer: any[] | undefined;
 }
+
 import Navbar from './components/Navbar/Navbar';
 import { HeroSection } from './components/Hero/HeroSection';
 import About from "./components/About/About";
@@ -24,12 +33,32 @@ import WhatsAppFloat from './components/WhatsAppFloat';
 import type { AnalyticsEvent } from './components/WhatsAppFloat';
 import { Route, BrowserRouter, Routes } from "react-router-dom";
 
+// Import CookiesBanner and utilities
+import CookiesBanner from './components/CookiesBanner';
+import type { CookiePreferences } from './components/CookiesBanner/types';
+import { 
+    initializeServices, 
+    getCookiePreferences, 
+    hasUserMadeCookieChoice 
+} from './utils/cookieManager';
+
 /*ROUTES*/
 import PrivacyPolicy from "./components/pages/privacy-policy";
 import CookiesPolicy from "./components/pages/cookies-policy";
 import TermsConditions from "./components/pages/terms-conditions/TermsConditions.tsx";
 
 const App = () => {
+    // Initialize services on app load if user has already made a choice
+    useEffect(() => {
+        if (hasUserMadeCookieChoice('santiclinic')) {
+            const preferences = getCookiePreferences('santiclinic');
+            if (preferences) {
+                console.log('🍪 Initializing services with saved preferences:', preferences);
+                initializeServices(preferences);
+            }
+        }
+    }, []);
+
     useEffect(() => {
         const handleScroll = () => {
             const scrollTop = window.scrollY;
@@ -47,39 +76,107 @@ const App = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // Simple analytics handler without external utilities
-    const handleWhatsAppAnalytics = (event: AnalyticsEvent) => {
-        console.log('📱 WhatsApp Analytics:', event);
+    // Handle cookie acceptance
+    const handleCookieAccept = (preferences: CookiePreferences) => {
+        console.log('✅ Cookies accepted with preferences:', preferences);
         
-        // Google Analytics 4 (safe way)
-        try {
-            if (typeof window !== 'undefined' && window.gtag) {
-                window.gtag('event', event.action, {
-                    event_category: event.category,
-                    event_label: event.label,
-                    value: event.value,
+        // Initialize services based on user preferences
+        initializeServices(preferences);
+        
+        // Send acceptance event to Google Analytics (if enabled)
+        if (preferences.analytics && typeof window !== 'undefined' && window.gtag) {
+            try {
+                window.gtag('event', 'cookie_consent', {
+                    event_category: 'user_interaction',
+                    event_label: 'accepted',
+                    custom_parameter: JSON.stringify(preferences)
                 });
-                console.log('✅ GA4 tracked');
-            } else {
-                console.log('ℹ️ GA4 not available');
+                console.log('✅ Cookie acceptance tracked in GA4');
+            } catch (error) {
+                console.warn('⚠️ Error tracking cookie acceptance:', error);
             }
-        } catch (error) {
-            console.warn('⚠️ GA4 error:', error);
+        }
+
+        // Send acceptance event to Facebook Pixel (if enabled)
+        if (preferences.marketing && typeof window !== 'undefined' && window.fbq) {
+            try {
+                window.fbq('track', 'CustomizeProduct', {
+                    content_name: 'Cookie Preferences',
+                    content_category: 'Privacy Settings'
+                });
+                console.log('✅ Cookie acceptance tracked in Facebook Pixel');
+            } catch (error) {
+                console.warn('⚠️ Error tracking cookie acceptance in Facebook:', error);
+            }
+        }
+    };
+
+    // Handle cookie rejection
+    const handleCookieReject = () => {
+        console.log('❌ Optional cookies rejected');
+        
+        // Only initialize necessary services
+        const rejectedPreferences: CookiePreferences = {
+            necessary: true,
+            analytics: false,
+            marketing: false,
+            personalization: false
+        };
+        
+        initializeServices(rejectedPreferences);
+        
+        // Log rejection without using tracking cookies
+        console.log('🔒 Only necessary cookies will be used');
+    };
+
+    // Enhanced WhatsApp analytics handler that respects cookie preferences
+    const handleWhatsAppAnalytics = (event: AnalyticsEvent) => {
+        console.log('📱 WhatsApp Analytics Event:', event);
+        
+        // Get current cookie preferences
+        const preferences = getCookiePreferences('santiclinic');
+        
+        // Only track if user has accepted analytics cookies
+        if (preferences?.analytics) {
+            // Google Analytics 4 (safe way)
+            try {
+                if (typeof window !== 'undefined' && window.gtag) {
+                    window.gtag('event', event.action, {
+                        event_category: event.category,
+                        event_label: event.label,
+                        value: event.value,
+                        custom_parameter_1: 'whatsapp_interaction'
+                    });
+                    console.log('✅ GA4 WhatsApp event tracked');
+                } else {
+                    console.log('ℹ️ GA4 not available');
+                }
+            } catch (error) {
+                console.warn('⚠️ GA4 WhatsApp tracking error:', error);
+            }
+        } else {
+            console.log('🍪 Analytics cookies not accepted - WhatsApp event not tracked');
         }
         
-        // Facebook Pixel (safe way)
-        try {
-            if (typeof window !== 'undefined' && window.fbq) {
-                window.fbq('track', 'Contact', {
-                    content_name: 'WhatsApp Button',
-                    content_category: 'Contact Form'
-                });
-                console.log('✅ Facebook Pixel tracked');
-            } else {
-                console.log('ℹ️ Facebook Pixel not available');
+        // Only track marketing events if user accepted marketing cookies
+        if (preferences?.marketing) {
+            // Facebook Pixel (safe way)
+            try {
+                if (typeof window !== 'undefined' && window.fbq) {
+                    window.fbq('track', 'Contact', {
+                        content_name: 'WhatsApp Button',
+                        content_category: 'Contact Form',
+                        content_source: 'floating_button'
+                    });
+                    console.log('✅ Facebook Pixel WhatsApp event tracked');
+                } else {
+                    console.log('ℹ️ Facebook Pixel not available');
+                }
+            } catch (error) {
+                console.warn('⚠️ Facebook Pixel WhatsApp tracking error:', error);
             }
-        } catch (error) {
-            console.warn('⚠️ Facebook Pixel error:', error);
+        } else {
+            console.log('🍪 Marketing cookies not accepted - Facebook event not tracked');
         }
     };
 
@@ -135,7 +232,7 @@ const App = () => {
                 <WhatsAppFloat 
                     phoneNumber="351910966393"
                     message="Olá! Gostaria de saber mais sobre os tratamentos da SantiClinic. 💎✨"
-                    showBadge={true}
+                    showBadge={false}
                     badgeText="1"
                     position="bottom-right"
                     size="medium"
@@ -143,6 +240,15 @@ const App = () => {
                     enableAnalytics={true}
                     onAnalyticsEvent={handleWhatsAppAnalytics}
                     className="whatsapp-santiclinic"
+                />
+
+                {/* Futuristic Cookies Banner */}
+                <CookiesBanner
+                    companyName="SantiClinic"
+                    privacyPolicyUrl="/politica-privacidade"
+                    onAccept={handleCookieAccept}
+                    onReject={handleCookieReject}
+                    customMessage="Na SantiClinic, utilizamos cookies essenciais e tecnologias avançadas para personalizar sua experiência, analisar nosso desempenho e oferecer conteúdo relevante sobre nossos tratamentos de laser CO₂ e rejuvenescimento facial."
                 />
             </BrowserRouter>
         </div>
