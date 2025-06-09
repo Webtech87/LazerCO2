@@ -15,6 +15,7 @@ const ContactPopup: React.FC<ContactPopupProps> = ({
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<Partial<ContactFormData>>({});
+  const [submitError, setSubmitError] = useState<string>('');
   const [formData, setFormData] = useState<ContactFormData>({
     nome: '',
     telefone: '',
@@ -24,12 +25,11 @@ const ContactPopup: React.FC<ContactPopupProps> = ({
   });
 
   const subjects = [
-    { value: 'laser-co2', label: '🔥 Laser CO₂ Fracionado' },
-    { value: 'rejuvenescimento', label: '✨ Rejuvenescimento Facial' },
-    { value: 'cicatrizes', label: '🩹 Tratamento de Cicatrizes' },
-    { value: 'melasma', label: '🎯 Tratamento de Melasma' },
-    { value: 'estrias', label: '📐 Tratamento de Estrias' },
-    { value: 'consulta', label: '👩‍⚕️ Consulta de Avaliação' },
+    { value: 'lazer-co2-face', label: '🔥 Laser CO₂ Face' },
+    { value: 'lazer-co2-pescoco', label: '✨ Laser CO₂ Pescoço' },
+    { value: 'blefo-superior', label: '🩹 Blefosuperior sem corte' },
+    { value: 'blefo-inferior', label: '🎯 Blefoinferior sem corte' },
+    { value: 'consulta-avaliacao', label: '👩‍⚕️ Consulta de Avaliação' },
     { value: 'outros', label: '💬 Outros Assuntos' }
   ];
 
@@ -53,7 +53,7 @@ const ContactPopup: React.FC<ContactPopupProps> = ({
       console.log('🧹 Cleaning up timer');
       clearTimeout(timer);
     };
-  }, [showDelay, externalVisible]); // Remove companyName dependency
+  }, [showDelay, externalVisible]);
 
   const validateForm = (): boolean => {
     const newErrors: Partial<ContactFormData> = {};
@@ -104,6 +104,49 @@ const ContactPopup: React.FC<ContactPopupProps> = ({
     if (errors[field]) {
       setErrors(prev => ({ ...prev, [field]: undefined }));
     }
+    
+    // Clear submit error
+    if (submitError) {
+      setSubmitError('');
+    }
+  };
+
+  // 🚀 NEW: Backend submission function
+  const submitToBackend = async (data: ContactFormData) => {
+    console.log('📝 Popup form data to submit:', data);
+
+    try {
+      // Create FormData object matching backend expectations
+      const submitData = new FormData();
+      submitData.append('name', data.nome);           // Map nome -> name
+      submitData.append('email', data.email);
+      submitData.append('phone', data.telefone);      // Map telefone -> phone
+      submitData.append('subject', data.assunto);     // Map assunto -> subject
+      submitData.append('msg', data.mensagem);        // Map mensagem -> msg
+      submitData.append('accept_terms', 'true');      // Popup implies acceptance
+
+      console.log('🚀 Sending popup data to backend...');
+
+      const response = await fetch('http://localhost:5000/', {
+        method: 'POST',
+        body: submitData,
+        credentials: 'include'
+      });
+
+      console.log('📡 Popup response status:', response.status);
+
+      const result = await response.json();
+      console.log('📋 Popup response data:', result);
+
+      if (!result.success) {
+        throw new Error(result.message || 'Erro ao enviar formulário');
+      }
+
+      return result;
+    } catch (error) {
+      console.error('💥 Popup submission error:', error);
+      throw error;
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -118,24 +161,39 @@ const ContactPopup: React.FC<ContactPopupProps> = ({
     }
 
     setIsSubmitting(true);
+    setSubmitError('');
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      console.log('🚀 Starting popup form submission...');
       
+      // Submit to backend
+      const result = await submitToBackend(formData);
+      
+      console.log('✅ Popup form submitted successfully:', result);
+
+      // Call optional onSubmit callback
       if (onSubmit) {
         await onSubmit(formData);
       }
       
-      // Success animation - popup will close and can appear again on next visit
+      // Success - move to step 3
       setCurrentStep(3);
+      
+      // Auto-close after showing success
       setTimeout(() => {
         handleClose();
-      }, 3000);
+      }, 4000); // Increased to 4 seconds to show success message
       
     } catch (error) {
-      console.error('Error submitting form:', error);
-      setErrors({ mensagem: 'Erro ao enviar mensagem. Tente novamente.' });
+      console.error('❌ Popup form submission failed:', error);
+      
+      const errorMessage = error instanceof Error ? error.message : 'Erro ao enviar mensagem. Tente novamente.';
+      setSubmitError(errorMessage);
+      
+      // Shake animation for error
+      const form = document.querySelector('.popup-form');
+      form?.classList.add('shake');
+      setTimeout(() => form?.classList.remove('shake'), 600);
     } finally {
       setIsSubmitting(false);
     }
@@ -163,8 +221,21 @@ const ContactPopup: React.FC<ContactPopupProps> = ({
       if (!formData.telefone.trim()) step1Errors.telefone = 'Telefone é obrigatório';
       if (!formData.email.trim()) step1Errors.email = 'Email é obrigatório';
       
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (formData.email.trim() && !emailRegex.test(formData.email)) {
+        step1Errors.email = 'Formato de email inválido';
+      }
+      
+      const phoneRegex = /^[\d\s\(\)\+\-]{8,}$/;
+      if (formData.telefone.trim() && !phoneRegex.test(formData.telefone)) {
+        step1Errors.telefone = 'Formato de telefone inválido';
+      }
+      
       if (Object.keys(step1Errors).length > 0) {
         setErrors(step1Errors);
+        const form = document.querySelector('.popup-form');
+        form?.classList.add('shake');
+        setTimeout(() => form?.classList.remove('shake'), 600);
         return;
       }
     }
@@ -173,6 +244,7 @@ const ContactPopup: React.FC<ContactPopupProps> = ({
 
   const prevStep = () => {
     setCurrentStep(prev => Math.max(prev - 1, 1));
+    setSubmitError(''); // Clear any submit errors when going back
   };
 
   if (!isVisible) return null;
@@ -339,6 +411,23 @@ const ContactPopup: React.FC<ContactPopupProps> = ({
               </div>
 
               <form className="popup-form" onSubmit={handleSubmit}>
+                {/* Show submit error if any */}
+                {submitError && (
+                  <div 
+                    className="error-message" 
+                    style={{
+                      backgroundColor: '#fee',
+                      border: '1px solid #fcc',
+                      borderRadius: '8px',
+                      padding: '12px',
+                      marginBottom: '20px',
+                      color: '#c33'
+                    }}
+                  >
+                    {submitError}
+                  </div>
+                )}
+
                 <div className="form-group">
                   <div className="select-container">
                     <select
