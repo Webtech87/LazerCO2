@@ -1,5 +1,5 @@
 // src/App.tsx
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 // Extend the Window interface to include gtag, fbq, and dataLayer
 declare global {
@@ -34,13 +34,22 @@ import type { AnalyticsEvent } from './components/WhatsAppFloat';
 import { Route, BrowserRouter, Routes } from "react-router-dom";
 
 // Import CookiesBanner and utilities
-import CookiesBanner from './components/CookiesBanner';
+import CookiesBanner from './components/CookiesBanner/CookiesBanner';
 import type { CookiePreferences } from './components/CookiesBanner/types';
+
+// Fixed imports - all functions come from cookieManager
 import { 
     initializeServices, 
     getCookiePreferences, 
-    hasUserMadeCookieChoice 
+    hasUserMadeCookieChoice,
+    initializeMarketing, 
+    initializePersonalization,
+    initializeAnalytics // Import from cookieManager, not analytics
 } from './utils/cookieManager';
+
+// Import ContactPopup with explicit path
+import ContactPopup from './components/ContactPopup/ContactPopup';
+import type { ContactFormData } from './components/ContactPopup/types';
 
 /*ROUTES*/
 import PrivacyPolicy from "./components/pages/privacy-policy";
@@ -48,6 +57,8 @@ import CookiesPolicy from "./components/pages/cookies-policy";
 import TermsConditions from "./components/pages/terms-conditions/TermsConditions.tsx";
 
 const App = () => {
+    const [cookiePreferences, setCookiePreferences] = useState<CookiePreferences | null>(null);
+
     // Initialize services on app load if user has already made a choice
     useEffect(() => {
         if (hasUserMadeCookieChoice('santiclinic')) {
@@ -55,6 +66,7 @@ const App = () => {
             if (preferences) {
                 console.log('🍪 Initializing services with saved preferences:', preferences);
                 initializeServices(preferences);
+                setCookiePreferences(preferences);
             }
         }
     }, []);
@@ -79,6 +91,7 @@ const App = () => {
     // Handle cookie acceptance
     const handleCookieAccept = (preferences: CookiePreferences) => {
         console.log('✅ Cookies accepted with preferences:', preferences);
+        setCookiePreferences(preferences);
         
         // Initialize services based on user preferences
         initializeServices(preferences);
@@ -123,10 +136,50 @@ const App = () => {
             personalization: false
         };
         
+        setCookiePreferences(rejectedPreferences);
         initializeServices(rejectedPreferences);
         
         // Log rejection without using tracking cookies
         console.log('🔒 Only necessary cookies will be used');
+    };
+
+    // Handle contact form submission
+    const handleContactSubmit = async (formData: ContactFormData) => {
+        console.log('📧 Contact form submitted:', formData);
+        
+        try {
+            // Here you would typically send the data to your backend
+            // Example: await fetch('/api/contact', { method: 'POST', body: JSON.stringify(formData) })
+            
+            // For demo purposes, we'll just log it
+            console.log('📤 Sending contact form data to server...');
+            console.log({
+                nome: formData.nome,
+                telefone: formData.telefone,
+                email: formData.email,
+                assunto: formData.assunto,
+                mensagem: formData.mensagem,
+                timestamp: new Date().toISOString()
+            });
+            
+            // Track form submission if analytics are enabled
+            if (cookiePreferences?.analytics && typeof window !== 'undefined' && window.gtag) {
+                window.gtag('event', 'form_submit', {
+                    form_name: 'contact_popup',
+                    form_subject: formData.assunto
+                });
+            }
+            
+            console.log('✅ Contact form submitted successfully!');
+        } catch (error) {
+            console.error('❌ Error submitting contact form:', error);
+            throw error; // Re-throw to show error in UI
+        }
+    };
+
+    // Handle contact popup close
+    const handleContactClose = () => {
+        console.log('📝 Contact popup closed');
     };
 
     // Enhanced WhatsApp analytics handler that respects cookie preferences
@@ -134,7 +187,7 @@ const App = () => {
         console.log('📱 WhatsApp Analytics Event:', event);
         
         // Get current cookie preferences
-        const preferences = getCookiePreferences('santiclinic');
+        const preferences = getCookiePreferences('santiclinic') || cookiePreferences;
         
         // Only track if user has accepted analytics cookies
         if (preferences?.analytics) {
@@ -249,6 +302,14 @@ const App = () => {
                     onAccept={handleCookieAccept}
                     onReject={handleCookieReject}
                     customMessage="Na SantiClinic, utilizamos cookies essenciais e tecnologias avançadas para personalizar sua experiência, analisar nosso desempenho e oferecer conteúdo relevante sobre nossos tratamentos de laser CO₂ e rejuvenescimento facial."
+                />
+
+                {/* Contact Popup - appears after 15 seconds on home page only */}
+                <ContactPopup
+                    companyName="SantiClinic"
+                    onSubmit={handleContactSubmit}
+                    onClose={handleContactClose}
+                    showDelay={15000}
                 />
             </BrowserRouter>
         </div>
