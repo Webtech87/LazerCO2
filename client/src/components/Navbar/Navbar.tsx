@@ -61,12 +61,28 @@ const Navbar = () => {
   }, []);
 
   // Change language
-const switchLanguage = useCallback((lang: Language) => {
-  i18n.changeLanguage(lang);
-  setCurrentLanguage(lang);
-}, []);
+  const switchLanguage = useCallback((lang: Language) => {
+    i18n.changeLanguage(lang);
+    setCurrentLanguage(lang);
+  }, []);
 
-
+  // 🚀 NEW: WhatsApp redirect function
+  const handleWhatsAppRedirect = useCallback((e: React.MouseEvent) => {
+    e.preventDefault(); // Prevent default link behavior
+    
+    const phoneNumber = "351915007427"; // Portugal code + your number
+    const message = "Olá! Gostaria de mais informações sobre os tratamentos com Laser CO₂ da SantiClinic.";
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    
+    console.log('🔗 Redirecting to WhatsApp:', whatsappUrl);
+    
+    // Open WhatsApp in new tab
+    window.open(whatsappUrl, '_blank');
+    
+    // Close mobile menu if open
+    closeMenu();
+  }, [closeMenu]);
 
   return (
     <>
@@ -95,7 +111,13 @@ const switchLanguage = useCallback((lang: Language) => {
 
           {/* Desktop Actions */}
           <div className="desktop-actions navbar-actions">
-            <a href="#contacto" className="contact-button">
+            {/* 🔥 UPDATED: Desktop WhatsApp button */}
+            <a 
+              href="#" 
+              className="contact-button"
+              onClick={handleWhatsAppRedirect}
+              title="Fale conosco no WhatsApp"
+            >
               <span className="cta-text">{t("navbar_items.btn")}</span>
               <div className="cta-glow"></div>
             </a>
@@ -162,7 +184,13 @@ const switchLanguage = useCallback((lang: Language) => {
           </nav>
           
           <div className="mobile-actions">
-            <a href="#contacto" className="mobile-contact-button" onClick={closeMenu}>
+            {/* 🔥 UPDATED: Mobile WhatsApp button */}
+            <a 
+              href="#" 
+              className="mobile-contact-button" 
+              onClick={handleWhatsAppRedirect}
+              title="Fale conosco no WhatsApp"
+            >
               <span className="cta-text">Fale connosco</span>
               <div className="cta-glow"></div>
             </a>
