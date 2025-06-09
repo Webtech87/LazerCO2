@@ -32,6 +32,21 @@ const Footer = () => {
     const [submitSuccess, setSubmitSuccess] = useState<boolean | null>(null);
     const [errors, setErrors] = useState<FormErrors>({});
 
+    // 🚀 NEW: WhatsApp redirect function
+    const handleWhatsAppClick = () => {
+        console.log('💬 WhatsApp button clicked in Footer');
+        
+        const phoneNumber = "351915007427"; // Your WhatsApp number
+        const message = "Olá! Vi o site da SantiClinic e gostaria de falar convosco sobre os vossos tratamentos. Podem ajudar-me?";
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+        
+        console.log('🔗 Opening WhatsApp:', whatsappUrl);
+        
+        // Open WhatsApp in new tab
+        window.open(whatsappUrl, '_blank');
+    };
+
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value, type } = e.target;
         
@@ -64,6 +79,8 @@ const Footer = () => {
         setSubmitSuccess(null);
         setErrors({});
 
+        console.log('📝 Submitting form data:', formData);
+
         try {
             // Create FormData object for submission
             const submitData = new FormData();
@@ -74,17 +91,23 @@ const Footer = () => {
             submitData.append('msg', formData.msg);
             submitData.append('accept_terms', formData.accept_terms.toString());
 
+            console.log('🚀 Sending request to backend...');
+
             const response = await fetch('http://localhost:5000/', {
                 method: 'POST',
                 body: submitData,
                 credentials: 'include'
             });
 
+            console.log('📡 Response status:', response.status);
+
             const result = await response.json();
+            console.log('📋 Response data:', result);
 
             if (result.success) {
                 setSubmitSuccess(true);
                 setSubmitMessage(result.message || 'Formulário enviado com sucesso!');
+                
                 // Reset form
                 setFormData({
                     name: '',
@@ -94,15 +117,24 @@ const Footer = () => {
                     msg: '',
                     accept_terms: false
                 });
+                
+                console.log('✅ Form submitted successfully');
+
+                // Optional: Scroll to top of form to show success message
+                const formElement = document.querySelector('.form-container');
+                if (formElement) {
+                    formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
             } else {
                 setSubmitSuccess(false);
                 if (result.errors) {
                     setErrors(result.errors);
+                    console.log('❌ Form validation errors:', result.errors);
                 }
                 setSubmitMessage(result.message || 'Erro ao enviar formulário. Tente novamente.');
             }
         } catch (error) {
-            console.error('Error submitting form:', error);
+            console.error('💥 Error submitting form:', error);
             setSubmitSuccess(false);
             setSubmitMessage('Erro de conexão. Verifique sua internet e tente novamente.');
         } finally {
@@ -113,21 +145,53 @@ const Footer = () => {
     return (
         <div className='page-container'>
             <div className='footer-container'>
-                <section className='footer'>
+                <section className='footer' id="footer">
                     <div className='footer-info'>
-                        <img className='logo' src="/logo-santiclinic.png" alt="" />
+                        <img className='logo' src="/logo-santiclinic.png" alt="SantiClinic Logo" />
                         <span>{t("ftr.slogan")}</span>
                         <div className='social-media'>
-                            <a href=""><img src="/instagram.png" alt="" /></a>
-                            <a href=""><img src="/facebook-logo.png" alt="" /></a>
-                            <a href=""><img src="/tiktok-logo.png" alt="" /></a>
+                            <a href="" aria-label="Instagram"><img src="/instagram.png" alt="Instagram" /></a>
+                            <a href="" aria-label="Facebook"><img src="/facebook-logo.png" alt="Facebook" /></a>
+                            <a href="" aria-label="TikTok"><img src="/tiktok-logo.png" alt="TikTok" /></a>
                         </div>
                         <div className='contact-politics'>
                             <div className='contacts'>
                                 <h3>{t("ftr.contact.title")}</h3>
                                 <span>📞 (+351) 910 144-032</span>
                                 <span>📍 Praceta Agostinho <br /> 8005-147, Faro</span>
-                                <button><img src={whatsapp} alt="" />{t("ftr.contact.btn")}</button>
+                                
+                                {/* 🔥 UPDATED: WhatsApp button with click handler */}
+                                <button 
+                                    onClick={handleWhatsAppClick}
+                                    title="Falar connosco no WhatsApp"
+                                    style={{
+                                        background: 'linear-gradient(135deg, #25D366 0%, #128C7E 100%)',
+                                        color: 'white',
+                                        border: 'none',
+                                        borderRadius: '8px',
+                                        padding: '12px 20px',
+                                        cursor: 'pointer',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '8px',
+                                        fontSize: '14px',
+                                        fontWeight: '600',
+                                        transition: 'all 0.3s ease',
+                                        boxShadow: '0 2px 10px rgba(37, 211, 102, 0.3)',
+                                        marginTop: '10px'
+                                    }}
+                                    onMouseEnter={(e) => {
+                                        e.currentTarget.style.transform = 'translateY(-2px)';
+                                        e.currentTarget.style.boxShadow = '0 4px 15px rgba(37, 211, 102, 0.4)';
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        e.currentTarget.style.transform = 'translateY(0)';
+                                        e.currentTarget.style.boxShadow = '0 2px 10px rgba(37, 211, 102, 0.3)';
+                                    }}
+                                >
+                                    <img src={whatsapp} alt="WhatsApp" style={{ width: '20px', height: '20px' }} />
+                                    {t("ftr.contact.btn")}
+                                </button>
                             </div>
                             <div className='politics'>
                                 <h3>{t("ftr.policy.title")}</h3>
@@ -144,7 +208,18 @@ const Footer = () => {
                             
                             {/* Success/Error Message */}
                             {submitMessage && (
-                                <div className={`submit-message ${submitSuccess ? 'success' : 'error'}`}>
+                                <div 
+                                    className={`submit-message ${submitSuccess ? 'success' : 'error'}`}
+                                    style={{
+                                        padding: '15px',
+                                        borderRadius: '8px',
+                                        margin: '15px 0',
+                                        backgroundColor: submitSuccess ? '#d4edda' : '#f8d7da',
+                                        color: submitSuccess ? '#155724' : '#721c24',
+                                        border: `1px solid ${submitSuccess ? '#c3e6cb' : '#f5c6cb'}`,
+                                        fontWeight: '500'
+                                    }}
+                                >
                                     {submitMessage}
                                 </div>
                             )}
@@ -159,9 +234,10 @@ const Footer = () => {
                                     onChange={handleInputChange}
                                     className={errors.name ? 'error' : ''}
                                     required
+                                    placeholder="Seu nome completo"
                                 />
                                 {errors.name && (
-                                    <div className="field-error">
+                                    <div className="field-error" style={{ color: '#dc3545', fontSize: '12px', marginTop: '5px' }}>
                                         {errors.name.join(', ')}
                                     </div>
                                 )}
@@ -177,9 +253,10 @@ const Footer = () => {
                                             onChange={handleInputChange}
                                             className={errors.email ? 'error' : ''}
                                             required
+                                            placeholder="seu@email.com"
                                         />
                                         {errors.email && (
-                                            <div className="field-error">
+                                            <div className="field-error" style={{ color: '#dc3545', fontSize: '12px', marginTop: '5px' }}>
                                                 {errors.email.join(', ')}
                                             </div>
                                         )}
@@ -194,9 +271,10 @@ const Footer = () => {
                                             onChange={handleInputChange}
                                             className={errors.phone ? 'error' : ''}
                                             required
+                                            placeholder="+351 910 000 000"
                                         />
                                         {errors.phone && (
-                                            <div className="field-error">
+                                            <div className="field-error" style={{ color: '#dc3545', fontSize: '12px', marginTop: '5px' }}>
                                                 {errors.phone.join(', ')}
                                             </div>
                                         )}
@@ -219,7 +297,7 @@ const Footer = () => {
                                     <option value="blefo-inferior">Blefoinferior sem corte</option>
                                 </select>
                                 {errors.subject && (
-                                    <div className="field-error">
+                                    <div className="field-error" style={{ color: '#dc3545', fontSize: '12px', marginTop: '5px' }}>
                                         {errors.subject.join(', ')}
                                     </div>
                                 )}
@@ -233,9 +311,10 @@ const Footer = () => {
                                     className={errors.msg ? 'error' : ''}
                                     rows={5}
                                     required
+                                    placeholder="Descreva o que gostaria de saber sobre nossos tratamentos..."
                                 ></textarea>
                                 {errors.msg && (
-                                    <div className="field-error">
+                                    <div className="field-error" style={{ color: '#dc3545', fontSize: '12px', marginTop: '5px' }}>
                                         {errors.msg.join(', ')}
                                     </div>
                                 )}
@@ -257,12 +336,19 @@ const Footer = () => {
                                     </span>
                                 </div>
                                 {errors.accept_terms && (
-                                    <div className="field-error">
+                                    <div className="field-error" style={{ color: '#dc3545', fontSize: '12px', marginTop: '5px' }}>
                                         {errors.accept_terms.join(', ')}
                                     </div>
                                 )}
                                 
-                                <button type="submit" disabled={isSubmitting}>
+                                <button 
+                                    type="submit" 
+                                    disabled={isSubmitting}
+                                    style={{
+                                        opacity: isSubmitting ? 0.7 : 1,
+                                        cursor: isSubmitting ? 'not-allowed' : 'pointer'
+                                    }}
+                                >
                                     {isSubmitting ? 'Enviando...' : t("ftr.form.flds.btn")}
                                 </button>
                             </form>
