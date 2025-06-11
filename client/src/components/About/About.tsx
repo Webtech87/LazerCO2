@@ -1,4 +1,4 @@
-import "./about.css";
+import "./About.css";
 import {useTranslation} from "react-i18next";
 
 const About = () => {
