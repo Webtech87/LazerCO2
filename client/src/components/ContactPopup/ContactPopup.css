@@ -80,6 +80,7 @@
   /* Custom scrollbar styling */
   scrollbar-width: thin;
   scrollbar-color: rgba(59, 130, 246, 0.3) transparent;
+  
 }
 
 /* Custom scrollbar for webkit browsers */
@@ -1009,6 +1010,7 @@
   .popup-overlay {
     padding: 12px;
     padding-top: 16px;
+    margin-top: 4rem;
   }
 
   .popup-container {

@@ -57,7 +57,7 @@ const KeyAreas = () => {
                             {t("key_areas.title")}
                         </h1>
                         <p className="keyareas-subtitle-text">
-                            Advanced technology meets precision care
+                        Tecnologia avançada encontra cuidados de precisão
                         </p>
                     </div>
 
@@ -76,7 +76,7 @@ const KeyAreas = () => {
                                         <Zap className="overlay-icon" />
                                         <span className="overlay-text">Laser CO2</span>
                                     </div>
-                                    <img src='/laser-treatment.jpg' alt="Advanced laser treatment technology" />
+                                    <img src='/IMG_0285.jpg' alt="Advanced laser treatment technology" />
                                     <div className="image-glow"></div>
                                 </div>
                             </div>
