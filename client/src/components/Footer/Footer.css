@@ -3,6 +3,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -10,7 +11,7 @@ body {
   color: #333;
 }
 
-/* Page Container */
+/* Page Container - FIXED ALIGNMENT */
 .page-container {
   position: relative;
   min-height: 100vh;
@@ -21,8 +22,9 @@ body {
     rgba(230, 237, 245, 0.96) 75%,
     rgba(225, 233, 243, 0.98) 100%);
   margin-top: 0;
-  padding-top: 0;
+  padding: 0; /* FIXED: Removed padding-top */
   overflow: hidden;
+  width: 100%; /* FIXED: Ensure full width */
 }
 
 /* Animated Background Elements */
@@ -70,13 +72,15 @@ body {
   75% { transform: translateY(-70px) translateX(-40px) rotate(270deg); }
 }
 
-/* Footer Container */
+/* Footer Container - FIXED CENTERING */
 .footer-container {
   position: relative;
   z-index: 1;
-  margin: 0 auto;
-  padding: 0;
-  max-width: 1600px;
+  margin: 0 auto; /* FIXED: Center horizontally */
+  padding: 2rem; /* FIXED: Equal padding on all sides */
+  max-width: 1600px; /* FIXED: Maximum width for large screens */
+  width: 100%; /* FIXED: Full width within max-width */
+  box-sizing: border-box; /* FIXED: Include padding in width calculation */
   opacity: 0;
   transform: translateY(50px);
   animation: fadeInUp 1s ease-out 0.3s forwards;
@@ -89,7 +93,7 @@ body {
   }
 }
 
-/* Main Footer Section */
+/* Main Footer Section - FIXED MARGINS */
 .footer {
   display: flex;
   flex-wrap: wrap;
@@ -101,13 +105,14 @@ body {
   padding: 4rem;
   gap: 4rem;
   align-items: flex-start;
-  margin: 2rem;
+  margin: 0; /* FIXED: Remove margins */
   box-shadow: 
     0 25px 50px rgba(0, 0, 0, 0.1),
     0 0 40px rgba(30, 82, 204, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
   position: relative;
   overflow: hidden;
+  box-sizing: border-box; /* FIXED: Include padding in width */
 }
 
 .footer::before {
@@ -684,20 +689,21 @@ body {
   transform: translateY(-1px);
 }
 
-/* Copyright Section */
+/* Copyright Section - FIXED FULL WIDTH */
 .copyright {
   display: flex;
   justify-content: center;
   align-items: center;
   background: linear-gradient(135deg, #1E52CC, #081533);
-  width: 100vw;
+  width: 100vw; /* FIXED: Full viewport width */
   min-height: 80px;
   color: #fff;
   font-weight: 500;
   font-size: 1rem;
   text-align: center;
   padding: 1.5rem;
-  margin-left: calc(-50vw + 50%);
+  margin-left: calc(-50vw + 50%); /* FIXED: Center relative to viewport */
+  margin-top: 2rem; /* FIXED: Add top margin for spacing */
   position: relative;
   overflow: hidden;
 }
@@ -721,19 +727,23 @@ body {
   50% { transform: translateX(100%); }
 }
 
-/* Mobile Footer Spacing Fix */
-@media screen and (max-width: 1024px) {
-  .page-container.footer-section {
-    padding-top: 2rem; /* Reduced from default */
+/* FIXED: Desktop specific styles for better alignment */
+@media screen and (min-width: 1024px) {
+  .footer-container {
+    padding: 3rem; /* FIXED: Consistent padding on larger screens */
   }
   
-  .footer-container {
-    padding-top: 1rem; /* Reduced spacing */
+  .footer {
+    padding: 4rem; /* FIXED: Keep internal padding */
   }
 }
 
 /* Responsive Design */
 @media screen and (max-width: 1400px) {
+  .footer-container {
+    padding: 2rem; /* FIXED: Reduce padding on smaller large screens */
+  }
+  
   .footer {
     padding: 3rem;
     gap: 3rem;
@@ -745,6 +755,10 @@ body {
 }
 
 @media screen and (max-width: 1200px) {
+  .footer-container {
+    padding: 1.5rem; /* FIXED: Further reduce padding */
+  }
+  
   .footer {
     padding: 2.5rem;
     gap: 2.5rem;
@@ -756,6 +770,10 @@ body {
 }
 
 @media screen and (max-width: 1024px) {
+  .footer-container {
+    padding: 1rem; /* FIXED: Mobile-friendly padding */
+  }
+  
   .footer {
     flex-direction: column;
     padding: 2rem;
@@ -828,17 +846,11 @@ body {
 }
 
 @media screen and (max-width: 768px) {
-  .page-container.footer-section {
-    padding-top: 1rem; /* Even less spacing on mobile */
-  }
-  
   .footer-container {
-    padding-top: 0.5rem;
-    margin-top: 0; /* Remove any top margin */
+    padding: 0.5rem; /* FIXED: Minimal padding on mobile */
   }
   
   .footer {
-    margin-top: 0; /* Ensure no extra margin on footer */
     margin: 0;
     padding: 1.5rem;
     border-radius: 2rem;
@@ -849,15 +861,6 @@ body {
   
   .page-container::after {
     display: none;
-  }
-  
-  .page-container {
-    padding-top: 0;
-  }
-  
-  .footer-container {
-    margin: 0;
-    padding: 0 1rem;
   }
   
   .footer-info {
@@ -999,23 +1002,13 @@ body {
 }
 
 @media screen and (max-width: 480px) {
-  .page-container.footer-section {
-    padding-top: 0.25rem; /* Very minimal spacing */
-  }
-  
   .footer-container {
-    padding-top: 0;
-    margin-top: 0;
-    padding: 0 0.25rem;
+    padding: 0.25rem; /* FIXED: Very minimal padding */
   }
 
   .footer-container::before,
   .form-container::before {
     display: none;
-  }
-  
-  .page-container {
-    padding-top: 0;
   }
   
   .footer {
@@ -1192,42 +1185,50 @@ body {
   }
 }
 
-/* High resolution displays */
-@media screen and (min-width: 1600px) {
+@media screen and (max-width: 640px) {
   .footer-container {
-    max-width: 1800px;
+    padding: 0.5rem; /* FIXED: Proper mobile padding */
   }
   
   .footer {
-    padding: 5rem;
-    gap: 5rem;
-  }
-  
-  .form-container {
-    padding: 4rem;
-  }
-}
-
-/* Reduced motion preferences */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-  
-  .page-container::before,
-  .page-container::after,
-  .form-container::before,
-  .copyright::before,
-  .contacts button::before,
-  .form button::before {
-    animation: none !important;
-  }
-
-  .contacts {
+    margin: 0;
+    padding: 1rem;
+    border-radius: 1.5rem;
+    gap: 1.25rem;
+    align-items: center;
     text-align: center;
-    gap: 1rem;
+  }
+  
+  .footer-info {
+    align-items: center;
+    text-align: center;
+    gap: 1.25rem;
+  }
+  
+  .logo {
+    width: clamp(180px, 70vw, 250px);
+  }
+  
+  .footer-info > span {
+    font-size: 0.9rem;
+    text-align: center;
+    padding-left: 0;
+  }
+  
+  .social-media {
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .contact-politics {
+    gap: 1.25rem;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .contacts {
+    align-items: center;
+    text-align: center;
   }
   
   .contacts h3 {
@@ -1286,60 +1287,38 @@ body {
     gap: 0;
   }
 }
-}
 
-@media screen and (max-width: 640px) {
-  .page-container.footer-section {
-    padding-top: 0.5rem; /* Minimal spacing */
-  }
-  
+/* High resolution displays */
+@media screen and (min-width: 1600px) {
   .footer-container {
-    padding-top: 0;
-    margin-top: 0;
-    padding: 0 0.5rem;
-  }
-  
-  .page-container {
-    padding-top: 0;
+    max-width: 1800px;
+    padding: 4rem; /* FIXED: Larger padding for high res */
   }
   
   .footer {
-    margin: 0;
-    padding: 1rem;
-    border-radius: 1.5rem;
-    gap: 1.25rem;
-    align-items: center;
-    text-align: center;
+    padding: 5rem;
+    gap: 5rem;
   }
   
-  .footer-info {
-    align-items: center;
-    text-align: center;
-    gap: 1.25rem;
+  .form-container {
+    padding: 4rem;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
   
-  .logo {
-    width: clamp(180px, 70vw, 250px);
+  .page-container::before,
+  .page-container::after,
+  .form-container::before,
+  .copyright::before,
+  .contacts button::before,
+  .form button::before {
+    animation: none !important;
   }
-  
-  .footer-info > span {
-    font-size: 0.9rem;
-    text-align: center;
-    padding-left: 0;
-  }
-  
-  .social-media {
-    justify-content: center;
-    gap: 0.5rem;
-  }
-  
-  .contact-politics {
-    gap: 1.25rem;
-    align-items: center;
-    text-align: center;
-  }
-  
-    .contacts {
-      align-items: center;
-    }
-  }
+}

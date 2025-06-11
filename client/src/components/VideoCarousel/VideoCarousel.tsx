@@ -73,7 +73,7 @@ const defaultVideos: VideoItem[] = [
     description: "Conheça nossos procedimentos seguros e eficazes com mínimo desconforto",
     category: "Procedimentos",
     duration: "0:52",
-    videoUrl: "https://www.youtube.com/shorts/EzxhJwkCzr4",
+    videoUrl: "https://www.youtube.com/shorts/m4MqErh115s",
     thumbnailUrl: ""
   },
   {
