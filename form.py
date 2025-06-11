@@ -37,12 +37,12 @@ class ContactForm(FlaskForm):
     subject = SelectField(
         _('Assunto'),
         choices=[
-            ('select', _('Selecione')),
-            ('rosto_pescoço_colo', _('Rosto, Pescoço e Colo')),
-            ('blefaroplastia_superior', _('Blefaroplastia superior e inferior sem corte')),
-            ('remoção_sinais', _('Remoção de sinais, cicatrizes e manchas')),
-            ('rejuvenescimento', _('Rejuvenescimento global')),
-            ('consultation', _('Marcar uma Consulta')),
+            ('lazer-co2-face', '🔥 Laser CO₂ Face'),
+            ('lazer-co2-pescoco', '✨ Laser CO₂ Pescoço'),
+            ('blefo-superior', '🩹 Blefosuperior sem corte'),
+            ('blefo-inferior', '🎯 Blefoinferior sem corte'),
+            ('consulta-avaliacao', '👩‍⚕️ Consulta de Avaliação'),
+            ('outros', '💬 Outros Assuntos'),
         ],
         option_widget=RadioInput(),
         widget=Select()

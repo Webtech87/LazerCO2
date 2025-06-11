@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 // Import types and styles
 import type { 
   VideoCarouselProps, 
-  VideoItem, 
+  //VideoItem, 
   VideoControlsProps, 
   NavigationProps, 
   ThumbnailNavigationProps, 
@@ -45,8 +45,8 @@ const VideoControls: React.FC<VideoControlsProps> = ({
 
 // Navigation Component
 const Navigation: React.FC<NavigationProps> = ({ 
-  currentIndex, 
-  totalVideos, 
+  //currentIndex, 
+  //totalVideos, 
   onPrevious, 
   onNext 
 }) => (
