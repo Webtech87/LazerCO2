@@ -29,8 +29,19 @@ const SkinMarks = () => {
              
              {/* Call to Action Button */}
              <div className="cta-container">
-               <button className="saber-mais-btn">
-                 <span className="btn-text">Saber Mais</span>
+               <button 
+                 className="saber-mais-btn"
+                 onClick={() => {
+                   const footerElement = document.getElementById('footer-section');
+                   if (footerElement) {
+                     footerElement.scrollIntoView({ 
+                       behavior: 'smooth',
+                       block: 'start'
+                     });
+                   }
+                 }}
+               >
+                 <span className="btn-text">Saber Mais sobre o Laser CO2</span>
                  <div className="btn-glow"></div>
                </button>
              </div>
