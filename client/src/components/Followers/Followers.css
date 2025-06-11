@@ -12,14 +12,17 @@
     display: flex;
     transition-property: transform;
     box-sizing: content-box;
+    align-items: stretch; /* KEY FIX: Ensures all slides have equal height */
   }
   
   .swiper-slide {
     flex-shrink: 0;
     width: 100%;
-    height: 100%;
+    height: auto; /* Changed from 100% to auto */
     position: relative;
     transition-property: transform;
+    display: flex; /* KEY FIX: Make slide a flex container */
+    align-items: stretch; /* KEY FIX: Stretch child elements */
   }
   
   .swiper-pagination {
@@ -244,7 +247,7 @@
   }
   
   .swiper-wrapper {
-    align-items: stretch;
+    align-items: stretch; /* KEY FIX: All slides same height */
     width: 100%;
     height: auto;
   }
@@ -254,6 +257,7 @@
     opacity: 1;
     transform: translateY(0);
     animation: slideUp 0.8s ease-out forwards;
+    display: flex !important; /* KEY FIX: Make slide flex */
   }
   
   .swiper-slide:nth-child(1) { animation-delay: 0.2s; }
@@ -272,8 +276,8 @@
   /* Testimonial Cards */
   .follower_list_item {
     position: relative;
-    height: auto;
-    min-height: 400px;
+    height: 100%; /* KEY FIX: Take full height of slide */
+    min-height: 450px; /* Increased minimum height for better proportions */
     padding: 2rem;
     font-size: 1rem;
     background: rgba(255, 255, 255, 0.1);
@@ -328,6 +332,7 @@
   .follower_img {
     position: relative;
     align-self: flex-start;
+    flex-shrink: 0; /* Prevent image from shrinking */
   }
   
   .follower_img img {
@@ -371,8 +376,10 @@
   
   /* Testimonial Text */
   .follower_text {
-    flex-grow: 1;
+    flex-grow: 1; /* KEY FIX: Text takes available space */
     margin-top: 0;
+    display: flex;
+    align-items: center; /* Center text vertically in available space */
   }
   
   .follower_text p {
@@ -395,6 +402,7 @@
     font-size: 1rem;
     margin-top: 0;
     position: relative;
+    flex-shrink: 0; /* Prevent shrinking */
   }
   
   .follower_grade::before {
@@ -416,6 +424,7 @@
     margin-top: 0;
     position: relative;
     padding-left: 1rem;
+    flex-shrink: 0; /* Prevent shrinking */
   }
   
   .follower_name::before {
@@ -472,7 +481,6 @@
   }
   
   /* Responsive Design */
-  /* Responsive adjustments for title width */
   @media screen and (max-width: 1200px) {
     .follower_container {
       padding: 6rem 0;
@@ -488,7 +496,7 @@
     
     .follower_list_item {
       max-width: 320px;
-      min-height: 380px;
+      min-height: 420px;
       padding: 1.75rem;
     }
   }
@@ -508,7 +516,7 @@
     
     .follower_list_item {
       max-width: 300px;
-      min-height: 360px;
+      min-height: 400px;
       padding: 1.5rem;
     }
     
@@ -541,7 +549,7 @@
     
     .follower_list_item {
       max-width: 280px;
-      min-height: 340px;
+      min-height: 380px;
       padding: 1.25rem;
       border-radius: 1.5rem;
     }
@@ -579,7 +587,7 @@
     
     .follower_list_item {
       max-width: 100%;
-      min-height: 320px;
+      min-height: 360px;
       padding: 1rem;
       gap: 1rem;
     }
@@ -599,87 +607,10 @@
     }
     
     .follower_grade {
-      font-size: 0.9375rem;
+      font-size: 0.875rem;
     }
-  }
-  
-  @media screen and (max-width: 480px) {
-    .follower_container::after,
-    .follower_title::before,
-    .follower_list_container::before {
-      display: none;
+      .swiper-pagination-bullet {
+        width: 10px;
+        height: 10px;
+      }
     }
-    
-    .follower_container {
-      padding: 2.5rem 0;
-    }
-    
-    .follower_container h2 {
-      max-width: 100%;
-    }
-    
-    .follower_list_container {
-      padding: 0 0.25rem;
-    }
-    
-    .swiper {
-      padding: 0.75rem 0 2rem 0 !important;
-    }
-    
-    .follower_list_item {
-      min-height: 300px;
-      padding: 0.875rem;
-      border-radius: 1.25rem;
-    }
-    
-    .follower_text p {
-      font-size: 0.8125rem;
-      line-height: 1.5;
-    }
-    
-    .follower_img img {
-      width: 45px;
-      height: 45px;
-    }
-  }
-  
-  /* High resolution displays */
-  @media screen and (min-width: 1600px) {
-    .follower_list_container {
-      max-width: 1600px;
-    }
-    
-    .follower_list_item {
-      max-width: 380px;
-      min-height: 440px;
-      padding: 2.5rem;
-    }
-    
-    .follower_text p {
-      font-size: 1.125rem;
-    }
-    
-    .follower_img img {
-      width: 80px;
-      height: 80px;
-    }
-  }
-  
-  /* Reduced motion preferences */
-  @media (prefers-reduced-motion: reduce) {
-    * {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
-    
-    .follower_container::before,
-    .follower_container::after,
-    .follower_title::before,
-    .follower_list_container::before,
-    .follower_container h2,
-    .follower_img::before,
-    .swiper-slide {
-      animation: none !important;
-    }
-  }
