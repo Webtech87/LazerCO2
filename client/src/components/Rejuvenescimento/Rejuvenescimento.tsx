@@ -20,8 +20,8 @@ const Rejuvenescimento = () => {
                         </div>
                         <div className='img-container'>
                             <div className='images'>
-                                <img src='/laser-treatment.jpg' alt="laserImg"/>
-                                <img src='/laser-treatment.jpg' alt="laserImg"/>
+                                <img src='/IMG_0288.jpg' alt="laserImg"/>
+                                <img src='/IMG_0286.jpg' alt="laserImg"/>
                             </div>
                         </div>
                     </div>

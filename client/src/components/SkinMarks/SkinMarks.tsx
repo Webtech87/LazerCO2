@@ -10,7 +10,7 @@ const SkinMarks = () => {
         <section className="laser-treatment">
           <div className="treatment-image">
             <img
-              src="/laser-treatment.jpg"
+              src="/IMG_5314.JPG"
               alt="CO2 Laser Treatment"
             />
           </div>

@@ -23,7 +23,7 @@ const Blefaroplastia = () => {
                     </article>
                     <div className="treatment-image">
                         <img
-                            src="/laser-treatment.jpg"
+                            src="/IMG_0289.jpg"
                             alt="Blefaroplastia"
                         />
                     </div>

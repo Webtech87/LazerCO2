@@ -390,7 +390,6 @@
     border-radius: 60px 60px 60px 20px;
     overflow: hidden;
     background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.1));
-    border: 3px solid;
     border-image: linear-gradient(135deg, rgba(139, 92, 246, 0.4), rgba(59, 130, 246, 0.4)) 1;
     box-shadow: 
       0 0 0 8px rgba(139, 92, 246, 0.1),
