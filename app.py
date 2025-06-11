@@ -17,13 +17,13 @@ app = Flask(__name__)
 PROJECT_NAME="LazerCO2"
 
 # Configure CORS to allow requests from your React app
-CORS(app, resources={r"/*": {
-    "origins": [
-        "http://localhost:5173",
-        "https://laserco2.onrender.com/"
-        ],  # Your React development server
-    "supports_credentials": True
-}})
+CORS(app,
+     resources={r"/*": {"origins": [
+         "http://localhost:5173",
+         "https://laserco2.onrender.com"
+     ]}},
+     supports_credentials=True
+)
 
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') or os.urandom(24)
 app.config['BABEL_DEFAULT_LOCALE'] = 'pt'
