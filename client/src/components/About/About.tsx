@@ -38,7 +38,7 @@ const About = () => {
         <section className="laser-treatment">
           <div className="treatment-image">
             <img
-              src="/laser-treatment.jpg"
+              src="/public/IMG_7427.jpg"
               alt="CO2 Laser Treatment"
             />
           </div>

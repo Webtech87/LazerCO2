@@ -99,14 +99,24 @@ export function HeroSection({ className }: HeroSectionProps) {
           </div>
         </div>
         
-        <div className="image-container">
+        <div className="video-container">
           <div className="image-glow"></div>
-          <img
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/0af60b8fc47314140fc250b53bced117aadb90df?placeholderIfAbsent=true"
-            alt="Woman receiving skin treatment"
-            className="hero-image"
-            loading="eager"
-          />
+          <video
+            className="hero-video"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+          >
+            <source src="/laser-c02.mp4" type="video/mp4" />
+            {/* Fallback image if video fails to load */}
+            <img
+              src="/images/IMG_8271.png"
+              alt="Woman receiving skin treatment"
+              className="hero-image"
+            />
+          </video>
         </div>
       </div>
     </section>

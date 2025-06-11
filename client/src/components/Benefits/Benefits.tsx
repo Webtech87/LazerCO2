@@ -67,11 +67,13 @@ const Benefits: React.FC = () => {
                         ))}
                     </div>
                 </div>
-                <div
-                    className="benefits-image"
-                    style={{backgroundImage: "url('/laser-treatment.jpg')"}}
-                    aria-label="Imagem ilustrativa do tratamento com Laser CO₂"
-                ></div>
+                <div className="benefits-image-container">
+                    <img
+                        src="/public/IMG_8271.png"
+                        alt="Imagem ilustrativa do tratamento com Laser CO₂"
+                        className="benefits-image"
+                    />
+                </div>
             </div>
         </section>
     );
