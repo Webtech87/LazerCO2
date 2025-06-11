@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 import gspread
 from google.oauth2.service_account import Credentials
 from flask_cors import CORS  # Import CORS to handle cross-origin requests
+import base64
 
 load_dotenv()
 app = Flask(__name__)
@@ -17,7 +18,10 @@ PROJECT_NAME="LazerCO2"
 
 # Configure CORS to allow requests from your React app
 CORS(app, resources={r"/*": {
-    "origins": "http://localhost:5173",  # Your React development server
+    "origins": [
+        "http://localhost:5173",
+        "https://laserco2.onrender.com/"
+        ],  # Your React development server
     "supports_credentials": True
 }})
 
@@ -280,15 +284,14 @@ def home():
                         'https://www.googleapis.com/auth/drive',
                     ]
                     GOOGLE_SHEET_ID = os.environ.get('GOOGLE_SHEET_ID')
-                    CREDENTIALS_FILE = os.environ.get('GOOGLE_SHEETS_CREDS_PATH')
+                    GOOGLE_CREDS_BASE64 = os.environ.get('GOOGLE_CREDS_BASE64')
                     
                     print(f"Google Sheet ID: {GOOGLE_SHEET_ID}")
-                    print(f"Credentials file path: {CREDENTIALS_FILE}")
+                    #print(f"Credentials file path: {GOOGLE_CREDS_BASE64}")
                     
-                    credentials = Credentials.from_service_account_file(
-                        CREDENTIALS_FILE,
-                        scopes=SCOPES
-                    )
+                    if GOOGLE_CREDS_BASE64:
+                        creds_json = base64.b64decode(GOOGLE_CREDS_BASE64).decode('utf-8')
+                        credentials = Credentials.from_service_account_info(json.loads(creds_json), scopes=SCOPES)
 
                     client = gspread.authorize(credentials)
                     google_sheet_file = client.open_by_key(GOOGLE_SHEET_ID)
