@@ -31,8 +31,6 @@ interface VideoControlsProps {
 }
 
 interface NavigationProps {
-  currentIndex: number;
-  totalVideos: number;
   onPrevious: () => void;
   onNext: () => void;
 }
@@ -148,7 +146,7 @@ const getYouTubeEmbedUrl = (videoId: string): string => {
 };
 
 // YouTube Video Controls Component
-const YouTubeVideoControls: React.FC<VideoControlsProps & { videoId: string; originalUrl?: string }> = ({ 
+const YouTubeVideoControls: React.FC<VideoControlsProps & { videoId: string | null; originalUrl?: string }> = ({ 
   isPlaying, 
   isMuted, 
   onTogglePlay, 
@@ -157,12 +155,18 @@ const YouTubeVideoControls: React.FC<VideoControlsProps & { videoId: string; ori
   originalUrl
 }) => {
   const openInYouTube = () => {
+    if (!videoId) return;
+    
     // Use original URL if it's a Shorts URL, otherwise use standard watch URL
     const youtubeUrl = originalUrl && originalUrl.includes('/shorts/') 
       ? originalUrl 
       : `https://www.youtube.com/watch?v=${videoId}`;
     window.open(youtubeUrl, '_blank');
   };
+
+  if (!videoId) {
+    return null;
+  }
 
   return (
     <div className="video-controls">
@@ -198,8 +202,6 @@ const YouTubeVideoControls: React.FC<VideoControlsProps & { videoId: string; ori
 
 // Navigation Component
 const Navigation: React.FC<NavigationProps> = ({ 
-  currentIndex, 
-  totalVideos, 
   onPrevious, 
   onNext 
 }) => (
@@ -364,7 +366,9 @@ const VideoCarousel: React.FC<VideoCarouselProps> = ({
       // If video is already showing, reload iframe with new parameters
       setIsPlaying(!isPlaying);
       if (iframeRef.current) {
-        const newSrc = `${getYouTubeEmbedUrl(currentVideoId)}&autoplay=${!isPlaying ? 1 : 0}&mute=${isMuted ? 1 : 0}`;
+        const newSrc = currentVideoId 
+          ? `${getYouTubeEmbedUrl(currentVideoId)}&autoplay=${!isPlaying ? 1 : 0}&mute=${isMuted ? 1 : 0}` 
+          : '';
         iframeRef.current.src = newSrc;
       }
     } else {
@@ -377,7 +381,9 @@ const VideoCarousel: React.FC<VideoCarouselProps> = ({
   const toggleMute = useCallback(() => {
     setIsMuted(!isMuted);
     if (showVideo && iframeRef.current) {
-      const newSrc = `${getYouTubeEmbedUrl(currentVideoId)}&autoplay=${isPlaying ? 1 : 0}&mute=${!isMuted ? 1 : 0}`;
+      const newSrc = currentVideoId 
+        ? `${getYouTubeEmbedUrl(currentVideoId)}&autoplay=${isPlaying ? 1 : 0}&mute=${!isMuted ? 1 : 0}` 
+        : '';
       iframeRef.current.src = newSrc;
     }
   }, [isMuted, showVideo, isPlaying, currentVideoId]);
@@ -394,19 +400,19 @@ const VideoCarousel: React.FC<VideoCarouselProps> = ({
 
   // Navigate to previous slide
   const goToPrevious = useCallback(() => {
-    setCurrentIndex(currentIndex === 0 ? videos.length - 1 : currentIndex - 1);
+    setCurrentIndex(prevIndex => prevIndex === 0 ? videos.length - 1 : prevIndex - 1);
     setIsPlaying(false);
     setShowVideo(false);
     setIsAutoPlay(enableAutoPlay);
-  }, [currentIndex, videos.length, enableAutoPlay]);
+  }, [videos.length, enableAutoPlay]);
 
   // Navigate to next slide
   const goToNext = useCallback(() => {
-    setCurrentIndex(currentIndex === videos.length - 1 ? 0 : currentIndex + 1);
+    setCurrentIndex(prevIndex => prevIndex === videos.length - 1 ? 0 : prevIndex + 1);
     setIsPlaying(false);
     setShowVideo(false);
     setIsAutoPlay(enableAutoPlay);
-  }, [currentIndex, videos.length, enableAutoPlay]);
+  }, [videos.length, enableAutoPlay]);
 
   // Handle iframe load
   const handleIframeLoad = useCallback(() => {
@@ -443,7 +449,7 @@ const VideoCarousel: React.FC<VideoCarouselProps> = ({
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [goToPrevious, goToNext, handleThumbnailClick, handleOverlayPlayPause, toggleMute]);
+  }, [goToPrevious, goToNext, handleThumbnailClick, handleOverlayPlayPause, toggleMute, showVideo]);
 
   if (!videos || videos.length === 0) {
     return (
@@ -511,7 +517,7 @@ const VideoCarousel: React.FC<VideoCarouselProps> = ({
             <div className="video-glow-effect"></div>
             
             {/* Video Element - YouTube Embed or Thumbnail */}
-            {showVideo ? (
+            {showVideo && currentVideoId ? (
               <iframe
                 ref={iframeRef}
                 className="youtube-video"
@@ -567,8 +573,6 @@ const VideoCarousel: React.FC<VideoCarouselProps> = ({
             {/* Navigation Arrows */}
             {videos.length > 1 && (
               <Navigation
-                currentIndex={currentIndex}
-                totalVideos={videos.length}
                 onPrevious={goToPrevious}
                 onNext={goToNext}
               />
