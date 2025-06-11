@@ -127,7 +127,7 @@ const ContactPopup: React.FC<ContactPopupProps> = ({
 
       console.log('🚀 Sending popup data to backend...');
 
-      const response = await fetch('http://localhost:5000/', {
+      const response = await fetch('https://lazerco2-backend.onrender.com', {
         method: 'POST',
         body: submitData,
         credentials: 'include'
