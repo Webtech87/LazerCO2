@@ -150,11 +150,35 @@ const Footer = () => {
                     <div className='footer-info'>
                         <img className='logo' src="/logo-santiclinic.png" alt="SantiClinic Logo" />
                         <span>{t("ftr.slogan")}</span>
+                        
+                        {/* 🔗 Updated Social Media with Links */}
                         <div className='social-media'>
-                            <a href="" aria-label="Instagram"><img src="/instagram.png" alt="Instagram" /></a>
-                            <a href="" aria-label="Facebook"><img src="/facebook-logo.png" alt="Facebook" /></a>
-                            <a href="" aria-label="TikTok"><img src="/tiktok-logo.png" alt="TikTok" /></a>
+                            <a 
+                                href="https://www.instagram.com/santi_clinic/" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                aria-label="Instagram"
+                            >
+                                <img src="/instagram.png" alt="Instagram" />
+                            </a>
+                            <a 
+                                href="https://www.facebook.com/santiclinic/" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                aria-label="Facebook"
+                            >
+                                <img src="/facebook-logo.png" alt="Facebook" />
+                            </a>
+                            <a 
+                                href="https://www.tiktok.com/@santiclinic" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                aria-label="TikTok"
+                            >
+                                <img src="/tiktok-logo.png" alt="TikTok" />
+                            </a>
                         </div>
+                        
                         <div className='contact-politics'>
                             <div className='contacts'>
                                 <h3>{t("ftr.contact.title")}</h3>
