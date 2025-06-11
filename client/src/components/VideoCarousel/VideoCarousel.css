@@ -27,7 +27,7 @@
   }
   
   .video-carousel-container {
-    max-width: 1440px;
+    max-width: 1200px; /* Reduced from 1440px */
     margin: 0 auto;
     padding: 0 2rem;
     position: relative;
@@ -115,6 +115,8 @@
     position: relative;
     width: 100%;
     aspect-ratio: 16/9;
+    max-width: 900px; /* Added max-width for desktop */
+    margin: 0 auto; /* Center the video */
     border-radius: 24px;
     overflow: hidden;
     box-shadow: 
@@ -143,15 +145,32 @@
     100% { opacity: 0.25; transform: scale(1.02); }
   }
   
-  .main-video {
+  /* 🎥 YouTube Video Styles */
+  .youtube-video {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 24px;
+  }
+  
+  /* 🖼️ Video Thumbnail Styles */
+  .video-thumbnail-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  
+  .video-thumbnail {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
   }
   
-  .video-wrapper:hover .main-video {
-    transform: scale(1.02);
+  .video-wrapper:hover .video-thumbnail {
+    transform: scale(1.05);
   }
   
   /* Video Overlay Styles */
@@ -217,6 +236,16 @@
   
   .play-btn:hover {
     background: rgba(30, 82, 204, 1);
+  }
+  
+  /* 🎯 External link button for YouTube */
+  .external-btn {
+    background: rgba(255, 0, 0, 0.9);
+    color: white;
+  }
+  
+  .external-btn:hover {
+    background: rgba(255, 0, 0, 1);
   }
   
   .video-info {
@@ -301,6 +330,8 @@
   .thumbnail-navigation {
     margin-bottom: 2rem;
     overflow: hidden;
+    display: flex;
+    justify-content: center; /* Center the thumbnails container */
   }
   
   .thumbnails-container {
@@ -311,6 +342,8 @@
     scroll-behavior: smooth;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    max-width: 900px; /* Match the video max-width */
+    justify-content: center; /* Center thumbnails when they fit */
   }
   
   .thumbnails-container::-webkit-scrollbar {
@@ -461,10 +494,18 @@
     transform: scale(1.2);
   }
   
-  /* Responsive Design */
   @media (max-width: 1200px) {
     .video-carousel-container {
+      max-width: 1000px; /* Smaller on medium screens */
       padding: 0 1.5rem;
+    }
+    
+    .video-wrapper {
+      max-width: 800px; /* Smaller video on medium screens */
+    }
+    
+    .thumbnails-container {
+      max-width: 800px; /* Match video width */
     }
     
     .thumbnail-item {
@@ -474,7 +515,16 @@
   
   @media (max-width: 1024px) {
     .video-carousel-container {
+      max-width: 900px; /* Even smaller on tablets */
       padding: 0 1.5rem;
+    }
+  
+    .video-wrapper {
+      max-width: 700px; /* Smaller video on tablets */
+    }
+  
+    .thumbnails-container {
+      max-width: 700px; /* Match video width */
     }
   
     .video-section-header {
@@ -496,6 +546,11 @@
     .thumbnail-item {
       width: 150px;
     }
+  
+    .control-btn {
+      width: 50px;
+      height: 50px;
+    }
   }
   
   @media (max-width: 768px) {
@@ -505,13 +560,19 @@
   
     .video-carousel-container {
       padding: 0 1rem;
+      max-width: none; /* Full width on mobile */
+    }
+  
+    .video-wrapper {
+      max-width: none; /* Full width on mobile */
+      border-radius: 16px;
     }
   
     .video-section-header {
       margin-bottom: 2rem;
     }
   
-    .video-wrapper {
+    .youtube-video {
       border-radius: 16px;
     }
   
@@ -532,8 +593,8 @@
     }
   
     .control-btn {
-      width: 50px;
-      height: 50px;
+      width: 45px;
+      height: 45px;
     }
   
     .nav-arrow {
@@ -565,9 +626,15 @@
   
     .video-carousel-container {
       padding: 0 0.75rem;
+      max-width: none; /* Full width on small mobile */
     }
   
     .video-wrapper {
+      max-width: none; /* Full width on small mobile */
+      border-radius: 12px;
+    }
+  
+    .youtube-video {
       border-radius: 12px;
     }
   
@@ -585,13 +652,23 @@
     }
   
     .control-btn {
-      width: 45px;
-      height: 45px;
+      width: 40px;
+      height: 40px;
+    }
+  
+    .control-btn svg {
+      width: 18px;
+      height: 18px;
     }
   
     .nav-arrow {
       width: 35px;
       height: 35px;
+    }
+  
+    .nav-arrow svg {
+      width: 20px;
+      height: 20px;
     }
   
     .thumbnail-item {
@@ -601,25 +678,64 @@
     .thumbnails-container {
       gap: 0.75rem;
     }
+  
+    .video-controls {
+      gap: 0.5rem;
+    }
   }
   
   /* Loading and Error States */
   .video-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #f8f9fa;
+    background: rgba(248, 249, 250, 0.95);
     color: #6c757d;
     font-size: 1rem;
+    border-radius: 24px;
+    backdrop-filter: blur(10px);
   }
   
   .video-error {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     background: #f8d7da;
     color: #721c24;
     font-size: 1rem;
+    padding: 2rem;
+    border-radius: 12px;
+    margin: 2rem 0;
+    text-align: center;
+  }
+  
+  .video-error small {
+    margin-top: 0.5rem;
+    opacity: 0.8;
+    font-size: 0.875rem;
+  }
+  
+  /* 🎯 YouTube Specific Enhancements */
+  .video-thumbnail-container::after {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 32px;
+    height: 24px;
+    background: #ff0000;
+    border-radius: 4px;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='white' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z'/%3E%3C/svg%3E");
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.9;
   }
   
   /* Accessibility Improvements */
@@ -629,6 +745,12 @@
   .progress-dot:focus {
     outline: 2px solid #1E52CC;
     outline-offset: 2px;
+  }
+  
+  .video-thumbnail-container:focus {
+    outline: 2px solid #1E52CC;
+    outline-offset: 4px;
+    border-radius: 24px;
   }
   
   /* Smooth animations for better performance */
@@ -669,5 +791,40 @@
     * {
       transition-duration: 0.01ms !important;
       animation-duration: 0.01ms !important;
+    }
+  }
+  
+  /* 🎯 YouTube iframe responsive adjustments */
+  @media (max-width: 768px) {
+    .youtube-video {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  
+  /* 🎯 Custom scrollbar for thumbnail navigation */
+  @media (hover: hover) {
+    .thumbnails-container {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(30, 82, 204, 0.3) transparent;
+    }
+  
+    .thumbnails-container::-webkit-scrollbar {
+      height: 4px;
+      display: block;
+    }
+  
+    .thumbnails-container::-webkit-scrollbar-track {
+      background: rgba(30, 82, 204, 0.1);
+      border-radius: 2px;
+    }
+  
+    .thumbnails-container::-webkit-scrollbar-thumb {
+      background: rgba(30, 82, 204, 0.3);
+      border-radius: 2px;
+    }
+  
+    .thumbnails-container::-webkit-scrollbar-thumb:hover {
+      background: rgba(30, 82, 204, 0.5);
     }
   }

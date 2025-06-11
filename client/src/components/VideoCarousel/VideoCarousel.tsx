@@ -1,52 +1,205 @@
 // src/components/VideoCarousel/VideoCarousel.tsx
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { Play, Pause, ChevronLeft, ChevronRight, VolumeX, Volume2 } from 'lucide-react';
+import { Play, Pause, ChevronLeft, ChevronRight, VolumeX, Volume2, ExternalLink } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
-// Import types and styles
-import type { 
-  VideoCarouselProps, 
-  //VideoItem, 
-  VideoControlsProps, 
-  NavigationProps, 
-  ThumbnailNavigationProps, 
-  ProgressIndicatorsProps 
-} from './types';
-import { defaultVideos } from './types';
+// Types
+interface VideoItem {
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+  duration: string;
+  videoUrl: string;
+  thumbnailUrl?: string;
+}
+
+interface VideoCarouselProps {
+  className?: string;
+  videos?: VideoItem[];
+  autoPlayInterval?: number;
+  showThumbnails?: boolean;
+  showProgressDots?: boolean;
+  enableAutoPlay?: boolean;
+}
+
+interface VideoControlsProps {
+  isPlaying: boolean;
+  isMuted: boolean;
+  onTogglePlay: () => void;
+  onToggleMute: () => void;
+}
+
+interface NavigationProps {
+  currentIndex: number;
+  totalVideos: number;
+  onPrevious: () => void;
+  onNext: () => void;
+}
+
+interface ThumbnailNavigationProps {
+  videos: VideoItem[];
+  currentIndex: number;
+  onVideoSelect: (index: number) => void;
+}
+
+interface ProgressIndicatorsProps {
+  totalSlides: number;
+  currentIndex: number;
+  onSlideSelect: (index: number) => void;
+}
+
+// Default videos data with your YouTube Shorts URLs
+const defaultVideos: VideoItem[] = [
+  {
+    id: "1",
+    title: "Tratamento Laser CO₂ - Resultados",
+    description: "Veja os resultados incríveis do nosso tratamento a laser para rejuvenescimento facial",
+    category: "Tratamentos",
+    duration: "0:45",
+    videoUrl: "https://www.youtube.com/shorts/YHLcLYZqqII",
+    thumbnailUrl: ""
+  },
+  {
+    id: "2", 
+    title: "Rejuvenescimento Facial Avançado",
+    description: "Técnicas inovadoras de rejuvenescimento para uma pele mais jovem e saudável",
+    category: "Estética",
+    duration: "0:30",
+    videoUrl: "https://www.youtube.com/shorts/C9tR2Vdc1Mc",
+    thumbnailUrl: ""
+  },
+  {
+    id: "3",
+    title: "Procedimento Minimamente Invasivo", 
+    description: "Conheça nossos procedimentos seguros e eficazes com mínimo desconforto",
+    category: "Procedimentos",
+    duration: "0:52",
+    videoUrl: "https://www.youtube.com/shorts/EzxhJwkCzr4",
+    thumbnailUrl: ""
+  },
+  {
+    id: "4",
+    title: "Cuidados Pós-Tratamento",
+    description: "Dicas importantes e protocolo de cuidados para otimizar seus resultados",
+    category: "Cuidados",
+    duration: "0:38",
+    videoUrl: "https://www.youtube.com/shorts/jHgs74kxTJM", 
+    thumbnailUrl: ""
+  },
+  {
+    id: "5",
+    title: "Depoimento de Cliente Satisfeita",
+    description: "Experiência real de transformação e satisfação com nossos tratamentos",
+    category: "Depoimentos",
+    duration: "0:42", 
+    videoUrl: "https://www.youtube.com/shorts/eimmum2CcYY",
+    thumbnailUrl: ""
+  }
+];
+
+// Import styles
 import './VideoCarousel.css';
 
-// Video Controls Component
-const VideoControls: React.FC<VideoControlsProps> = ({ 
+// YouTube utility functions
+const getYouTubeVideoId = (url: string): string | null => {
+  if (!url) return null;
+  
+  // Clean the URL and remove any extra parameters
+  const cleanUrl = url.trim();
+  
+  // Handle different YouTube URL formats including Shorts
+  const patterns = [
+    // YouTube Shorts: https://www.youtube.com/shorts/VIDEO_ID
+    /(?:youtube\.com\/shorts\/)([a-zA-Z0-9_-]{11})/,
+    // Standard YouTube: https://www.youtube.com/watch?v=VIDEO_ID
+    /(?:youtube\.com\/watch\?v=)([a-zA-Z0-9_-]{11})/,
+    // Short URL: https://youtu.be/VIDEO_ID
+    /(?:youtu\.be\/)([a-zA-Z0-9_-]{11})/,
+    // Embed URL: https://www.youtube.com/embed/VIDEO_ID
+    /(?:youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/,
+    // Direct video ID (11 characters)
+    /^([a-zA-Z0-9_-]{11})$/
+  ];
+  
+  for (const pattern of patterns) {
+    const match = cleanUrl.match(pattern);
+    if (match && match[1] && match[1].length === 11) {
+      return match[1];
+    }
+  }
+  
+  // Fallback: try to extract any 11-character alphanumeric string that looks like a video ID
+  const fallbackMatch = cleanUrl.match(/([a-zA-Z0-9_-]{11})/);
+  if (fallbackMatch && fallbackMatch[1]) {
+    return fallbackMatch[1];
+  }
+  
+  console.warn('Could not extract YouTube video ID from URL:', url);
+  return null;
+};
+
+const getYouTubeThumbnail = (videoId: string, quality: 'default' | 'medium' | 'high' | 'maxres' = 'maxres'): string => {
+  return `https://img.youtube.com/vi/${videoId}/${quality}default.jpg`;
+};
+
+const getYouTubeEmbedUrl = (videoId: string): string => {
+  return `https://www.youtube.com/embed/${videoId}?enablejsapi=1&rel=0&showinfo=0&modestbranding=1&iv_load_policy=3`;
+};
+
+// YouTube Video Controls Component
+const YouTubeVideoControls: React.FC<VideoControlsProps & { videoId: string; originalUrl?: string }> = ({ 
   isPlaying, 
   isMuted, 
   onTogglePlay, 
-  onToggleMute 
-}) => (
-  <div className="video-controls">
-    <button 
-      className="control-btn play-btn" 
-      onClick={onTogglePlay}
-      aria-label={isPlaying ? 'Pausar vídeo' : 'Reproduzir vídeo'}
-      title={isPlaying ? 'Pausar vídeo' : 'Reproduzir vídeo'}
-    >
-      {isPlaying ? <Pause size={32} /> : <Play size={32} />}
-    </button>
-    
-    <button 
-      className="control-btn mute-btn" 
-      onClick={onToggleMute}
-      aria-label={isMuted ? 'Ativar som' : 'Desativar som'}
-      title={isMuted ? 'Ativar som' : 'Desativar som'}
-    >
-      {isMuted ? <VolumeX size={24} /> : <Volume2 size={24} />}
-    </button>
-  </div>
-);
+  onToggleMute,
+  videoId,
+  originalUrl
+}) => {
+  const openInYouTube = () => {
+    // Use original URL if it's a Shorts URL, otherwise use standard watch URL
+    const youtubeUrl = originalUrl && originalUrl.includes('/shorts/') 
+      ? originalUrl 
+      : `https://www.youtube.com/watch?v=${videoId}`;
+    window.open(youtubeUrl, '_blank');
+  };
+
+  return (
+    <div className="video-controls">
+      <button 
+        className="control-btn play-btn" 
+        onClick={onTogglePlay}
+        aria-label={isPlaying ? 'Pausar vídeo' : 'Reproduzir vídeo'}
+        title={isPlaying ? 'Pausar vídeo' : 'Reproduzir vídeo'}
+      >
+        {isPlaying ? <Pause size={24} /> : <Play size={24} />}
+      </button>
+      
+      <button 
+        className="control-btn mute-btn" 
+        onClick={onToggleMute}
+        aria-label={isMuted ? 'Ativar som' : 'Desativar som'}
+        title={isMuted ? 'Ativar som' : 'Desativar som'}
+      >
+        {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
+      </button>
+
+      <button 
+        className="control-btn external-btn" 
+        onClick={openInYouTube}
+        aria-label="Abrir no YouTube"
+        title="Abrir no YouTube"
+      >
+        <ExternalLink size={18} />
+      </button>
+    </div>
+  );
+};
 
 // Navigation Component
 const Navigation: React.FC<NavigationProps> = ({ 
-  //currentIndex, 
-  //totalVideos, 
+  currentIndex, 
+  totalVideos, 
   onPrevious, 
   onNext 
 }) => (
@@ -79,32 +232,37 @@ const ThumbnailNavigation: React.FC<ThumbnailNavigationProps> = ({
 }) => (
   <div className="thumbnail-navigation">
     <div className="thumbnails-container">
-      {videos.map((video, index) => (
-        <button
-          key={video.id}
-          className={`thumbnail-item ${index === currentIndex ? 'active' : ''}`}
-          onClick={() => onVideoSelect(index)}
-          aria-label={`Ir para vídeo: ${video.title}`}
-          title={video.title}
-        >
-          <div className="thumbnail-wrapper">
-            <img 
-              src={video.thumbnailUrl} 
-              alt={video.title}
-              className="thumbnail-image"
-              loading="lazy"
-            />
-            <div className="thumbnail-overlay">
-              <Play size={20} className="thumbnail-play-icon" />
+      {videos.map((video, index) => {
+        const videoId = getYouTubeVideoId(video.videoUrl);
+        const thumbnailUrl = videoId ? getYouTubeThumbnail(videoId) : video.thumbnailUrl;
+        
+        return (
+          <button
+            key={video.id}
+            className={`thumbnail-item ${index === currentIndex ? 'active' : ''}`}
+            onClick={() => onVideoSelect(index)}
+            aria-label={`Ir para vídeo: ${video.title}`}
+            title={video.title}
+          >
+            <div className="thumbnail-wrapper">
+              <img 
+                src={thumbnailUrl} 
+                alt={video.title}
+                className="thumbnail-image"
+                loading="lazy"
+              />
+              <div className="thumbnail-overlay">
+                <Play size={20} className="thumbnail-play-icon" />
+              </div>
+              <div className="thumbnail-info">
+                <span className="thumbnail-title">{video.title}</span>
+                <span className="thumbnail-duration">{video.duration}</span>
+              </div>
             </div>
-            <div className="thumbnail-info">
-              <span className="thumbnail-title">{video.title}</span>
-              <span className="thumbnail-duration">{video.duration}</span>
-            </div>
-          </div>
-          <div className="thumbnail-glow"></div>
-        </button>
-      ))}
+            <div className="thumbnail-glow"></div>
+          </button>
+        );
+      })}
     </div>
   </div>
 );
@@ -148,17 +306,20 @@ const VideoCarousel: React.FC<VideoCarouselProps> = ({
   const [isMuted, setIsMuted] = useState<boolean>(true);
   const [isAutoPlay, setIsAutoPlay] = useState<boolean>(enableAutoPlay);
   const [isVideoLoaded, setIsVideoLoaded] = useState<boolean>(false);
+  const [showVideo, setShowVideo] = useState<boolean>(false);
 
   // Refs
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Get current video
+  // Get current video and YouTube ID
   const currentVideo = videos[currentIndex];
+  const currentVideoId = getYouTubeVideoId(currentVideo?.videoUrl || '');
+  const currentThumbnail = currentVideoId ? getYouTubeThumbnail(currentVideoId) : (currentVideo?.thumbnailUrl || '');
 
   // Auto-slide functionality
   useEffect(() => {
-    if (isAutoPlay && !isPlaying && videos.length > 1) {
+    if (isAutoPlay && !isPlaying && !showVideo && videos.length > 1) {
       intervalRef.current = setInterval(() => {
         setCurrentIndex((prevIndex) => 
           prevIndex === videos.length - 1 ? 0 : prevIndex + 1
@@ -171,16 +332,15 @@ const VideoCarousel: React.FC<VideoCarouselProps> = ({
         clearInterval(intervalRef.current);
       }
     };
-  }, [isAutoPlay, isPlaying, videos.length, autoPlayInterval]);
+  }, [isAutoPlay, isPlaying, showVideo, videos.length, autoPlayInterval]);
 
   // Reset video when index changes
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.currentTime = 0;
-      setIsPlaying(false);
-      setIsVideoLoaded(false);
-    }
-  }, [currentIndex]);
+    setIsPlaying(false);
+    setShowVideo(false);
+    setIsVideoLoaded(false);
+    setIsAutoPlay(enableAutoPlay);
+  }, [currentIndex, enableAutoPlay]);
 
   // Cleanup interval on unmount
   useEffect(() => {
@@ -191,35 +351,43 @@ const VideoCarousel: React.FC<VideoCarouselProps> = ({
     };
   }, []);
 
-  // Handle video play/pause
-  const togglePlayPause = useCallback(() => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-        setIsAutoPlay(enableAutoPlay);
-      } else {
-        videoRef.current.play().catch((error) => {
-          console.warn('Video play failed:', error);
-        });
-        setIsAutoPlay(false);
-      }
+  // Handle thumbnail click - loads and starts video
+  const handleThumbnailClick = useCallback(() => {
+    setShowVideo(true);
+    setIsPlaying(true);
+    setIsAutoPlay(false);
+  }, []);
+
+  // Handle overlay play/pause button
+  const handleOverlayPlayPause = useCallback(() => {
+    if (showVideo) {
+      // If video is already showing, reload iframe with new parameters
       setIsPlaying(!isPlaying);
+      if (iframeRef.current) {
+        const newSrc = `${getYouTubeEmbedUrl(currentVideoId)}&autoplay=${!isPlaying ? 1 : 0}&mute=${isMuted ? 1 : 0}`;
+        iframeRef.current.src = newSrc;
+      }
+    } else {
+      // If video is not showing, show it
+      handleThumbnailClick();
     }
-  }, [isPlaying, enableAutoPlay]);
+  }, [isPlaying, showVideo, isMuted, currentVideoId, handleThumbnailClick]);
 
   // Handle mute/unmute
   const toggleMute = useCallback(() => {
-    if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
+    setIsMuted(!isMuted);
+    if (showVideo && iframeRef.current) {
+      const newSrc = `${getYouTubeEmbedUrl(currentVideoId)}&autoplay=${isPlaying ? 1 : 0}&mute=${!isMuted ? 1 : 0}`;
+      iframeRef.current.src = newSrc;
     }
-  }, [isMuted]);
+  }, [isMuted, showVideo, isPlaying, currentVideoId]);
 
   // Navigate to specific slide
   const goToSlide = useCallback((index: number) => {
     if (index >= 0 && index < videos.length) {
       setCurrentIndex(index);
       setIsPlaying(false);
+      setShowVideo(false);
       setIsAutoPlay(enableAutoPlay);
     }
   }, [videos.length, enableAutoPlay]);
@@ -228,6 +396,7 @@ const VideoCarousel: React.FC<VideoCarouselProps> = ({
   const goToPrevious = useCallback(() => {
     setCurrentIndex(currentIndex === 0 ? videos.length - 1 : currentIndex - 1);
     setIsPlaying(false);
+    setShowVideo(false);
     setIsAutoPlay(enableAutoPlay);
   }, [currentIndex, videos.length, enableAutoPlay]);
 
@@ -235,36 +404,13 @@ const VideoCarousel: React.FC<VideoCarouselProps> = ({
   const goToNext = useCallback(() => {
     setCurrentIndex(currentIndex === videos.length - 1 ? 0 : currentIndex + 1);
     setIsPlaying(false);
+    setShowVideo(false);
     setIsAutoPlay(enableAutoPlay);
   }, [currentIndex, videos.length, enableAutoPlay]);
 
-  // Handle video events
-  const handleVideoPlay = useCallback(() => {
-    setIsPlaying(true);
-  }, []);
-
-  const handleVideoPause = useCallback(() => {
-    setIsPlaying(false);
-  }, []);
-
-  const handleVideoEnded = useCallback(() => {
-    setIsPlaying(false);
-    setIsAutoPlay(enableAutoPlay);
-    // Auto advance to next video when current ends
-    if (videos.length > 1) {
-      setTimeout(() => {
-        goToNext();
-      }, 1000);
-    }
-  }, [enableAutoPlay, videos.length, goToNext]);
-
-  const handleVideoLoadedData = useCallback(() => {
+  // Handle iframe load
+  const handleIframeLoad = useCallback(() => {
     setIsVideoLoaded(true);
-  }, []);
-
-  const handleVideoError = useCallback((error: React.SyntheticEvent<HTMLVideoElement, Event>) => {
-    console.error('Video loading error:', error);
-    setIsVideoLoaded(false);
   }, []);
 
   // Keyboard navigation
@@ -281,7 +427,11 @@ const VideoCarousel: React.FC<VideoCarouselProps> = ({
           break;
         case ' ':
           event.preventDefault();
-          togglePlayPause();
+          if (!showVideo) {
+            handleThumbnailClick();
+          } else {
+            handleOverlayPlayPause();
+          }
           break;
         case 'm':
         case 'M':
@@ -293,7 +443,7 @@ const VideoCarousel: React.FC<VideoCarouselProps> = ({
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [goToPrevious, goToNext, togglePlayPause, toggleMute]);
+  }, [goToPrevious, goToNext, handleThumbnailClick, handleOverlayPlayPause, toggleMute]);
 
   if (!videos || videos.length === 0) {
     return (
@@ -301,6 +451,31 @@ const VideoCarousel: React.FC<VideoCarouselProps> = ({
         <div className="video-carousel-container">
           <div className="video-error">
             <p>Nenhum vídeo disponível no momento.</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (!currentVideo) {
+    return (
+      <section className={`video-carousel-section ${className}`}>
+        <div className="video-carousel-container">
+          <div className="video-error">
+            <p>Vídeo não encontrado.</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (!currentVideoId) {
+    return (
+      <section className={`video-carousel-section ${className}`}>
+        <div className="video-carousel-container">
+          <div className="video-error">
+            <p>URL do YouTube inválida: {currentVideo.videoUrl}</p>
+            <small>Formatos suportados: youtube.com/watch?v=, youtube.com/shorts/, youtu.be/</small>
           </div>
         </div>
       </section>
@@ -335,27 +510,35 @@ const VideoCarousel: React.FC<VideoCarouselProps> = ({
           <div className="video-wrapper">
             <div className="video-glow-effect"></div>
             
-            {/* Video Element */}
-            <video
-              ref={videoRef}
-              className="main-video"
-              poster={currentVideo.thumbnailUrl}
-              muted={isMuted}
-              onPlay={handleVideoPlay}
-              onPause={handleVideoPause}
-              onEnded={handleVideoEnded}
-              onLoadedData={handleVideoLoadedData}
-              onError={handleVideoError}
-              preload="metadata"
-              playsInline
-            >
-              <source src={currentVideo.videoUrl} type="video/mp4" />
-              <track kind="captions" />
-              Seu navegador não suporta vídeos HTML5.
-            </video>
+            {/* Video Element - YouTube Embed or Thumbnail */}
+            {showVideo ? (
+              <iframe
+                ref={iframeRef}
+                className="youtube-video"
+                src={`${getYouTubeEmbedUrl(currentVideoId)}&autoplay=1&mute=${isMuted ? 1 : 0}`}
+                title={currentVideo.title}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                onLoad={handleIframeLoad}
+              />
+            ) : (
+              <div 
+                className="video-thumbnail-container" 
+                onClick={handleThumbnailClick}
+                style={{ cursor: 'pointer' }}
+              >
+                <img
+                  src={currentThumbnail}
+                  alt={currentVideo.title}
+                  className="video-thumbnail"
+                />
+                {/* No center play button - clean thumbnail only */}
+              </div>
+            )}
 
             {/* Loading State */}
-            {!isVideoLoaded && (
+            {showVideo && !isVideoLoaded && (
               <div className="video-loading">
                 <p>Carregando vídeo...</p>
               </div>
@@ -363,11 +546,13 @@ const VideoCarousel: React.FC<VideoCarouselProps> = ({
 
             {/* Video Overlay Controls */}
             <div className="video-overlay">
-              <VideoControls
+              <YouTubeVideoControls
                 isPlaying={isPlaying}
                 isMuted={isMuted}
-                onTogglePlay={togglePlayPause}
+                onTogglePlay={handleOverlayPlayPause}
                 onToggleMute={toggleMute}
+                videoId={currentVideoId}
+                originalUrl={currentVideo.videoUrl}
               />
 
               {/* Video Info */}
