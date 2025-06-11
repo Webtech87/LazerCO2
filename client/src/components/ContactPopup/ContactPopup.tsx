@@ -55,6 +55,29 @@ const ContactPopup: React.FC<ContactPopupProps> = ({
     };
   }, [showDelay, externalVisible]);
 
+  // 🔧 FIX: Add keyboard event handler to prevent interference
+  useEffect(() => {
+    if (!isVisible) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      // Allow all keyboard input when popup is open
+      // Stop propagation to prevent other components from interfering
+      event.stopPropagation();
+      
+      // Only handle ESC key to close popup
+      if (event.key === 'Escape') {
+        handleClose();
+      }
+    };
+
+    // Add event listener with capture to catch events early
+    document.addEventListener('keydown', handleKeyDown, true);
+    
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown, true);
+    };
+  }, [isVisible]);
+
   const validateForm = (): boolean => {
     const newErrors: Partial<ContactFormData> = {};
 
@@ -111,7 +134,7 @@ const ContactPopup: React.FC<ContactPopupProps> = ({
     }
   };
 
-  // 🚀 NEW: Backend submission function
+  // 🚀 Backend submission function
   const submitToBackend = async (data: ContactFormData) => {
     console.log('📝 Popup form data to submit:', data);
 
@@ -250,8 +273,19 @@ const ContactPopup: React.FC<ContactPopupProps> = ({
   if (!isVisible) return null;
 
   return (
-    <div className={`popup-overlay ${isClosing ? 'closing' : ''}`}>
-      <div className={`popup-container ${isClosing ? 'closing' : ''}`}>
+    <div 
+      className={`popup-overlay ${isClosing ? 'closing' : ''}`}
+      onClick={(e) => {
+        // Only close if clicking the overlay itself, not the content
+        if (e.target === e.currentTarget) {
+          handleClose();
+        }
+      }}
+    >
+      <div 
+        className={`popup-container ${isClosing ? 'closing' : ''}`}
+        onKeyDown={(e) => e.stopPropagation()} // Prevent event bubbling
+      >
         
         {/* Background Effects */}
         <div className="popup-bg-effects">
@@ -319,7 +353,11 @@ const ContactPopup: React.FC<ContactPopupProps> = ({
                 <p>Conte-nos sobre você para personalizarmos seu atendimento</p>
               </div>
 
-              <form className="popup-form" onSubmit={(e) => { e.preventDefault(); nextStep(); }}>
+              <form 
+                className="popup-form" 
+                onSubmit={(e) => { e.preventDefault(); nextStep(); }}
+                onKeyDown={(e) => e.stopPropagation()} // Prevent event bubbling
+              >
                 <div className="form-group">
                   <div className="input-container">
                     <input
@@ -327,6 +365,7 @@ const ContactPopup: React.FC<ContactPopupProps> = ({
                       id="nome"
                       value={formData.nome}
                       onChange={(e) => handleInputChange('nome', e.target.value)}
+                      onKeyDown={(e) => e.stopPropagation()} // Prevent event bubbling
                       className={errors.nome ? 'error' : ''}
                       placeholder=" "
                       autoComplete="name"
@@ -349,6 +388,7 @@ const ContactPopup: React.FC<ContactPopupProps> = ({
                       id="telefone"
                       value={formData.telefone}
                       onChange={(e) => handleInputChange('telefone', e.target.value)}
+                      onKeyDown={(e) => e.stopPropagation()} // Prevent event bubbling
                       className={errors.telefone ? 'error' : ''}
                       placeholder=" "
                       autoComplete="tel"
@@ -371,6 +411,7 @@ const ContactPopup: React.FC<ContactPopupProps> = ({
                       id="email"
                       value={formData.email}
                       onChange={(e) => handleInputChange('email', e.target.value)}
+                      onKeyDown={(e) => e.stopPropagation()} // Prevent event bubbling
                       className={errors.email ? 'error' : ''}
                       placeholder=" "
                       autoComplete="email"
@@ -410,7 +451,11 @@ const ContactPopup: React.FC<ContactPopupProps> = ({
                 <p>Conte-nos sobre seu interesse e como podemos te atender melhor</p>
               </div>
 
-              <form className="popup-form" onSubmit={handleSubmit}>
+              <form 
+                className="popup-form" 
+                onSubmit={handleSubmit}
+                onKeyDown={(e) => e.stopPropagation()} // Prevent event bubbling
+              >
                 {/* Show submit error if any */}
                 {submitError && (
                   <div 
@@ -434,6 +479,7 @@ const ContactPopup: React.FC<ContactPopupProps> = ({
                       id="assunto"
                       value={formData.assunto}
                       onChange={(e) => handleInputChange('assunto', e.target.value)}
+                      onKeyDown={(e) => e.stopPropagation()} // Prevent event bubbling
                       className={errors.assunto ? 'error' : ''}
                     >
                       <option value="">Selecione o assunto...</option>
@@ -460,6 +506,7 @@ const ContactPopup: React.FC<ContactPopupProps> = ({
                       id="mensagem"
                       value={formData.mensagem}
                       onChange={(e) => handleInputChange('mensagem', e.target.value)}
+                      onKeyDown={(e) => e.stopPropagation()} // Prevent event bubbling
                       className={errors.mensagem ? 'error' : ''}
                       placeholder=" "
                       rows={4}

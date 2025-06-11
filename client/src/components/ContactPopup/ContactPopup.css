@@ -46,6 +46,7 @@
   justify-content: center;
   padding: 20px;
   animation: overlayFadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto; /* Allow vertical scrolling in overlay */
 }
 
 .popup-overlay.closing {
@@ -69,10 +70,34 @@
   width: 100%;
   max-width: 480px;
   max-height: 90vh;
-  overflow: hidden;
+  overflow-y: auto; /* Enable vertical scrolling */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
   position: relative;
   animation: popupSlideIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
   transform-origin: center;
+  margin: auto; /* Center in flexbox */
+  
+  /* Custom scrollbar styling */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(59, 130, 246, 0.3) transparent;
+}
+
+/* Custom scrollbar for webkit browsers */
+.popup-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.popup-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.popup-container::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.3);
+  border-radius: 3px;
+}
+
+.popup-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.5);
 }
 
 .popup-container.closing {
@@ -88,6 +113,7 @@
   bottom: 0;
   overflow: hidden;
   z-index: 0;
+  pointer-events: none; /* Prevent interference with scrolling */
 }
 
 .floating-orbs {
@@ -159,7 +185,7 @@
 
 /* Close Button */
 .close-btn {
-  position: absolute;
+  position: sticky; /* Changed from absolute to sticky */
   top: 20px;
   right: 20px;
   width: 40px;
@@ -174,6 +200,8 @@
   justify-content: center;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 10;
+  margin-left: auto; /* Push to the right */
+  margin-bottom: -40px; /* Overlap with content */
 }
 
 .close-btn:hover {
@@ -193,6 +221,7 @@
   position: relative;
   padding: 24px 32px 0;
   z-index: 2;
+  flex-shrink: 0; /* Prevent shrinking when scrolling */
 }
 
 .progress-track {
@@ -266,6 +295,8 @@
   position: relative;
   z-index: 2;
   padding: 20px 32px 32px;
+  flex-grow: 1; /* Allow content to grow and be scrollable */
+  min-height: 0; /* Allow shrinking */
 }
 
 .form-step {
@@ -359,6 +390,7 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   outline: none;
   font-family: inherit;
+  box-sizing: border-box;
 }
 
 .input-container input:focus {
@@ -450,6 +482,7 @@
   font-family: inherit;
   cursor: pointer;
   appearance: none;
+  box-sizing: border-box;
 }
 
 .select-container select:focus {
@@ -542,6 +575,7 @@
   font-family: inherit;
   resize: vertical;
   min-height: 120px;
+  box-sizing: border-box;
 }
 
 .textarea-container textarea:focus {
@@ -634,6 +668,7 @@
   overflow: hidden;
   font-family: inherit;
   min-height: 52px;
+  box-sizing: border-box;
 }
 
 .btn-next, .btn-submit {
@@ -774,6 +809,7 @@
   padding: 0 32px 24px;
   display: flex;
   justify-content: center;
+  flex-shrink: 0; /* Prevent shrinking when scrolling */
 }
 
 .security-badge {
@@ -910,11 +946,14 @@
 @media (max-width: 768px) {
   .popup-overlay {
     padding: 16px;
+    align-items: flex-start; /* Allow scrolling on mobile */
+    padding-top: 20px;
   }
 
   .popup-container {
     max-width: 100%;
     border-radius: 20px;
+    margin: 0; /* Remove auto margin on mobile */
   }
 
   .popup-content {
@@ -959,11 +998,17 @@
   .popup-footer {
     padding: 0 24px 20px;
   }
+
+  .close-btn {
+    top: 16px;
+    right: 16px;
+  }
 }
 
 @media (max-width: 480px) {
   .popup-overlay {
     padding: 12px;
+    padding-top: 16px;
   }
 
   .popup-container {
@@ -1024,8 +1069,8 @@
   .close-btn {
     width: 36px;
     height: 36px;
-    top: 16px;
-    right: 16px;
+    top: 12px;
+    right: 12px;
   }
 
   .close-btn svg {
@@ -1039,5 +1084,57 @@
 
   .security-badge {
     font-size: 12px;
+  }
+}
+
+/* Mobile landscape optimization */
+@media (max-height: 600px) and (orientation: landscape) {
+  .popup-overlay {
+    align-items: flex-start;
+    padding-top: 10px;
+  }
+
+  .popup-container {
+    max-height: 95vh;
+  }
+
+  .step-header {
+    margin-bottom: 20px;
+  }
+
+  .icon-pulse {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 16px;
+  }
+
+  .icon-pulse svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .step-header h2 {
+    font-size: 20px;
+    margin-bottom: 6px;
+  }
+
+  .step-header p {
+    font-size: 14px;
+  }
+
+  .popup-form {
+    gap: 16px;
+  }
+
+  .progress-indicator {
+    padding: 16px 32px 0;
+  }
+
+  .popup-content {
+    padding: 16px 32px 20px;
+  }
+
+  .popup-footer {
+    padding: 0 32px 16px;
   }
 }
