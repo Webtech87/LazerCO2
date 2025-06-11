@@ -45,9 +45,7 @@ import {
     initializeServices, 
     getCookiePreferences, 
     hasUserMadeCookieChoice,
-    initializeMarketing, 
-    initializePersonalization,
-    initializeAnalytics // Import from cookieManager, not analytics
+    // Removed unused initializeAnalytics import
 } from './utils/cookieManager';
 
 // Import ContactPopup with explicit path
