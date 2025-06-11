@@ -112,7 +112,7 @@ export function HeroSection({ className }: HeroSectionProps) {
             <source src="/laser-c02.mp4" type="video/mp4" />
             {/* Fallback image if video fails to load */}
             <img
-              src="/images/IMG_8271.png"
+              src="/IMG_8271.png"
               alt="Woman receiving skin treatment"
               className="hero-image"
             />

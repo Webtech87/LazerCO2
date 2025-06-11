@@ -69,7 +69,7 @@ const Benefits: React.FC = () => {
                 </div>
                 <div className="benefits-image-container">
                     <img
-                        src="/public/IMG_8271.png"
+                        src="/IMG_8271.png"
                         alt="Imagem ilustrativa do tratamento com Laser CO₂"
                         className="benefits-image"
                     />
