@@ -40,11 +40,8 @@ const KeyAreas = () => {
 
     return (
         <div id="key-areas-section" className='keyareas-page-container key-areas-section'>
-            {/* Background Elements */}
+            {/* Background Elements - Removed floating orbs */}
             <div className="keyareas-background-elements">
-                <div className="floating-orb orb-1"></div>
-                <div className="floating-orb orb-2"></div>
-                <div className="floating-orb orb-3"></div>
                 <div className="grid-overlay"></div>
             </div>
 
@@ -77,7 +74,7 @@ const KeyAreas = () => {
                                 >
                                     <div className="image-overlay">
                                         <Zap className="overlay-icon" />
-                                        <span className="overlay-text">Advanced Technology</span>
+                                        <span className="overlay-text">Laser CO2</span>
                                     </div>
                                     <img src='/laser-treatment.jpg' alt="Advanced laser treatment technology" />
                                     <div className="image-glow"></div>
@@ -106,7 +103,6 @@ const KeyAreas = () => {
                                         <li key={index} className="keyarea-item" style={{animationDelay: `${index * 0.1}s`}}>
                                             <div className="item-icon-container">
                                                 <CheckCircle className="check-icon" />
-                                                <div className="icon-pulse"></div>
                                             </div>
                                             <span className="item-text">{item}</span>
                                             <div className="item-hover-effect"></div>
@@ -117,7 +113,7 @@ const KeyAreas = () => {
                                 {/* Call to Action */}
                                 <div className="keyareas-cta">
                                     <button className="learn-more-btn">
-                                        <span className="btn-text">Learn More About Our Technology</span>
+                                        <span className="btn-text">Saber Mais sobre o Laser CO2</span>
                                         <div className="btn-glow"></div>
                                         <Zap className="btn-icon" />
                                     </button>
