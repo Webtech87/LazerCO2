@@ -290,7 +290,7 @@
     padding: 1.25rem 0;
     border-bottom: 1px solid rgba(226, 232, 240, 0.3);
     position: relative;
-    cursor: pointer;
+    cursor: default;
     opacity: 0;
     transform: translateX(-30px);
     transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
@@ -337,15 +337,22 @@
     animation: checkPulse 2.5s infinite;
   }
   
-  .info-text li::after {
+  .info-text li::before {
     content: '✓';
-    position: absolute;
-    left: 1.8rem;
-    top: 1.375rem;
     color: white;
-    font-weight: bold;
     font-size: 0.75rem;
-    z-index: 1;
+    font-weight: bold;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: linear-gradient(135deg, #22C55E, #10B981);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.125rem;
+    animation: checkPulse 2.5s infinite, slideInItem 0.6s ease-out 1s forwards;
+    opacity: 0;
+    transform: translateX(-30px);
   }
   
   @keyframes checkPulse {
