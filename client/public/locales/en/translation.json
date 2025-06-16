@@ -64,8 +64,10 @@
   },
   "key_areas": {
     "title": "CO₂ Laser Precisely Applied to Key Areas",
+    "title2" : "Advanced technology meets precision care",
     "subtitle": "Face, Neck, and Décolleté",
     "lt_title": "Ideal for improving",
+    "btn" : "Learn More About CO2 Laser",
     "lt": [
       "Skin texture and firmness",
       "Fine to moderate wrinkles",
@@ -729,6 +731,111 @@
           "We recommend checking this page regularly to stay informed about how we protect your personal data."
         ]
       }
+    }
+  },
+
+  "contact_popup" : {
+
+    "head" : {
+
+      "part1" : "Let's connect!",
+      "part2" : "Share a bit about you so we can customize your service!"
+    },
+
+    "form" : {
+
+      "1" : {
+        "part1" : "Full name",
+        "part2" : "Phone",
+        "part3" : "Next"
+      },
+
+      "2" :{
+        "part1" : "How can we help?",
+        "part2" : "Tell us about your interests and how we can serve you better.",
+        "part3" : "Select a subject",
+        "part4" : "Subject of Interest",
+        "part5" : "Your Message",
+        "part6" : "Back",
+        "part7" : "Sending",
+        "part8" : "Send Message"
+      },
+
+      "3" : {
+
+        "part1" : "Message Sent!",
+        "part2" : "We received your message and will get back to you soon. Thank you for your interest in",
+        "part3" : "Quick reply",
+        "part4" : "Specialized service",
+        "part5" : "Custom treatment"
+      }
+      
+     
+    },
+
+    "footer" : {
+
+      "part1" : "Your data is protected"
+    },
+
+    "dropdown" : {
+      "1" : "🔥 CO₂ Laser Face",
+      "2" : "✨ CO₂ Laser Neck",
+      "3" : "🩹 Non-invasive Upper Blepharoplasty",
+      "4" : "🎯 Non-invasive Lower Blepharoplasty ",
+      "5" : "👩‍⚕️ Evaluation Consultation",
+      "6" : "💬 Other Topics"
+    }
+  },
+
+  "cookie_ban" : {
+
+    "1" : {
+
+      "title" : {
+
+        "part1" : "Personalized Experience",
+        "part2" : "Optimized with advanced technology",
+        "part3" : "At {{companyName}}, we use essential cookies and advanced technologies to personalize your experience, analyze our performance, and provide relevant content about our CO₂ laser treatments and rejuvenation services."
+      },
+
+      "footer" : {
+
+        "part1" : "100% Safe and Private",
+        "part2" : "Optimized Experience",
+        "part3" : "Custom Content"
+      },
+
+      "btns" : {
+
+        "part1" : "Accept All",
+        "part2" : "Customize",
+        "part3" : "Reject Optional Cookies"
+      }
+    },
+
+    "2" : {
+
+      "head" :{
+        "part1" : "Cookie Preferences",
+        "part2" : "Customize your experience at"
+      },
+
+      "types" : {
+
+        "part1" : "Necessary Cookies",
+        "part2" : "Essential for website functionality and security.",
+        "part3" : "Analytics Cookies",
+        "part4" : "They help us improve our services and treatments.",
+        "part5" : "Marketing Cookies",
+        "part6" : "They allow us to show relevant content about our treatments.",
+        "part7" : "Personalization Cookies",
+        "part8" : "They personalize your experience based on your preferences.",
+        "subt" : "Required",
+        "subt2" : "Privacy Policy"
+      },
+
+      "btn" : "Save Preferences"
     }
   }
 }

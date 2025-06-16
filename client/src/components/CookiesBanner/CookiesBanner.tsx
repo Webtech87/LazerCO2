@@ -2,14 +2,18 @@
 import React, { useState, useEffect } from 'react';
 import type { CookiePreferences, CookiesBannerProps } from './types';
 import './CookiesBanner.css';
+import {useTranslation} from "react-i18next";
 
 const CookiesBanner: React.FC<CookiesBannerProps> = ({
+
   companyName = "SantiClinic",
   privacyPolicyUrl = "/privacy-policy",
   onAccept,
   onReject,
   customMessage
 }) => {
+  
+  const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
   const [isAccepted, setIsAccepted] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
@@ -86,31 +90,33 @@ const CookiesBanner: React.FC<CookiesBannerProps> = ({
   const cookieTypes = [
     {
       key: 'necessary' as keyof CookiePreferences,
-      title: 'Cookies Necessários',
-      description: 'Essenciais para o funcionamento do site e segurança.',
+      title: t("cookie_ban.2.types.part1"),
+      description: t("cookie_ban.2.types.part2"),
       required: true
     },
     {
       key: 'analytics' as keyof CookiePreferences,
-      title: 'Cookies de Análise',
-      description: 'Ajudam-nos a melhorar nossos serviços e tratamentos.',
+      title: t("cookie_ban.2.types.part3"),
+      description: t("cookie_ban.2.types.part4"),
       required: false
     },
     {
       key: 'marketing' as keyof CookiePreferences,
-      title: 'Cookies de Marketing',
-      description: 'Permitem mostrar conteúdo relevante sobre nossos tratamentos.',
+      title: t("cookie_ban.2.types.part5"),
+      description: t("cookie_ban.2.types.part6"),
       required: false
     },
     {
       key: 'personalization' as keyof CookiePreferences,
-      title: 'Cookies de Personalização',
-      description: 'Personalizam sua experiência com base em suas preferências.',
+      title: t("cookie_ban.2.types.part7"),
+      description: t("cookie_ban.2.types.part8"),
       required: false
     }
   ];
 
   if (!isVisible) return null;
+
+
 
   return (
     <div className={`cookies-overlay ${isAccepted ? 'fade-out' : ''}`}>
@@ -140,31 +146,29 @@ const CookiesBanner: React.FC<CookiesBannerProps> = ({
                   <div className="pulse-ring" />
                 </div>
                 <div className="header-text">
-                  <h3>Experiência Personalizada</h3>
-                  <div className="subtitle">Otimizada com tecnologia avançada</div>
+                  <h3>{t("cookie_ban.1.title.part1")}</h3>
+                  <div className="subtitle">{t("cookie_ban.1.title.part2")}</div>
                 </div>
               </div>
 
               {/* Description */}
               <div className="banner-description">
                 <p>
-                  {customMessage || `Na ${companyName}, utilizamos cookies essenciais e tecnologias avançadas para 
-                  personalizar sua experiência, analisar nosso desempenho e oferecer conteúdo relevante 
-                  sobre nossos tratamentos de laser CO₂ e rejuvenescimento.`}
+                  {t("cookie_ban.1.title.part3", {companyName})}
                 </p>
                 
                 <div className="features-list">
                   <div className="feature">
                     <div className="feature-icon">🔒</div>
-                    <span>100% Seguro e Privado</span>
+                    <span>{t("cookie_ban.1.footer.part1")}</span>
                   </div>
                   <div className="feature">
                     <div className="feature-icon">⚡</div>
-                    <span>Experiência Otimizada</span>
+                    <span>{t("cookie_ban.1.footer.part2")}</span>
                   </div>
                   <div className="feature">
                     <div className="feature-icon">🎯</div>
-                    <span>Conteúdo Personalizado</span>
+                    <span>{t("cookie_ban.1.footer.part3")}</span>
                   </div>
                 </div>
               </div>
@@ -176,7 +180,7 @@ const CookiesBanner: React.FC<CookiesBannerProps> = ({
                   onClick={handleAcceptAll}
                   aria-label="Aceitar todos os cookies"
                 >
-                  <span>Aceitar Todos</span>
+                  <span>{t("cookie_ban.1.btns.part1")}</span>
                   <div className="btn-glow" />
                 </button>
                 
@@ -185,7 +189,7 @@ const CookiesBanner: React.FC<CookiesBannerProps> = ({
                   onClick={() => setShowSettings(true)}
                   aria-label="Personalizar configurações de cookies"
                 >
-                  <span>Personalizar</span>
+                  <span>{t("cookie_ban.1.btns.part2")}</span>
                 </button>
                 
                 <button 
@@ -193,7 +197,7 @@ const CookiesBanner: React.FC<CookiesBannerProps> = ({
                   onClick={handleRejectAll}
                   aria-label="Rejeitar cookies opcionais"
                 >
-                  Rejeitar Opcionais
+                  {t("cookie_ban.1.btns.part3")}
                 </button>
               </div>
             </>
@@ -211,8 +215,8 @@ const CookiesBanner: React.FC<CookiesBannerProps> = ({
                   </svg>
                 </button>
                 <div>
-                  <h3>Preferências de Cookies</h3>
-                  <p>Personalize sua experiência na {companyName}</p>
+                  <h3>{t("cookie_ban.2.head.part1")}</h3>
+                  <p>{t("cookie_ban.2.head.part2")} {companyName}</p>
                 </div>
               </div>
 
@@ -222,7 +226,7 @@ const CookiesBanner: React.FC<CookiesBannerProps> = ({
                     <div className="setting-info">
                       <h4>{cookie.title}</h4>
                       <p>{cookie.description}</p>
-                      {cookie.required && <span className="required-badge">Obrigatório</span>}
+                      {cookie.required && <span className="required-badge">{t("cookie_ban.2.types.subt")}</span>}
                     </div>
                     <div className="toggle-container">
                       <label className={`toggle ${preferences[cookie.key] ? 'active' : ''} ${cookie.required ? 'disabled' : ''}`}>
@@ -248,7 +252,7 @@ const CookiesBanner: React.FC<CookiesBannerProps> = ({
                   onClick={handleSavePreferences}
                   aria-label="Salvar preferências de cookies"
                 >
-                  <span>Salvar Preferências</span>
+                  <span>{t("cookie_ban.2.btn")}</span>
                   <div className="btn-glow" />
                 </button>
               </div>
@@ -262,7 +266,7 @@ const CookiesBanner: React.FC<CookiesBannerProps> = ({
             <svg viewBox="0 0 24 24" fill="none">
               <path d="M14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.89 22 5.99 22H18C19.1 22 20 21.1 20 20V8L14 2ZM18 20H6V4H13V9H18V20Z" fill="currentColor"/>
             </svg>
-            Política de Privacidade
+            {t("cookie_ban.2.types.subt2")}
           </a>
         </div>
       </div>

@@ -41,7 +41,7 @@ const SkinMarks = () => {
                    }
                  }}
                >
-                 <span className="btn-text">Saber Mais sobre o Laser CO2</span>
+                 <span className="btn-text">{t("key_areas.btn")}</span>
                  <div className="btn-glow"></div>
                </button>
              </div>

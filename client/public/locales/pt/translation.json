@@ -54,8 +54,10 @@
   },
   "key_areas": {
     "title": "Laser CO₂ Aplicado com Precisão nas Zonas-Chave",
+    "title2" : "Tecnologia avançada encontra cuidados de precisão",
     "subtitle": "Rosto, Pescoço e Colo",
     "lt_title": "Ideal para melhorar",
+    "btn" : "Saber Mais sobre o Laser CO2",
     "lt": [
       "Textura e firmeza da pele",
       "Rugas finas e moderadas",
@@ -729,6 +731,111 @@
           "Recomendamos que consulte regularmente esta página para se manter informado sobre como protegemos os seus dados pessoais."
         ]
       }
+    }
+  },
+
+  "contact_popup" : {
+
+    "head" : {
+
+      "part1" : "Vamos nos conhecer!",
+      "part2" : "Conte-nos sobre você para personalizarmos seu atendimento"
+    },
+
+    "form" : {
+
+      "1" : {
+
+        "part1" : "Nome completo",
+        "part2" : "Telefone",
+        "part3" : "Continuar"
+      },
+
+      "2" : {
+
+        "part1" : "Como podemos ajudar?",
+        "part2" : "Conte-nos sobre seu interesse e como podemos te atender melhor",
+        "part3" : "Selecione o assunto",
+        "part4" : "Assunto de Interesse",
+        "part5" : "Sua Mensagem",
+        "part6" : "Voltar",
+        "part7" : "Enviando",
+        "part8" : "Enviar Mensagem"
+      },
+
+      "3" : {
+        "part1" : "Mensagem Enviada!",
+        "part2" : "Recebemos sua mensagem e entraremos em contato em breve. Obrigado pelo interesse na",
+        "part3" : "Resposta rápida",
+        "part4" : "Atendimento especializado",
+        "part5" : "Tratamento personalizado"
+      }
+
+    },
+
+    "footer" : {
+      "part1" : "Seus dados estão protegidos"
+    },
+
+    "dropdown" : {
+      "1" : "🔥 Laser CO₂ Face",
+      "2" : "✨ Laser CO₂ Pescoço",
+      "3" : "🩹 Blefosuperior sem corte",
+      "4" : "🎯 Blefoinferior sem corte",
+      "5" : "👩‍⚕️ Consulta de Avaliação",
+      "6" : "💬 Outros Assuntos"
+    }
+  },
+
+  "cookie_ban" : {
+
+    "1" : {
+
+      "title" : {
+        
+
+        "part1" : "Experiência Personalizada",
+        "part2" : "Otimizada com tecnologia avançada",
+        "part3" : "Na {{companyName}}, utilizamos cookies essenciais e tecnologias avançadas para personalizar sua experiência, analisar nosso desempenho e oferecer conteúdo relevante sobre nossos tratamentos de laser CO₂ e rejuvenescimento." 
+      },
+
+      "footer" : {
+
+        "part1" : "100% Seguro e Privado",
+        "part2" : "Experiência Otimizada",
+        "part3" : "Conteúdo Personalizado"
+      },
+
+      "btns" : {
+
+        "part1" : "Aceitar Todos",
+        "part2" : "Personalizar",
+        "part3" : "Rejeitar Opcionais"
+      }
+    },
+
+    "2" : {
+
+      "head" :{
+        "part1" : "Preferências de Cookies",
+        "part2" : "Personalize sua experiência na"
+        
+      },
+
+      "types" : {
+        "part1" : "Cookies Necessários",
+        "part2" : "Essenciais para o funcionamento do site e segurança.",
+        "part3" : "Cookies de Análise",
+        "part4" : "Ajudam-nos a melhorar nossos serviços e tratamentos.",
+        "part5" : "Cookies de Marketing",
+        "part6" : "Permitem mostrar conteúdo relevante sobre nossos tratamentos.",
+        "part7" : "Cookies de Personalização",
+        "part8" : "Personalizam sua experiência com base em suas preferências.",
+        "subt" : "Obrigatório",
+        "subt2" : "Política de Privacidade"
+      },
+
+      "btn" : "Salvar Preferências"
     }
   }
 }

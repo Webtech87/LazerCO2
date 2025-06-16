@@ -57,7 +57,7 @@ const KeyAreas = () => {
                             {t("key_areas.title")}
                         </h1>
                         <p className="keyareas-subtitle-text">
-                        Tecnologia avançada encontra cuidados de precisão
+                        {t("key_areas.title2")}
                         </p>
                     </div>
 
@@ -113,7 +113,7 @@ const KeyAreas = () => {
                                 {/* Call to Action */}
                                 <div className="keyareas-cta">
                                     <button className="learn-more-btn">
-                                        <span className="btn-text">Saber Mais sobre o Laser CO2</span>
+                                        <span className="btn-text">{t("key_areas.btn")}</span>
                                         <div className="btn-glow"></div>
                                         <Zap className="btn-icon" />
                                     </button>

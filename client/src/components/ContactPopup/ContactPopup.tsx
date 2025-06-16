@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import type { ContactFormData, ContactPopupProps } from './types';
 import './ContactPopup.css';
+import {useTranslation} from "react-i18next";
 
 const ContactPopup: React.FC<ContactPopupProps> = ({
   companyName = "SantiClinic",
@@ -23,14 +24,15 @@ const ContactPopup: React.FC<ContactPopupProps> = ({
     assunto: '',
     mensagem: ''
   });
-
+const { t } = useTranslation();
   const subjects = [
-    { value: 'lazer-co2-face', label: '🔥 Laser CO₂ Face' },
-    { value: 'lazer-co2-pescoco', label: '✨ Laser CO₂ Pescoço' },
-    { value: 'blefo-superior', label: '🩹 Blefosuperior sem corte' },
-    { value: 'blefo-inferior', label: '🎯 Blefoinferior sem corte' },
-    { value: 'consulta-avaliacao', label: '👩‍⚕️ Consulta de Avaliação' },
-    { value: 'outros', label: '💬 Outros Assuntos' }
+    
+    { value: 'lazer-co2-face', label: t("contact_popup.dropdown.1") },
+    { value: 'lazer-co2-pescoco', label: t("contact_popup.dropdown.2") },
+    { value: 'blefo-superior', label: t("contact_popup.dropdown.3") },
+    { value: 'blefo-inferior', label: t("contact_popup.dropdown.4") },
+    { value: 'consulta-avaliacao', label: t("contact_popup.dropdown.5") },
+    { value: 'outros', label: t("contact_popup.dropdown.6") }
   ];
 
   useEffect(() => {
@@ -221,6 +223,7 @@ const ContactPopup: React.FC<ContactPopupProps> = ({
       setIsSubmitting(false);
     }
   };
+  
 
   const handleClose = () => {
     console.log('❌ Popup closed by user');
@@ -271,6 +274,8 @@ const ContactPopup: React.FC<ContactPopupProps> = ({
   };
 
   if (!isVisible) return null;
+
+  
 
   return (
     <div 
@@ -349,8 +354,8 @@ const ContactPopup: React.FC<ContactPopupProps> = ({
                     <path d="M20 21V19C20 17.9 19.1 17 18 17H6C4.9 17 4 17.9 4 19V21M16 7C16 9.21 14.21 11 12 11C9.79 11 8 9.21 8 7C8 4.79 9.79 3 12 3C14.21 3 16 4.79 16 7Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </div>
-                <h2>Vamos nos conhecer! 👋</h2>
-                <p>Conte-nos sobre você para personalizarmos seu atendimento</p>
+                <h2>{t("contact_popup.head.part1")} 👋</h2>
+                <p>{t("contact_popup.head.part2")}</p>
               </div>
 
               <form 
@@ -370,7 +375,7 @@ const ContactPopup: React.FC<ContactPopupProps> = ({
                       placeholder=" "
                       autoComplete="name"
                     />
-                    <label htmlFor="nome">Nome Completo</label>
+                    <label htmlFor="nome">{t("contact_popup.form.1.part1")}</label>
                     <div className="input-border" />
                     <div className="input-icon">
                       <svg viewBox="0 0 24 24" fill="none">
@@ -393,7 +398,7 @@ const ContactPopup: React.FC<ContactPopupProps> = ({
                       placeholder=" "
                       autoComplete="tel"
                     />
-                    <label htmlFor="telefone">Telefone / WhatsApp</label>
+                    <label htmlFor="telefone">{t("contact_popup.form.1.part2")} / WhatsApp</label>
                     <div className="input-border" />
                     <div className="input-icon">
                       <svg viewBox="0 0 24 24" fill="none">
@@ -429,7 +434,7 @@ const ContactPopup: React.FC<ContactPopupProps> = ({
                 </div>
 
                 <button type="submit" className="btn-next">
-                  <span>Continuar</span>
+                  <span>{t("contact_popup.form.1.part3")}</span>
                   <svg viewBox="0 0 24 24" fill="none">
                     <path d="M5 12H19M12 5L19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
@@ -447,8 +452,8 @@ const ContactPopup: React.FC<ContactPopupProps> = ({
                     <path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </div>
-                <h2>Como podemos ajudar? 💬</h2>
-                <p>Conte-nos sobre seu interesse e como podemos te atender melhor</p>
+                <h2>{t("contact_popup.form.2.part1")} 💬</h2>
+                <p>{t("contact_popup.form.2.part2")}</p>
               </div>
 
               <form 
@@ -482,14 +487,14 @@ const ContactPopup: React.FC<ContactPopupProps> = ({
                       onKeyDown={(e) => e.stopPropagation()} // Prevent event bubbling
                       className={errors.assunto ? 'error' : ''}
                     >
-                      <option value="">Selecione o assunto...</option>
+                      <option value="">{t("contact_popup.form.2.part3")}...</option>
                       {subjects.map((subject) => (
                         <option key={subject.value} value={subject.value}>
                           {subject.label}
                         </option>
                       ))}
                     </select>
-                    <label htmlFor="assunto">Assunto de Interesse</label>
+                    <label htmlFor="assunto">{t("contact_popup.form.2.part4")}</label>
                     <div className="select-border" />
                     <div className="select-icon">
                       <svg viewBox="0 0 24 24" fill="none">
@@ -512,7 +517,7 @@ const ContactPopup: React.FC<ContactPopupProps> = ({
                       rows={4}
                       maxLength={500}
                     />
-                    <label htmlFor="mensagem">Sua Mensagem</label>
+                    <label htmlFor="mensagem">{t("contact_popup.form.2.part5")}</label>
                     <div className="textarea-border" />
                     <div className="char-counter">
                       {formData.mensagem.length}/500
@@ -526,7 +531,7 @@ const ContactPopup: React.FC<ContactPopupProps> = ({
                     <svg viewBox="0 0 24 24" fill="none">
                       <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
-                    <span>Voltar</span>
+                    <span>{t("contact_popup.form.2.part6")}</span>
                   </button>
 
                   <button 
@@ -537,11 +542,11 @@ const ContactPopup: React.FC<ContactPopupProps> = ({
                     {isSubmitting ? (
                       <>
                         <div className="spinner" />
-                        <span>Enviando...</span>
+                        <span>{t("contact_popup.form.2.part7")}...</span>
                       </>
                     ) : (
                       <>
-                        <span>Enviar Mensagem</span>
+                        <span>{t("contact_popup.form.2.part8")}</span>
                         <svg viewBox="0 0 24 24" fill="none">
                           <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
@@ -562,21 +567,21 @@ const ContactPopup: React.FC<ContactPopupProps> = ({
                     <path d="M20 6L9 17L4 12" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </div>
-                <h2>Mensagem Enviada! 🎉</h2>
-                <p>Recebemos sua mensagem e entraremos em contato em breve. Obrigado pelo interesse na {companyName}!</p>
+                <h2>{t("contact_popup.form.3.part1")} 🎉</h2>
+                <p>{t("contact_popup.form.3.part2")} {companyName}!</p>
                 
                 <div className="success-features">
                   <div className="feature">
                     <div className="feature-icon">⚡</div>
-                    <span>Resposta rápida</span>
+                    <span>{t("contact_popup.form.3.part3")}</span>
                   </div>
                   <div className="feature">
                     <div className="feature-icon">👩‍⚕️</div>
-                    <span>Atendimento especializado</span>
+                    <span>{t("contact_popup.form.3.part4")}</span>
                   </div>
                   <div className="feature">
                     <div className="feature-icon">🎯</div>
-                    <span>Tratamento personalizado</span>
+                    <span>{t("contact_popup.form.3.part5")}</span>
                   </div>
                 </div>
               </div>
@@ -590,7 +595,7 @@ const ContactPopup: React.FC<ContactPopupProps> = ({
             <svg viewBox="0 0 24 24" fill="none">
               <path d="M12 22S8 18 8 13V7L12 5L16 7V13C16 18 12 22 12 22Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-            <span>Seus dados estão protegidos</span>
+            <span>{t("contact_popup.footer.part1")}</span>
           </div>
         </div>
       </div>
