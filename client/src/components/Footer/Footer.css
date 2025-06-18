@@ -553,7 +553,7 @@ body {
 /* Checkbox Styling */
 .checkbox {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 1rem;
   margin: 0.5rem 0;
 }

@@ -170,7 +170,7 @@ const Footer = () => {
                                 <img src="/facebook-logo.png" alt="Facebook" />
                             </a>
                             <a 
-                                href="https://www.tiktok.com/@santiclinic" 
+                                href="https://www.tiktok.com/@santiclinic1" 
                                 target="_blank" 
                                 rel="noopener noreferrer"
                                 aria-label="TikTok"
