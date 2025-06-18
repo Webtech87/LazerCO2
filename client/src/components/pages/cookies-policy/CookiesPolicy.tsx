@@ -13,10 +13,7 @@ const CookiesPolicy: React.FC = () => {
 
 
     const handleManageCookies = () => {
-        // This would trigger your cookies banner to reopen
-        // You can implement this to show the cookies preference modal
-        alert('Esta funcionalidade irá abrir as preferências de cookies.');
-        console.log('Opening cookies preferences...');
+        window.dispatchEvent(new Event('showCookiePreferences'));
     };
 
     return (

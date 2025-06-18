@@ -30,6 +30,33 @@ const CookiesBanner: React.FC<CookiesBannerProps> = ({
     }
   }, [companyName]);
 
+  useEffect(() => {
+    const handleShowPreferences = () => {
+    const savedPrefs = localStorage.getItem(`${companyName.toLowerCase()}-cookie-preferences`);
+    if (savedPrefs) {
+      setPreferences(JSON.parse(savedPrefs));
+    } else {
+      setPreferences({
+        necessary: true,
+        analytics: false,
+        marketing: false,
+        personalization: false
+      });
+    }
+
+    setShowSettings(true);
+    setIsVisible(true);
+    setIsAccepted(false);
+  };
+
+    window.addEventListener('showCookiePreferences', handleShowPreferences);
+
+    return () => {
+      window.removeEventListener('showCookiePreferences', handleShowPreferences);
+    };
+  }, []);
+
+
   const handleAcceptAll = () => {
     const allAccepted: CookiePreferences = {
       necessary: true,
