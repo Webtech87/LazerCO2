@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import './Navbar.css';
 import { useTranslation } from 'react-i18next';
 import i18n from "i18next";
+import logo from '../../assets/logo-santiclinic.png'
 
 // Language type
 type Language = 'pt' | 'en';
@@ -163,7 +164,7 @@ const Navbar = () => {
           <div className="navbar-logo">
             <a href="/">
               <div className="logo-container">
-                <span className="logo-text">SANTI<span className="logo-text-highlight">CLINIC</span></span>
+                <img src={logo} alt="SantiClinic Logo" />
               </div>
             </a>
           </div>
@@ -233,7 +234,13 @@ const Navbar = () => {
       <div className={`mobile-menu ${isMenuOpen ? 'active' : ''}`}>
         <div className="mobile-menu-container">
           <div className="mobile-menu-header">
-            <span className="logo-text">SANTI<span className="logo-text-highlight">CLINIC</span></span>
+            <div className="navbar-logo">
+                <a href="/" aria-label="SantiClinic Home">
+                    <div className="logo-container">
+                        <img src={logo} alt="SantiClinic Logo" />
+                    </div>
+                </a>
+            </div>
             <button 
               className="mobile-menu-close" 
               onClick={closeMenu}
