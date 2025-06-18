@@ -16,7 +16,7 @@ const PrivacyPolicy: React.FC = () => {
                 <div className="privacy-policy__header">
                     <h1 className="privacy-policy__title">Política de Privacidade</h1>
                     <p className="privacy-policy__subtitle">
-                        {t("pp.top_info")}.
+                        {t("pp.top_info")}
                     </p>
                     <div className="privacy-policy__meta">
                         <span className="privacy-policy__date">{t("pp.last_update")}</span>
@@ -106,7 +106,7 @@ const PrivacyPolicy: React.FC = () => {
                     <section className="privacy-policy__section">
                         <h2 className="privacy-policy__section-title">4. {t("pp.lt.4.title")}</h2>
                         <div className="privacy-policy__section-content">
-                            <p>{t("pp.lt.4.p")}:</p>
+                            <p>{t("pp.lt.4.p")}</p>
 
                             <h3>4.1 {t("pp.lt.4.4.1.title")}</h3>
                             <p>
@@ -135,7 +135,7 @@ const PrivacyPolicy: React.FC = () => {
                         <h2 className="privacy-policy__section-title">5. {t("pp.lt.5.title")}</h2>
                         <div className="privacy-policy__section-content">
                             <p>
-                                {t("pp.lt.5.p")}:
+                                {t("pp.lt.5.p")}
                             </p>
 
                             <h3>5.1 {t("pp.lt.5.5.1.title")}</h3>
@@ -146,7 +146,7 @@ const PrivacyPolicy: React.FC = () => {
                                 <li>{t("pp.lt.5.5.1.lt.3")}</li>
                             </ul>
 
-                            <h3>5.2{t("pp.lt.5.5.2.title")}</h3>
+                            <h3>5.2 {t("pp.lt.5.5.2.title")}</h3>
                             <ul>
                                 <li>{t("pp.lt.5.5.2.lt.0")}</li>
                                 <li>{t("pp.lt.5.5.2.lt.1")}</li>
@@ -188,7 +188,7 @@ const PrivacyPolicy: React.FC = () => {
                         <h2 className="privacy-policy__section-title">7. {t("pp.lt.7.title")}</h2>
                         <div className="privacy-policy__section-content">
                             <p>
-                                {t("pp.lt.7.p")}:
+                                {t("pp.lt.7.p")}
                             </p>
 
                             <h3>7.1 {t("pp.lt.7.7.1.title")}</h3>
@@ -198,12 +198,12 @@ const PrivacyPolicy: React.FC = () => {
 
                             <h3>7.2 {t("pp.lt.7.7.2.title")}</h3>
                             <p>
-                                {t("pp.lt.7.7.2.p")}.
+                                {t("pp.lt.7.7.2.p")}
                             </p>
 
                             <h3>7.3 {t("pp.lt.7.7.3.title")}</h3>
                             <p>
-                                {t("pp.lt.7.7.3.p")}.
+                                {t("pp.lt.7.7.3.p")}
                             </p>
                         </div>
                     </section>
@@ -213,38 +213,38 @@ const PrivacyPolicy: React.FC = () => {
                         <h2 className="privacy-policy__section-title">8. {t("pp.lt.8.title")}</h2>
                         <div className="privacy-policy__section-content">
                             <p>
-                                {t("pp.lt.8.p")}:
+                                {t("pp.lt.8.p")}
                             </p>
 
                             <div className="privacy-policy__rights">
                                 <div className="privacy-policy__right">
                                     <h4>{t("pp.lt.8.lt.0.title")}</h4>
-                                    <p>{t("pp.lt.8.lt.0.p")}.</p>
+                                    <p>{t("pp.lt.8.lt.0.p")}</p>
                                 </div>
 
                                 <div className="privacy-policy__right">
                                     <h4>{t("pp.lt.8.lt.1.title")}</h4>
-                                    <p>{t("pp.lt.8.lt.1.p")}.</p>
+                                    <p>{t("pp.lt.8.lt.1.p")}</p>
                                 </div>
 
                                 <div className="privacy-policy__right">
                                     <h4>{t("pp.lt.8.lt.2.title")}</h4>
-                                    <p>{t("pp.lt.8.lt.2.p")}.</p>
+                                    <p>{t("pp.lt.8.lt.2.p")}</p>
                                 </div>
 
                                 <div className="privacy-policy__right">
                                     <h4>{t("pp.lt.8.lt.3.title")}</h4>
-                                    <p>{t("pp.lt.8.lt.3.p")}.</p>
+                                    <p>{t("pp.lt.8.lt.3.p")}</p>
                                 </div>
 
                                 <div className="privacy-policy__right">
                                     <h4>{t("pp.lt.8.lt.4.title")}</h4>
-                                    <p>{t("pp.lt.8.lt.4.p")}.</p>
+                                    <p>{t("pp.lt.8.lt.4.p")}</p>
                                 </div>
 
                                 <div className="privacy-policy__right">
                                     <h4>{t("pp.lt.8.lt.5.title")}</h4>
-                                    <p>{t("pp.lt.8.lt.5.p")}.</p>
+                                    <p>{t("pp.lt.8.lt.5.p")}</p>
                                 </div>
                             </div>
                         </div>
@@ -255,7 +255,7 @@ const PrivacyPolicy: React.FC = () => {
                         <h2 className="privacy-policy__section-title">9. {t("pp.lt.9.title")}</h2>
                         <div className="privacy-policy__section-content">
                             <p>
-                                {t("pp.lt.9.p.0")}:
+                                {t("pp.lt.9.p.0")}
                             </p>
 
                             <div className="privacy-policy__contact">
@@ -263,18 +263,18 @@ const PrivacyPolicy: React.FC = () => {
                                     <strong>Email:</strong> geral@santiclinic.eu
                                 </div>
                                 <div className="privacy-policy__contact-item">
-                                    <strong>{t("pp.lt.9.words.phone")}:</strong> +351 915 007 427
+                                    <strong>{t("pp.lt.9.words.phone")}</strong> +351 915 007 427
                                 </div>
                                 <div className="privacy-policy__contact-item">
-                                    <strong>{t("pp.lt.9.words.adress")}:</strong> Praceta Agostinho Ferreira Chaves 5 Lj 4 AA, 8005-328 Faro
+                                    <strong>{t("pp.lt.9.words.adress")}</strong> Praceta Agostinho Ferreira Chaves 5 Lj 4 AA, 8005-328 Faro
                                 </div>
                                 <div className="privacy-policy__contact-item">
-                                    <strong>{t("pp.lt.9.words.responsable")}:</strong> geral@santiclinic.eu
+                                    <strong>{t("pp.lt.9.words.responsable")}</strong> geral@santiclinic.eu
                                 </div>
                             </div>
 
                             <p>
-                                {t("pp.lt.9.p.1.0")} <strong>{t("pp.lt.9.p.1.1")}</strong>.
+                                {t("pp.lt.9.p.1.0")} <strong>{t("pp.lt.9.p.1.1")}</strong>
                             </p>
                         </div>
                     </section>
@@ -284,10 +284,10 @@ const PrivacyPolicy: React.FC = () => {
                         <h2 className="privacy-policy__section-title">10. {t("pp.lt.10.title")}</h2>
                         <div className="privacy-policy__section-content">
                             <p>
-                                {t("pp.lt.10.p.0")}.
+                                {t("pp.lt.10.p.0")}
                             </p>
                             <p>
-                                {t("pp.lt.10.p.1")}.
+                                {t("pp.lt.10.p.1")}
                             </p>
                         </div>
                     </section>
@@ -302,7 +302,7 @@ const PrivacyPolicy: React.FC = () => {
                     </div>
 
                     <div className="privacy-policy__related">
-                        <p>{t("pp.rel_doc")}:</p>
+                        <p>{t("pp.rel_doc")}</p>
                         <a href="/politica-cookies" className="privacy-policy__related-link">
                             {t("pp.pc")}
                         </a>
