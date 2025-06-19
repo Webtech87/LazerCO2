@@ -279,7 +279,7 @@
     padding: 1.25rem 0;
     border-bottom: 1px solid rgba(226, 232, 240, 0.5);
     position: relative;
-    cursor: pointer;
+    cursor: default;
     opacity: 0;
     transform: translateX(-30px);
     animation: slideInLeft 0.6s ease-out forwards;

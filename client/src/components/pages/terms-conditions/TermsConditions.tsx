@@ -44,13 +44,13 @@ const TermsConditions: React.FC = () => {
             <div className="terms-conditions__section-content">
               <div className="terms-conditions__contact">
                 <div className="terms-conditions__contact-item">
-                  <strong>{t("tc.lt.2.words.name")}:</strong> Santiclinic - Microcirurgia Cosmética
+                  <strong>{t("tc.lt.2.words.name")}</strong> Santiclinic - Microcirurgia Cosmética
                 </div>
                 <div className="terms-conditions__contact-item">
-                  <strong>{t("tc.lt.2.words.adress")}:</strong> Praceta Agostinho Ferreira Chaves 5 Lj 4 AA, 8005-328 Faro
+                  <strong>{t("tc.lt.2.words.adress")}</strong> Praceta Agostinho Ferreira Chaves 5 Lj 4 AA, 8005-328 Faro
                 </div>
                 <div className="terms-conditions__contact-item">
-                  <strong>{t("tc.lt.2.words.phone")}:</strong> +351 915 007 427
+                  <strong>{t("tc.lt.2.words.phone")}</strong> +351 915 007 427
                 </div>
                 <div className="terms-conditions__contact-item">
                   <strong>Email:</strong> geral@santiclinic.eu
@@ -67,7 +67,7 @@ const TermsConditions: React.FC = () => {
             <h2 className="terms-conditions__section-title">3. {t("tc.lt.3.title")}</h2>
             <div className="terms-conditions__section-content">
               <p>
-                {t("tc.lt.3.p")}:
+                {t("tc.lt.3.p")}
               </p>
               
               <h3>3.1 {t("tc.lt.3.3.1.title")}</h3>
@@ -98,7 +98,7 @@ const TermsConditions: React.FC = () => {
               </p>
 
               <h3>4.2 {t("tc.lt.4.4.2.title")}</h3>
-              <p>{t("tc.lt.4.4.2.p")}:</p>
+              <p>{t("tc.lt.4.4.2.p")}</p>
               <ul>
                 <li>{t("tc.lt.4.4.2.lt.0")}</li>
                 <li>{t("tc.lt.4.4.2.lt.1")}</li>
@@ -219,7 +219,7 @@ const TermsConditions: React.FC = () => {
 
               <h3>9.3 {t("tc.lt.9.9.3.title")}</h3>
               <p>
-                {t("tc.lt.9.9.3.p")}.
+                {t("tc.lt.9.9.3.p")}
               </p>
             </div>
           </section>
@@ -230,16 +230,16 @@ const TermsConditions: React.FC = () => {
             <div className="terms-conditions__section-content">
               <h3>10.1 {t("tc.lt.10.10.1.title")}</h3>
               <p>
-                {t("tc.lt.10.10.1.p")}.
+                {t("tc.lt.10.10.1.p")}
               </p>
 
               <h3>10.2 {t("tc.lt.10.10.2.title")}</h3>
-              <p>{t("tc.lt.10.10.2.p")}.
+              <p>{t("tc.lt.10.10.2.p")}
               </p>
 
               <h3>10.3 {t("tc.lt.10.10.3.title")}</h3>
               <p>
-                {t("tc.lt.10.10.3.p")}:
+                {t("tc.lt.10.10.3.p")}
               </p>
               
               <div className="terms-conditions__contact">
@@ -247,7 +247,7 @@ const TermsConditions: React.FC = () => {
                   <strong>Email:</strong> geral@santiclinic.eu
                 </div>
                 <div className="terms-conditions__contact-item">
-                  <strong>{t("tc.lt.2.words.phone")}:</strong> +351 915 007 427
+                  <strong>{t("tc.lt.2.words.phone")}</strong> +351 915 007 427
                 </div>
                 <div className="terms-conditions__contact-item">
                   <strong>WhatsApp:</strong> +351 915 007 427
@@ -266,7 +266,7 @@ const TermsConditions: React.FC = () => {
           </div>
           
           <div className="terms-conditions__related">
-            <p>{t("tc.rel_doc")}:</p>
+            <p>{t("tc.rel_doc")}</p>
             <a href="/politica-privacidade" className="terms-conditions__related-link">
               {t("tc.pp")}
             </a>

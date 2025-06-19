@@ -26,16 +26,16 @@
       "The",
       "Fractional CO₂ Laser",
       "is an advanced skin resurfacing technology that uses controlled thermal energy to",
-      "stimulate deep skin regeneration",
+      "stimulate deep skin regeneration,",
       "acting on the dermal and epidermal layers. The laser beam is fractionated into thousands of microcolumns, selectively targeting the skin, which allows",
       "precise treatment of imperfections",
       "while preserving healthy surrounding areas for",
-      "faster and safer recovery",
+      "faster and safer recovery.",
       "It is considered the",
       "gold standard",
       "in non-surgical rejuvenation and",
-      "improvement of skin texture and quality",
-      "with visible results after a single session"
+      "improvement of skin texture and quality,",
+      "with visible results after a single session."
     ],
     "btn": "Schedule Your Evaluation"
   },
@@ -120,7 +120,7 @@
         "phone": "Phone",
         "obj": "Subject",
         "msg": "Message",
-        "axept": "I have read and accept the",
+        "axept": "I have read and accept the ",
         "btn": "Schedule your consultation"
       }
     },

@@ -120,7 +120,7 @@
         "phone": "Telefone",
         "obj": "Assunto",
         "msg": "Mensagem",
-        "axept": "Li e aceito a",
+        "axept": "Li e aceito a ",
         "btn": "Agende a sua avaliação"
       }
     },
@@ -727,7 +727,7 @@
       "10": {
         "title": "Alterações à Política",
         "p": [
-          "A Santiclinic reserva-se o direito de alterar esta Política de Privacidade a qualquer momento. As alterações serão comunicadas através do nosso website e, quando materiais, por email aos titulares dos dados",
+          "A Santiclinic reserva-se o direito de alterar esta Política de Privacidade a qualquer momento. As alterações serão comunicadas através do nosso website e, quando materiais, por email aos titulares dos dados.",
           "Recomendamos que consulte regularmente esta página para se manter informado sobre como protegemos os seus dados pessoais."
         ]
       }

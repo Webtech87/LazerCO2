@@ -220,7 +220,7 @@
     padding: 1.5rem 0;
     border-bottom: 1px solid rgba(226, 232, 240, 0.3);
     position: relative;
-    cursor: pointer;
+    cursor: default;
     opacity: 0;
     transform: translateX(-30px);
     transition: all 0.4s ease;
@@ -241,7 +241,7 @@
   .treatment-item:hover {
     background: rgba(30, 82, 204, 0.03);
     border-radius: 1rem;
-    padding-left: 1.5rem;
+    padding-left: 2rem;
     padding-right: 1.5rem;
     transform: translateX(5px);
   }
@@ -250,7 +250,6 @@
     content: '';
     position: absolute;
     left: 0;
-    top: 50%;
     transform: translateY(-50%);
     width: 1.5rem;
     height: 1.5rem;
@@ -323,18 +322,7 @@
     position: relative;
   }
   
-  .treatment-image::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(59, 130, 246, 0.3));
-    border-radius: 50px 50px 50px 15px;
-    z-index: 1;
-    pointer-events: none;
-  }
+  
   
   .treatment-image img:hover {
     transform: translateY(-10px) scale(1.02);

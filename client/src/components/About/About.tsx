@@ -47,7 +47,7 @@ const About = () => {
             <h2>{t("cois.title")}</h2>
             <div className="treatment-text-container">
               <p className="treatment-text">
-                {t("cois.p.0")} <span className="highlight">{t("cois.p.1")}</span> {t("cois.p.2")} <span className="highlight">{t("cois.p.3")}</span>, {t("cois.p.4")} <span className="highlight">{t("cois.p.5")}</span>, {t("cois.p.6")} <span className="highlight">{t("cois.p.7")}</span>. {t("cois.p.8")} <span className="highlight">{t("cois.p.9")}</span> {t("cois.p.10")} <span className="highlight">{t("cois.p.11")}</span>, {t("cois.p.12")}.
+                {t("cois.p.0")} <span className="highlight">{t("cois.p.1")}</span> {t("cois.p.2")} <span className="highlight">{t("cois.p.3")}</span> {t("cois.p.4")} <span className="highlight">{t("cois.p.5")}</span> {t("cois.p.6")} <span className="highlight">{t("cois.p.7")}</span> {t("cois.p.8")} <span className="highlight">{t("cois.p.9")}</span> {t("cois.p.10")} <span className="highlight">{t("cois.p.11")}</span> {t("cois.p.12")}
               </p>
               <button 
                 className="cta-button"
