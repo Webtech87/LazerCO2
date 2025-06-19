@@ -3,6 +3,8 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Play, Pause, ChevronLeft, ChevronRight, VolumeX, Volume2, ExternalLink } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
+
+
 // Types
 interface VideoItem {
   id: string;
@@ -21,6 +23,7 @@ interface VideoCarouselProps {
   showThumbnails?: boolean;
   showProgressDots?: boolean;
   enableAutoPlay?: boolean;
+  
 }
 
 interface VideoControlsProps {
@@ -28,6 +31,7 @@ interface VideoControlsProps {
   isMuted: boolean;
   onTogglePlay: () => void;
   onToggleMute: () => void;
+  
 }
 
 interface NavigationProps {
@@ -49,6 +53,7 @@ interface ProgressIndicatorsProps {
 
 // Default videos data with your YouTube Shorts URLs
 const defaultVideos: VideoItem[] = [
+  
   {
     id: "1",
     title: "Tratamento Laser CO₂ - Resultados",
@@ -495,18 +500,18 @@ const VideoCarousel: React.FC<VideoCarouselProps> = ({
         <div className="video-section-header">
           <div className="video-section-badge">
             <span className="video-badge-text">
-              {t ? t('video_carousel.badge', 'Galeria Exclusiva') : 'Galeria Exclusiva'}
+              {t ? t('video_carousel.badge', t("gallery.title")) : 'Galeria Exclusiva'}
             </span>
             <div className="video-badge-glow"></div>
           </div>
           <h2 className="video-section-title">
-            {t ? t('video_carousel.title', 'Veja Nossos Tratamentos') : 'Veja Nossos Tratamentos'}
+            {t ? t('video_carousel.title', t("gallery.sub1")) : 'Veja Nossos Tratamentos'}
             <span className="video-title-gradient">
-              {t ? t('video_carousel.title_accent', ' em Ação') : ' em Ação'}
+              {t ? t('video_carousel.title_accent', t("gallery.sub2")) : ' em Ação'}
             </span>
           </h2>
           <p className="video-section-description">
-            {t ? t('video_carousel.description', 'Descubra a eficácia dos nossos tratamentos através de vídeos detalhados e depoimentos reais') : 
+            {t ? t('video_carousel.description', t("gallery.sub3")) : 
               'Descubra a eficácia dos nossos tratamentos através de vídeos detalhados e depoimentos reais'}
           </p>
         </div>

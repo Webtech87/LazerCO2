@@ -65,7 +65,7 @@
   "key_areas": {
     "title": "CO₂ Laser Precisely Applied to Key Areas",
     "title2" : "Advanced technology meets precision care",
-    "subtitle": "Face, Neck, and Décolleté",
+    "subtitle": "Face, Neck, and Décolletage",
     "lt_title": "Ideal for improving",
     "btn" : "Learn More About CO2 Laser",
     "lt": [
@@ -124,7 +124,8 @@
         "btn": "Schedule your consultation"
       }
     },
-    "bf": "All rights reserved"
+    "bf": "All rights reserved",
+    "sendmsg" : "Form successfully submitted!"
   },
   "pc": {
     "top_info": {
@@ -837,5 +838,16 @@
 
       "btn" : "Save Preferences"
     }
+  },
+
+  "wpp_btn" : "Talk to us on WhatsApp",
+  "gallery" : {
+
+
+   "title" : "Exclusive Gallery",
+   "sub1" : "Watch our treatment",
+   "sub2" : " in Action",
+   "sub3" : "Discover the effectiveness of our treatments through detailed videos and real testimonials."
+
   }
 }

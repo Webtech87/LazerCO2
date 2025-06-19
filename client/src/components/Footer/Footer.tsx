@@ -107,7 +107,7 @@ const Footer = () => {
 
             if (result.success) {
                 setSubmitSuccess(true);
-                setSubmitMessage(result.message || 'Formulário enviado com sucesso!');
+                setSubmitMessage(result.message || t("ftr.sendmsg"));
                 
                 // Reset form
                 setFormData({

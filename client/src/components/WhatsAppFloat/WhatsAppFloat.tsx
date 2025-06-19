@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import type { WhatsAppFloatProps, AnalyticsEvent } from './types';
 import './WhatsAppFloat.css'; // Import the CSS file
+import { useTranslation } from 'react-i18next';
+
 
 const WhatsAppFloat: React.FC<WhatsAppFloatProps> = ({
   phoneNumber = "351910966393",
@@ -10,12 +12,14 @@ const WhatsAppFloat: React.FC<WhatsAppFloatProps> = ({
   position = 'bottom-right',
   size = 'medium',
   className = '',
-  tooltipText = 'Fale connosco no WhatsApp',
   enableAnalytics = true,
   onAnalyticsEvent,
 }) => {
+  const { t } = useTranslation();
+  const tooltipText = t("wpp_btn");
   const [showBadge, setShowBadge] = useState<boolean>(initialShowBadge);
   const [isHovered, setIsHovered] = useState<boolean>(false);
+  
 
   // Create WhatsApp URL
   const whatsappUrl: string = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
@@ -94,6 +98,8 @@ const WhatsAppFloat: React.FC<WhatsAppFloatProps> = ({
 
   const positionClasses = getPositionClasses();
   const sizeClasses = getSizeClasses();
+  
+  
 
   return (
     <>

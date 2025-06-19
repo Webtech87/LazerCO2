@@ -89,7 +89,7 @@
     "title": "Testemunhos de quem escolheu a Santiclinic"
   },
   "gr": {
-    "title": "Global rejuvenation",
+    "title": "Rejuvenescimento global",
     "subtitle": "O protocolo de rejuvenescimento com Laser CO₂ é indicado para quem deseja",
     "lt": [
       "Uma renovação completa da pele",
@@ -124,7 +124,8 @@
         "btn": "Agende a sua avaliação"
       }
     },
-    "bf": "Todos os direitos reservados"
+    "bf": "Todos os direitos reservados",
+    "sendmsg" : "Formulário enviado com sucesso!"
   },
   "pc": {
     "top_info": {
@@ -837,5 +838,15 @@
 
       "btn" : "Salvar Preferências"
     }
+  },
+
+  "wpp_btn" : "Fale connosco no WhatsApp",
+  "gallery" : {
+
+    "title" : "Galeria Exclusiva",
+    "sub1" : "Veja Nosso Tratamento",
+    "sub2" : " em Ação",
+    "sub3" : "Descubra a eficácia dos nossos tratamentos através de vídeos detalhados e depoimentos reais"
+
   }
 }
