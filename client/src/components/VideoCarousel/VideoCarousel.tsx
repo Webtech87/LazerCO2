@@ -58,7 +58,7 @@ const defaultVideos: VideoItem[] = [
     id: "1",
     title: "Tratamento Laser CO₂ - Resultados",
     description: "Veja os resultados incríveis do nosso tratamento a laser para rejuvenescimento facial",
-    category: "Tratamentos",
+    category: "Tratamento",
     duration: "0:45",
     videoUrl: "https://www.youtube.com/shorts/YHLcLYZqqII",
     thumbnailUrl: ""

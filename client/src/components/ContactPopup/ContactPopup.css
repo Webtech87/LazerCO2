@@ -427,6 +427,7 @@
   background: linear-gradient(to right, var(--popup-bg-white) 0%, var(--popup-bg-white) 100%);
   padding: 0 8px;
   font-weight: 500;
+  z-index: -1;
 }
 
 .input-border {

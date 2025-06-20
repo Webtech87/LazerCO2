@@ -12,13 +12,13 @@ interface Follower {
 }
 
 const foll: Follower[] = [
-  {
+  /*{
     id: 1,
     name: 'Rita Lazdiņa',
     text: 'Dr. Wilsa is very kind, highly competent, and always finds the best solution! I completely trust her with my beauty needs. All the other staff at the clinic are also friendly and very helpful. Thank you!',
     image: 'https://images.unsplash.com/photo-1494790108755-2616b332c2d2?w=150&h=150&fit=crop&crop=face',
     grade: '5 Stars'
-  },
+  },*/
   {
     id: 2,
     name: 'Gutz',
