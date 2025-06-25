@@ -119,7 +119,8 @@
         "obj": "Assunto",
         "msg": "Mensagem",
         "axept": "Li e aceito a ",
-        "btn": "Agende a sua avaliação"
+        "btn": "Agende a sua avaliação",
+        "capcha": "Confirme que você não é um robô."
       }
     },
     "bf": "Todos os direitos reservados"

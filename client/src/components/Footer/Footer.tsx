@@ -1,7 +1,8 @@
 import './Footer.css'
 import whatsapp from '../../assets/whasapp-logo.png'
-import { useTranslation } from "react-i18next";
-import { useState } from 'react';
+import {useTranslation} from "react-i18next";
+import {useState} from 'react';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 interface FormData {
     name: string;
@@ -17,8 +18,8 @@ interface FormErrors {
 }
 
 const Footer = () => {
-    
-    const { t } = useTranslation();
+
+    const {t} = useTranslation();
     const [formData, setFormData] = useState<FormData>({
         name: '',
         email: '',
@@ -27,7 +28,7 @@ const Footer = () => {
         msg: '',
         accept_terms: false
     });
-    
+
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitMessage, setSubmitMessage] = useState<string>('');
     const [submitSuccess, setSubmitSuccess] = useState<boolean | null>(null);
@@ -36,21 +37,21 @@ const Footer = () => {
     // 🚀 WhatsApp redirect function
     const handleWhatsAppClick = () => {
         console.log('💬 WhatsApp button clicked in Footer');
-        
+
         const phoneNumber = "351915007427"; // Your WhatsApp number
         const message = "Olá! Vi o site da SantiClinic e gostaria de falar convosco sobre os vossos tratamentos. Podem ajudar-me?";
         const encodedMessage = encodeURIComponent(message);
         const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-        
+
         console.log('🔗 Opening WhatsApp:', whatsappUrl);
-        
+
         // Open WhatsApp in new tab
         window.open(whatsappUrl, '_blank');
     };
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-        const { name, value, type } = e.target;
-        
+        const {name, value, type} = e.target;
+
         if (type === 'checkbox') {
             const checked = (e.target as HTMLInputElement).checked;
             setFormData(prev => ({
@@ -63,7 +64,7 @@ const Footer = () => {
                 [name]: value
             }));
         }
-        
+
         // Clear specific field error when user starts typing
         if (errors[name]) {
             setErrors(prev => ({
@@ -73,8 +74,21 @@ const Footer = () => {
         }
     };
 
+    const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+
+    const handleCaptchaChange = (token: string | null) => {
+        setCaptchaToken(token);
+    };
+
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        if (!captchaToken) {
+            alert(t('ftr.contact.captcha'));
+            return;
+        }
+
         setIsSubmitting(true);
         setSubmitMessage('');
         setSubmitSuccess(null);
@@ -108,7 +122,7 @@ const Footer = () => {
             if (result.success) {
                 setSubmitSuccess(true);
                 setSubmitMessage(result.message || 'Formulário enviado com sucesso!');
-                
+
                 // Reset form
                 setFormData({
                     name: '',
@@ -118,13 +132,13 @@ const Footer = () => {
                     msg: '',
                     accept_terms: false
                 });
-                
+
                 console.log('✅ Form submitted successfully');
 
                 // Optional: Scroll to top of form to show success message
                 const formElement = document.querySelector('.form-container');
                 if (formElement) {
-                    formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    formElement.scrollIntoView({behavior: 'smooth', block: 'start'});
                 }
             } else {
                 setSubmitSuccess(false);
@@ -142,51 +156,53 @@ const Footer = () => {
             setIsSubmitting(false);
         }
     };
+    const currentYear = new Date().getFullYear();
+
 
     return (
         <div id="footer-section" className='page-container footer-section'>
             <div className='footer-container'>
                 <section className='footer' id="footer">
                     <div className='footer-info'>
-                        <img className='logo' src="/logo-santiclinic.png" alt="SantiClinic Logo" />
+                        <img className='logo' src="/logo-santiclinic.png" alt="SantiClinic Logo"/>
                         <span>{t("ftr.slogan")}</span>
-                        
+
                         {/* 🔗 Updated Social Media with Links */}
                         <div className='social-media'>
-                            <a 
-                                href="https://www.instagram.com/santi_clinic/" 
-                                target="_blank" 
+                            <a
+                                href="https://www.instagram.com/santi_clinic/"
+                                target="_blank"
                                 rel="noopener noreferrer"
                                 aria-label="Instagram"
                             >
-                                <img src="/instagram.png" alt="Instagram" />
+                                <img src="/instagram.png" alt="Instagram"/>
                             </a>
-                            <a 
-                                href="https://www.facebook.com/santiclinic/" 
-                                target="_blank" 
+                            <a
+                                href="https://www.facebook.com/santiclinic/"
+                                target="_blank"
                                 rel="noopener noreferrer"
                                 aria-label="Facebook"
                             >
-                                <img src="/facebook-logo.png" alt="Facebook" />
+                                <img src="/facebook-logo.png" alt="Facebook"/>
                             </a>
-                            <a 
-                                href="https://www.tiktok.com/@santiclinic1" 
-                                target="_blank" 
+                            <a
+                                href="https://www.tiktok.com/@santiclinic1"
+                                target="_blank"
                                 rel="noopener noreferrer"
                                 aria-label="TikTok"
                             >
-                                <img src="/tiktok-logo.png" alt="TikTok" />
+                                <img src="/tiktok-logo.png" alt="TikTok"/>
                             </a>
                         </div>
-                        
+
                         <div className='contact-politics'>
                             <div className='contacts'>
                                 <h3>{t("ftr.contact.title")}</h3>
                                 <span>📞 (+351) 910 144-032</span>
-                                <span>📍 Praceta Agostinho <br /> 8005-147, Faro</span>
-                                
+                                <span>📍 Praceta Agostinho <br/> 8005-147, Faro</span>
+
                                 {/* 🔥 WhatsApp button with enhanced styling */}
-                                <button 
+                                <button
                                     onClick={handleWhatsAppClick}
                                     title="Falar connosco no WhatsApp"
                                     className="whatsapp-footer-btn"
@@ -216,7 +232,7 @@ const Footer = () => {
                                         e.currentTarget.style.boxShadow = '0 4px 15px rgba(37, 211, 102, 0.3)';
                                     }}
                                 >
-                                    <img src={whatsapp} alt="WhatsApp" style={{ width: '20px', height: '20px' }} />
+                                    <img src={whatsapp} alt="WhatsApp" style={{width: '20px', height: '20px'}}/>
                                     {t("ftr.contact.btn")}
                                 </button>
                             </div>
@@ -232,10 +248,10 @@ const Footer = () => {
                         <div className='form'>
                             <h2>{t("ftr.form.title")}</h2>
                             <span>{t("ftr.form.p")}</span>
-                            
+
                             {/* Success/Error Message */}
                             {submitMessage && (
-                                <div 
+                                <div
                                     className={`submit-message ${submitSuccess ? 'success' : 'error'}`}
                                     style={{
                                         padding: '15px',
@@ -250,11 +266,11 @@ const Footer = () => {
                                     {submitMessage}
                                 </div>
                             )}
-                            
+
                             <form onSubmit={handleSubmit}>
                                 <label htmlFor="name">{t("ftr.form.flds.name")}*</label>
-                                <input 
-                                    type="text" 
+                                <input
+                                    type="text"
                                     id="name"
                                     name="name"
                                     value={formData.name}
@@ -264,16 +280,17 @@ const Footer = () => {
                                     placeholder="Seu nome completo"
                                 />
                                 {errors.name && (
-                                    <div className="field-error" style={{ color: '#dc3545', fontSize: '12px', marginTop: '5px' }}>
+                                    <div className="field-error"
+                                         style={{color: '#dc3545', fontSize: '12px', marginTop: '5px'}}>
                                         {errors.name.join(', ')}
                                     </div>
                                 )}
-                                
+
                                 <div className='email-phone'>
                                     <div className="field">
                                         <label htmlFor="email">Email*</label>
-                                        <input 
-                                            type="email" 
+                                        <input
+                                            type="email"
                                             id="email"
                                             name="email"
                                             value={formData.email}
@@ -283,15 +300,16 @@ const Footer = () => {
                                             placeholder="seu@email.com"
                                         />
                                         {errors.email && (
-                                            <div className="field-error" style={{ color: '#dc3545', fontSize: '12px', marginTop: '5px' }}>
+                                            <div className="field-error"
+                                                 style={{color: '#dc3545', fontSize: '12px', marginTop: '5px'}}>
                                                 {errors.email.join(', ')}
                                             </div>
                                         )}
                                     </div>
                                     <div className="field">
                                         <label htmlFor="phone">{t("ftr.form.flds.phone")}*</label>
-                                        <input 
-                                            type="tel" 
+                                        <input
+                                            type="tel"
                                             id="phone"
                                             name="phone"
                                             value={formData.phone}
@@ -301,16 +319,17 @@ const Footer = () => {
                                             placeholder="+351 910 000 000"
                                         />
                                         {errors.phone && (
-                                            <div className="field-error" style={{ color: '#dc3545', fontSize: '12px', marginTop: '5px' }}>
+                                            <div className="field-error"
+                                                 style={{color: '#dc3545', fontSize: '12px', marginTop: '5px'}}>
                                                 {errors.phone.join(', ')}
                                             </div>
                                         )}
                                     </div>
                                 </div>
-                                
+
                                 <label htmlFor="subject">{t("ftr.form.flds.obj")}*</label>
-                                <select 
-                                    name="subject" 
+                                <select
+                                    name="subject"
                                     id="subject"
                                     value={formData.subject}
                                     onChange={handleInputChange}
@@ -324,14 +343,15 @@ const Footer = () => {
                                     <option value="blefo-inferior">Blefoinferior sem corte</option>
                                 </select>
                                 {errors.subject && (
-                                    <div className="field-error" style={{ color: '#dc3545', fontSize: '12px', marginTop: '5px' }}>
+                                    <div className="field-error"
+                                         style={{color: '#dc3545', fontSize: '12px', marginTop: '5px'}}>
                                         {errors.subject.join(', ')}
                                     </div>
                                 )}
-                                
+
                                 <label htmlFor="msg">{t("ftr.form.flds.msg")}*</label>
-                                <textarea 
-                                    name="msg" 
+                                <textarea
+                                    name="msg"
                                     id="msg"
                                     value={formData.msg}
                                     onChange={handleInputChange}
@@ -341,14 +361,15 @@ const Footer = () => {
                                     placeholder="Descreva o que gostaria de saber sobre nossos tratamentos..."
                                 ></textarea>
                                 {errors.msg && (
-                                    <div className="field-error" style={{ color: '#dc3545', fontSize: '12px', marginTop: '5px' }}>
+                                    <div className="field-error"
+                                         style={{color: '#dc3545', fontSize: '12px', marginTop: '5px'}}>
                                         {errors.msg.join(', ')}
                                     </div>
                                 )}
-                                
+
                                 <div className='checkbox'>
-                                    <input 
-                                        type="checkbox" 
+                                    <input
+                                        type="checkbox"
                                         id="accept_terms"
                                         name="accept_terms"
                                         checked={formData.accept_terms}
@@ -356,20 +377,26 @@ const Footer = () => {
                                         required
                                     />
                                     <span>
-                                        {t("ftr.form.flds.axept")} 
+                                        {t("ftr.form.flds.axept")}
                                         <a href="/politica-privacidade" target="_blank" rel="noopener noreferrer">
                                             {t("ftr.policy.lt.0")}
                                         </a>
                                     </span>
                                 </div>
                                 {errors.accept_terms && (
-                                    <div className="field-error" style={{ color: '#dc3545', fontSize: '12px', marginTop: '5px' }}>
+                                    <div className="field-error"
+                                         style={{color: '#dc3545', fontSize: '12px', marginTop: '5px'}}>
                                         {errors.accept_terms.join(', ')}
                                     </div>
                                 )}
-                                
-                                <button 
-                                    type="submit" 
+
+                                <ReCAPTCHA
+                                    sitekey="6LfwMW0rAAAAAECKzCTJX684nEf1sX35Ni5VPQ2y"
+                                    onChange={handleCaptchaChange}
+                                />
+
+                                <button
+                                    type="submit"
                                     disabled={isSubmitting}
                                     style={{
                                         opacity: isSubmitting ? 0.7 : 1,
@@ -383,7 +410,7 @@ const Footer = () => {
                     </div>
                 </section>
                 <div className='copyright'>
-                    <span>© 2025 SANTICLINIC. {t("ftr.bf")}.</span>
+                    <span>© {currentYear} SANTICLINIC. {t("ftr.bf")}.</span>
                 </div>
             </div>
         </div>
