@@ -119,7 +119,8 @@
         "obj": "Subject",
         "msg": "Message",
         "axept": "I have read and accept the ",
-        "btn": "Schedule your consultation"
+        "btn": "Schedule your consultation",
+        "capcha": "Please verify that you are not a robot."
       }
     },
     "bf": "All rights reserved"
